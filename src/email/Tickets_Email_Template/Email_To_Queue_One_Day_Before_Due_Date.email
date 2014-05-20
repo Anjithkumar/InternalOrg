@@ -1,0 +1,20 @@
+Hello {!Ticket__c.OwnerFullName},
+
+The due date to close the ticket is {!Ticket__c.Due_Date__c} .
+Below is the ticket details 
+
+Ticket ID: {!Ticket__c.Name}
+
+Ticket Number: {!Ticket__c.Ticket_Number__c}
+
+Current Status: {!Ticket__c.Status__c}
+
+Due Date:  {!Ticket__c.Due_Date__c}
+
+Priority:   {!Ticket__c.Priority__c}
+
+Customer: {!Ticket__c.Customer__c}
+
+Thanks and Regards,
+
+{!Organization.Name}

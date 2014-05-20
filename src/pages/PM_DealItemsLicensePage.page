@@ -1,0 +1,82 @@
+<!--To create Deal lineitems for a particular deal of type 'License'-->
+<apex:page controller="PM_DealItemsLicensePageController" tabStyle="Deal__c" id="thePage" sidebar="false"> 
+    <apex:form id="theForm" >
+        
+        <apex:sectionHeader title="Deal Items"/>
+        <apex:pageMessages ></apex:pageMessages>
+        <c:Date_Picker ></c:Date_Picker>
+        
+        <!--Display the deal to which we are creating lineitems -->
+        <apex:pageBlock title="Deal Details" id="pgBlock1" >
+            <apex:pageBlockTable value="{!dealInstance}" var="d">
+                <apex:column value="{!d.name}"/>
+                <apex:column value="{!d.Customer__c}"/>
+                <apex:column value="{!d.Stage__c}"/>
+                <apex:column value="{!d.Close_Date__c}"/>
+                <apex:column value="{!d.Deal_Start_Date__c}"/>
+                <apex:column value="{!d.Deal_End_Date__c}"/> 
+                <apex:column value="{!d.Total_Price_Licenses__c}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+        
+        <!--select the lineitems necessary for the deal -->
+        <apex:pageBlock title="Select resources required" id="pgBlock2">
+            <apex:pageblockTable value="{!ListOfLicenses}" var="p" id="pgTable1">
+                <apex:column headervalue="Select" width="50px">
+                    <apex:inputCheckbox value="{!p.selectedValues}" id="checkdone"/>
+                </apex:column>
+                <apex:column headerValue="Product/Edition">
+                    <apex:outputtext value="{!p.name}"/>
+                </apex:column> 
+                <apex:column headerValue="List Price">
+                    <apex:outputtext value="{!p.listPrice}"/>
+                </apex:column>
+                <apex:column headerValue="Transfer Price">
+                    <apex:inputtext value="{!p.TransferPrice}" style="Width:100px;height:15px"/>
+                </apex:column>
+                <apex:column headerValue="License Start Date">
+                    <apex:inputtext value="{!p.StartDate}" styleClass="datepicker" id="startDate" style="Width:100px;height:15px"/>
+                </apex:column>
+                <apex:column headerValue="License End Date">
+                    <apex:inputtext value="{!p.endDate}" styleClass="datepicker" id="endDate" style="Width:100px;height:15px" />
+                </apex:column>
+                <apex:column headerValue="Quantity">
+                    <apex:inputtext value="{!p.Quantity}" id="quantity" style="Width:100px;height:15px" />
+                </apex:column>
+                <apex:column headerValue="Sales Price"> 
+                    <apex:inputtext value="{!p.SalesPrice}" style="Width:100px;height:15px" />
+                </apex:column>
+            </apex:pageblockTable>
+            <apex:pageBlockButtons location="bottom" >
+                <apex:commandLink action="{!save}" onclick="return checkAll()">
+                    <apex:image value="{!$Resource.Save}" width="50" height="20" />
+                </apex:commandLink>
+                &nbsp;&nbsp;<apex:commandLink action="{!cancel}">
+                <apex:image value="{!$Resource.Cancel}" width="50" height="20" />
+                </apex:commandLink>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form> 
+    
+    <!--Javascript validation to select atleast one value in the section  -->
+    <script>  
+        function checkAll(){
+        var inputElem = document.getElementsByTagName("input");
+        var temp = document.getElementById("thePage:theForm:pgBlock2:pgTable1");
+        var counter = 0;
+        for(var i=0; i<inputElem.length; i++){
+        if(inputElem[i].checked == true){      
+        counter = 1;
+        }       
+        }
+        if(counter == 0){
+        alert( 'Please select at least 1 value');
+        return false;
+        }
+        else{
+        return true;
+        }
+        }
+        
+    </script> 
+    </apex:page>

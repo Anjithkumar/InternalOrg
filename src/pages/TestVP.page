@@ -1,0 +1,66 @@
+<apex:page controller="TimeEntryDetail" tabStyle="Account" sidebar="false">
+    <c:JqueryComponent />
+    <script type="text/javascript">
+    var j$ = jQuery.noConflict();
+    j$(document).ready(function(){
+        
+        j$("input[id$='startDate']").datepicker({dateFormat: 'dd/mm/yy'});
+        j$("input[id$='endDate']").datepicker({dateFormat: 'dd/mm/yy'});
+        
+    });  
+    </script>    
+    <apex:form id="frm" >
+        <apex:pageBlock >
+            <apex:actionStatus id="status">
+                <apex:facet name="start">
+                    <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;
+                    height: 100%;opacity:0.65;width:100%;"> 
+                        <div class="waitingHolder" style="top: 74.2px; width: 91px;">
+                            <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                            <span class="waitingDescription">Loading...</span>
+                        </div>
+                    </div>
+                </apex:facet>
+            </apex:actionStatus>
+            <apex:pageBlockSection columns="3" title="Search details ...">
+                <apex:pageBlockSectionItem labelTitle="Start Date" >
+                    <apex:outputLabel for="startDate">Start Date</apex:outputLabel>
+                    <apex:inputText id="startDate" value="{!StartDate}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem labelTitle="End Date" >
+                    <apex:outputLabel for="endDate">End Date</apex:outputLabel>
+                    <apex:inputText id="endDate" value="{!EndDate}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:commandButton value="Search" action="{!search}" reRender="frm,PieChartSections" status="status"/>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <apex:outputPanel id="PieChartSections"> 
+            <apex:pageBlockSection title="Team Time Entry Details" rendered="{!showHidePieChart}" id="PieChartSection"  >
+                
+                <apex:chart height="350" width="450" data="{!PieData}">
+                    <apex:pieSeries dataField="hoursDetail" labelField="name" colorSet="#FF0000,#FFFF00,#0B610B,#00FF00" />
+                    <apex:legend position="right" />
+                </apex:chart>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="More Details" rendered="{!showHidePieChart}" columns="3" id="DetailedViewOfPieChart" >
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel for="view">View Of</apex:outputLabel>
+                    <apex:selectList id="view" size="1"  multiselect="false" value="{!SelectedOption}">
+                        <apex:selectOptions value="{!SelectList}"/>
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:commandButton value="Graphical View" action="{!graphicalView}"/>
+                </apex:pageBlockSectionItem>  
+                <apex:pageBlockSectionItem >
+                    <apex:commandButton value="Tabular View" action="{!tableView}" />      
+                </apex:pageBlockSectionItem>                 
+            </apex:pageBlockSection>
+            </apex:outputPanel>
+        </apex:pageBlock>
+        
+    </apex:form>
+    
+    
+</apex:page>

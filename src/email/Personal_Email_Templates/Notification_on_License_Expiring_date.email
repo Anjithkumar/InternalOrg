@@ -1,0 +1,8 @@
+Hi {!Deal_Item__c.CreatedBy},
+
+
+This is to inform that , one of  the license  on {!Deal_Item__c.Deal__c }  will get expire on  {!Deal_Item__c.End_Date__c} ,please click below link to get information about the deal  {!Deal__c.Link}
+
+
+Thanks 
+Extentor Team

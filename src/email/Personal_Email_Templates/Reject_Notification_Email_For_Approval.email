@@ -1,0 +1,17 @@
+Hi {!Claim__c.Approving_Manager__c}
+
+{!Claim__c.OwnerFullName} has requested for the Claim , below are the claim details
+
+Claim Name: {!Claim__c.Name}
+Date of Claim: {!Claim__c.CreatedDate}
+Total Claim Amount: {!Claim__c.Total_Amount_to_Claim__c}
+
+Please click below link to know more about the Claim
+{!Claim__c.Link}
+
+To Approve/Reject the claim, please below link
+{!ApprovalRequest.External_URL}
+
+
+Thanks & Regards
+{!Organization.Name}

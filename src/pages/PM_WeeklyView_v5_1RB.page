@@ -1,0 +1,127 @@
+<apex:page controller="PM_WeeklyView_v5_1RBController" tabStyle="Time_Entry__c" sidebar="false" standardStylesheets="false" >
+  <apex:pageMessages ></apex:pageMessages>
+  <apex:includeScript value="{!URLFOR($Resource.jQuery,'/jquery-ui-1.10.1.custom/js/jquery-1.9.1.js')}"/>
+  <apex:includeScript value="{!URLFOR($Resource.jQuery,'/jquery-ui-1.10.1.custom/js/jquery-ui-1.10.1.custom.js')}"/>
+  <apex:stylesheet value="{!URLFOR($Resource.jQuery,'/jquery-ui-1.10.1.custom/css/redmond/jquery-ui-1.10.1.custom.css')}"/> 
+  <script> 
+      var dt;
+      
+    $j = jQuery.noConflict();
+    $j(function() {
+    $j('input[id$=datepicker]').datepicker({
+    dateFormat: 'dd/mm/yy'});
+    });
+    $j(function() {
+    $j( "#dialog" ).dialog({
+    autoOpen: false,
+    show: {
+    effect: "explode",
+    duration: 1000
+    },
+    hide: {
+    effect: "explode",
+    duration: 1000
+    },
+    buttons: {
+        "Save": function() {
+
+        if($j.isNumeric($j("#effortT").val())){
+         saveTimeEntryRecord($j("#projId").val(),$j("#dateT").val(),$j("#taskId").val(),$j("#effortT").val(),$j("#activityDesc").val());
+         $j("#projId").val("")  ;
+         $j("#dateT").val("")  ;
+         $j("#taskId").val("");
+         $j("#effortT").val("")  ;
+         $j("#activityDesc").val("");
+         $j("#dialog").dialog("close");
+         
+         }
+         else{
+             alert('Enter a valid number for Effort Hours');
+         }
+         
+        }
+    }
+    });
+    
+    });
+    function opendialog(a,b,c,d,e) {
+    dt = b;
+    
+    document.getElementById("date").innerHTML=dt;
+    
+    dt = null;
+    
+    //alert(a+' '+b+' '+c+ ' ' + d);
+    $j("#projId").val(c);
+    $j("#dateT").val(b);
+    $j("#taskId").val(a);
+    
+    $j("#effortT").val(d);
+    $j("#activityDesc").val(e);
+    $j("#dialog").dialog("open");
+    }
+  </script>
+  <apex:form >
+  <!--<apex:pageBlock title="Date for time entry">-->
+      <apex:inputText label="Enter Date:" value="{!inputDateString}" id="datepicker"/>
+      <br/><br/>
+          <apex:commandLink action="{!next}">
+              <apex:image value="{!$Resource.Next}" width="40px" height="20px"/>
+          </apex:commandLink>  
+   <!--</apex:pageBlock>-->
+  </apex:form>
+  <div id="dialog" title="New Time Entry">
+<!--  <apex:form > -->
+
+      <table>
+          <tr><th>Date</th><td id="date"></td></tr>
+          
+          <tr><th>Activity Description</th><td id="ActDes"><input type="text" id="activityDesc"/></td> </tr>
+          <tr><th>Effort</th><td id="Eff"><input type="text" id="effortT"/></td> </tr>
+          <!--<tr><th>Task Complexity</th><td id="Compx"><select id="comp"><option>Hello</option></select></td> </tr> -->
+          <input type="hidden" id="projId"/>
+          <input type="hidden" id="dateT"/>
+          <input type="hidden" id="taskId"/>
+          <!--<apex:actionFunction name="addNewSkill" action="{!save}" status="processing" reRender="frm"/> -->
+      </table>      
+ <!-- </apex:form> -->
+  </div>
+  <apex:pageBlock title="Current Projects:" rendered="{!showPanel}" id="pgBlock1">
+      <apex:panelBar items="{!AllDetails}" var="pbItem" style="color:Red"  >
+          <apex:panelBarItem label="{!pbItem.projInstance.Name}" expanded="{!show}" >
+              <apex:pageBlock id="pgBlock2">
+                  <apex:pageBlockTable value="{!pbItem.inList}" var="aDpt" >
+                      <apex:column headerValue="Project Task" value="{!aDpt.projTask.Name}"/>
+                      <apex:column headerValue="Sun [{!datesOfWeek[0]}]" value="{!aDpt.timeEntryList[0].Effort__c}" onclick="opendialog('{!aDpt.projTask.Id}','{!aDpt.timeEntryList[0].Date__c}','{!pbItem.projInstance.Id}','{!aDpt.timeEntryList[0].Effort__c}','{!aDpt.timeEntryList[0].Activity_Description__c}')"/>
+                      <apex:column headerValue="Mon [{!datesOfWeek[1]}]" value="{!aDpt.timeEntryList[1].Effort__c}" onclick="opendialog('{!aDpt.projTask.Id}','{!aDpt.timeEntryList[1].Date__c}','{!pbItem.projInstance.Id}','{!aDpt.timeEntryList[1].Effort__c}','{!aDpt.timeEntryList[1].Activity_Description__c}')"/>
+                      <apex:column headerValue="Tue [{!datesOfWeek[2]}]" value="{!aDpt.timeEntryList[2].Effort__c}" onclick="opendialog('{!aDpt.projTask.Id}','{!aDpt.timeEntryList[2].Date__c}','{!pbItem.projInstance.Id}','{!aDpt.timeEntryList[2].Effort__c}','{!aDpt.timeEntryList[2].Activity_Description__c}')"/>
+                      <apex:column headerValue="Wed [{!datesOfWeek[3]}]" value="{!aDpt.timeEntryList[3].Effort__c}" onclick="opendialog('{!aDpt.projTask.Id}','{!aDpt.timeEntryList[3].Date__c}','{!pbItem.projInstance.Id}','{!aDpt.timeEntryList[3].Effort__c}','{!aDpt.timeEntryList[3].Activity_Description__c}')"/>
+                      <apex:column headerValue="Thu [{!datesOfWeek[4]}]" value="{!aDpt.timeEntryList[4].Effort__c}" onclick="opendialog('{!aDpt.projTask.Id}','{!aDpt.timeEntryList[4].Date__c}','{!pbItem.projInstance.Id}','{!aDpt.timeEntryList[4].Effort__c}','{!aDpt.timeEntryList[4].Activity_Description__c}')"/>
+                      <apex:column headerValue="Fri [{!datesOfWeek[5]}]" value="{!aDpt.timeEntryList[5].Effort__c}" onclick="opendialog('{!aDpt.projTask.Id}','{!aDpt.timeEntryList[5].Date__c}','{!pbItem.projInstance.Id}','{!aDpt.timeEntryList[5].Effort__c}','{!aDpt.timeEntryList[5].Activity_Description__c}')"/>
+                      <apex:column headerValue="Sat [{!datesOfWeek[6]}]" value="{!aDpt.timeEntryList[6].Effort__c}" onclick="opendialog('{!aDpt.projTask.Id}','{!aDpt.timeEntryList[6].Date__c}','{!pbItem.projInstance.Id}','{!aDpt.timeEntryList[6].Effort__c}','{!aDpt.timeEntryList[6].Activity_Description__c}')"/>
+                  </apex:pageBlockTable>
+              </apex:pageBlock>
+          </apex:panelBarItem>
+       </apex:panelBar>
+   
+   <apex:form >
+   <apex:commandLink action="{!Done}">
+   <apex:image value="{!$Resource.Done}" width="40px" height="20px"/>
+   </apex:commandLink>
+   </apex:form>
+   </apex:pageBlock>
+   
+   <apex:form id="frm2">
+   <apex:actionFunction id="saveTimeEntryRecord" name="saveTimeEntryRecord" action="{!saveTimeEntryRecord}" immediate="true" reRender="frm2,pgBlock1">
+   <apex:param value="" name="projectIdValue" assignTo="{!projectIdValue}"/>
+    <apex:param value="" name="dateValue" assignTo="{!dateValue}"/>
+      <apex:param value="" name="taskIdValue " assignTo="{!taskIdValue }"/> 
+         <apex:param value="" name="effortValue" assignTo="{!effortValue}"/>
+         <apex:param value="" name="activityDescription" assignTo="{!activityDescription}"/>
+         
+         
+           
+   </apex:actionFunction>   
+   </apex:form>
+ 
+</apex:page>

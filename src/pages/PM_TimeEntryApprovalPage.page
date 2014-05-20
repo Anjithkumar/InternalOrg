@@ -1,0 +1,53 @@
+<apex:page controller="PM_TimeEntryApprovalController" tabStyle="Time_Entry__c">
+<apex:sectionHeader title="Time Entry" subtitle="Approval"/>
+<apex:form >
+<apex:pageBlock >
+
+<!--<apex:commandButton value="save" action="{!save}" id="Save"/>-->
+<apex:repeat value="{!ProjectName}" var="PN" rendered="{!listEmpty}">
+<apex:pageBlockSection title="{!PN.projInstance}" collapsible="false" columns="2" id="pgBlockSection2" >
+
+<apex:pageBlockTable value="{!PN.InnerWrapperList}" var="tv" >
+    <apex:column headerValue="Select">
+        <apex:inputCheckbox value="{!tv.isChecked}"/>
+    </apex:column>
+  
+    <apex:column headerValue="Date" value="{!tv.instance.Date__c}"/>         
+    <apex:column headerValue="Project" value="{!tv.instance.Project__c}"/>
+    <apex:column headerValue="Related Task" value="{!tv.instance.Related_Task__c}"/>
+     <apex:column headerValue="Client Recoverable" value="{!tv.instance.Client_Recoverable__c}"/>
+    <apex:column headerValue="Effort Put In By" value="{!tv.instance.Effort_Put_in_by_User__c}"/>
+    <apex:column headerValue="Effort" value="{!tv.instance.Effort__c}"/>
+<!-- <apex:inlineEditSupport event="ondblClick" showOnEdit="Save" resetFunction="resetInlineEdit"/>-->
+</apex:pageBlockTable>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+<apex:commandLink action="{!approve}" status="as1">
+<apex:image value="{!$Resource.Approve}" width="50" height="20"/>
+<apex:param name="projName" value="{!PN.projInstance}" assignTo="{!projName}"/>
+</apex:commandLink>
+<apex:commandLink action="{!reject}" status="as1">
+<apex:image value="{!$Resource.Reject}" width="50" height="20"/>
+<apex:param name="projName" value="{!PN.projInstance}" assignTo="{!projName}"/>
+</apex:commandLink>
+</apex:pageBlockSection>
+
+<apex:actionstatus id="as1">
+            <apex:facet name="start">
+                <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;
+                       height: 100%;opacity:0.65;width:100%;"> 
+                    <div class="waitingHolder" style="top: 104.2px; width: 100px; right:50px;">
+                        <img class="waitingImage" src="{!$Resource.Redcircle}" width="40" height="40"  title="Please Wait..." />
+                       
+                    </div>
+                </div>
+            </apex:facet>
+        </apex:actionstatus>
+
+</apex:repeat>
+
+ 
+
+</apex:pageBlock>
+</apex:form>
+</apex:page>

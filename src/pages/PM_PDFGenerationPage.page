@@ -1,0 +1,160 @@
+<apex:page standardController="Invoice__c" renderAs="pdf" extensions="PM_InvPDFGenerationPageController">
+ 
+        
+         <html>
+         <head>
+         <style> 
+             @page {                
+                @top-center {                   
+                    content: element(header);               
+                }
+                @bottom-left {
+                    content: element(footer);
+                }      
+                @bottom-right {
+                    font-size:60%;                   
+                    content: "Page " counter(page);              
+                }     
+            }                       
+ 
+            div.header {                
+                padding: 10px;        
+                font-size:150%;      
+                position: running(header);           
+            }           
+            div.footer {                
+                display: block;             
+                padding: 5px;  
+                position: running(footer); 
+                
+            }           
+                
+                
+             body {font-family: Arial Unicode MS;}
+             .Head {
+                 font-weight:bold;
+                 font-size:12;
+                 color:black;
+                 border:1px solid black;
+                 background-color:#DDDDDD;
+                 }  
+                 .smallfont {
+                 
+                 font-size:55%;
+                 color:black;}
+             .Body {
+                 
+                 font-size:50%;
+                 color:black;
+                
+                 }      
+             .Border{
+             width:700px;
+             border:1px solid black;
+             border-collapse:collapse;
+             }
+         </style>
+         </head>
+         
+              
+         <br/><br/>
+         <div class="header">
+         
+                <table >
+                <tr><td style="width:14%;"><apex:image id="theImage" value="{!$Resource.CompanyLogo}" style="width:200px;"/></td><td style="width:86%;"><center><h3>Invoice</h3></center></td></tr>
+                </table>
+         </div>
+         
+         <body class="Body">
+         <br></br>
+         <table style="border:1px solid black;border-collapse:collapse;width:350px;">
+         <tr><td colspan="3" rowspan="1" style="width:50%;text-align:left;border:1px solid black;font-size:120%;" ><b>Invoice#</b>&nbsp;&nbsp;</td><td colspan="3" rowspan="1" style="width:50%;text-align:left;border:1px solid black;font-size:120%;" >{!Invoice__c.Invoice_Number__c}&nbsp;&nbsp;</td></tr>   
+         <tr><td colspan="3" rowspan="1" style="width:50%;text-align:left;border:1px solid black;font-size:120%;" ><b>Invoice Date</b>&nbsp;&nbsp;</td><td colspan="3" rowspan="1" style="width:50%;text-align:left;border:1px solid black;font-size:120%;" ><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!Invoice__c.Invoice_Date__c}"/></apex:outputText>&nbsp;&nbsp;</td></tr>
+         </table>
+         
+         <table class="Border" >
+         <tr><td colspan="3" rowspan="1" style="width:50%;text-align:left;width:350px;border:1px solid black;" ><b>Bill To:</b><br></br>&nbsp;&nbsp;&nbsp;&nbsp;{!Invoice__c.Sales_Order__r.Customer__r.Name}<br/>&nbsp;&nbsp;&nbsp;&nbsp;{!Invoice__c.Sales_Order__r.Customer__r.Billing_Street__c}<br/>&nbsp;&nbsp;&nbsp;&nbsp;{!Invoice__c.Sales_Order__r.Customer__r.Billing_City__c}<br></br>&nbsp;&nbsp;&nbsp;&nbsp;{!Invoice__c.Sales_Order__r.Customer__r.Billing_State_Province__c}<br></br>&nbsp;&nbsp;&nbsp;&nbsp;{!Invoice__c.Sales_Order__r.Customer__r.Billing_Country__c}<br></br>&nbsp;&nbsp;&nbsp;&nbsp;{!Invoice__c.Sales_Order__r.Customer__r.Billing_Zip_Postal_Code__c}&nbsp;&nbsp;</td><td colspan="3" rowspan="1" style="width:50%;text-align:left;;border:1px solid black;" ><b>Ship To:</b><br></br>&nbsp;&nbsp;&nbsp;&nbsp;{!Invoice__c.Sales_Order__r.Customer__r.Name}<br/>&nbsp;&nbsp;&nbsp;&nbsp;{!Invoice__c.Sales_Order__r.Customer__r.Shipping_Street__c}<br/>&nbsp;&nbsp;&nbsp;&nbsp;{!Invoice__c.Sales_Order__r.Customer__r.Shipping_City__c}<br></br>&nbsp;&nbsp;&nbsp;&nbsp;{!Invoice__c.Sales_Order__r.Customer__r.Shipping_State_Province__c}<br></br>&nbsp;&nbsp;&nbsp;&nbsp;{!Invoice__c.Sales_Order__r.Customer__r.Shipping_Country__c}<br></br>&nbsp;&nbsp;&nbsp;&nbsp;{!Invoice__c.Sales_Order__r.Customer__r.Shipping_Zip_Postal_Code__c}<br></br>&nbsp;&nbsp;</td></tr>   
+         </table>
+         
+         <br></br>
+         <!--<apex:panelGrid columns="1" width="700px" border="1" frame="Border" styleClass="Border" rendered=" {!invoiceTextRender} ">
+         <apex:outputText style="background-color:#DDDDDD;border:1px solid black;">Invoice Text</apex:outputText>
+         <apex:outputText style="border:1px solid black;" value="{!Invoice__c.Invoice_Text__c}" ></apex:outputText>
+         </apex:panelGrid>-->
+         <apex:form rendered="{!invoiceTextRender}"> 
+         <table class="Border" >
+         <tr><td style="width:50%;text-align:center;background-color:#DDDDDD;border:1px solid black;"><b>Invoice Text</b></td></tr>
+         <tr><td style="width:50%;text-align:center;border:1px solid black;"><div align="left"> {!Invoice__c.Invoice_Text__c} </div></td></tr>
+         </table></apex:form>
+         
+         <br></br><apex:variable value="{!1}" var="rowNum"/>
+         <table border="0" style="width:700px">
+         <tr><td  border="0" style="text-align:center;border:0px solid black">
+         <apex:dataTable value="{!InvoiceLineItem}" var="inlitem" frame="border" width="700px" align="left" styleClass="Border">
+             <apex:column headerValue="SI" headerClass="Head"  style="border:1px solid black;">
+             <apex:outputText value="{!FLOOR(rowNum)}"></apex:outputText>
+             <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+             </apex:column>
+             <apex:column headerValue="Particulars" headerClass="Head" style="border:1px solid black;"><div align="left"><apex:outputText value="{!inlitem.Invoice_Line_Item_Name__c}" /></div></apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+             <apex:column headerValue="Unit Rate" headerClass="Head" style="border:1px solid black;"><div align="right"><apex:outputtext value="{!inlitem.Unit_Rate__c}" /></div></apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+             <apex:column headerValue="Quantity" headerClass="Head" style="border:1px solid black;" ><div align="center"><apex:outputtext value="{!inlitem.Invoice_Quantity__c}" /></div></apex:column> &nbsp;&nbsp;
+             
+             <apex:column headerValue="Amount" headerClass="Head"  width="168px"  style="border:1px solid black;" ><div align="right"><apex:outputText value="INR {!inlitem.Amount__c }" ></apex:outputText></div></apex:column>&nbsp;&nbsp;
+             <tr/><tr/><tr/>
+         </apex:dataTable>
+         </td></tr>
+         <tr><td style="text-align:center;border:1px solid black;">
+          <table style="width:700px;border-collapse:collapse;border:1px solid black;">
+          <tr><td style="width:50%;text-align:left;border:0px solid black;font-weight:bold;" ><b><div align="right">Sub Total</div></b></td><td colspan="3" style="width:16%;text-align:left;border:1px solid black;border:0px solid black;font-weight:bold;" ><div align="right">INR {!AmountWithTwoDecimalPlaces}</div></td></tr> 
+          </table></td></tr>
+          
+          <tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr>
+          
+          <tr><td style="width:50%;text-align:left;border:0px solid black;">
+          <apex:dataTable value="{!TaxCode}" var="tc" frame="border" width="700px" styleClass="Border" align="left">
+          <apex:column headerValue="SI" headerClass="Head" value="{!tc.Serial}" style="border:1px solid black;"/>
+          <apex:column headerValue="Tax Code" headerClass="Head" value="{!tc.TaxCode}" style="border:1px solid black;"/>
+          <apex:column headerValue="Tax Percent" headerClass="Head" style="border:1px solid black;"><div align="right"><apex:outputText value="{!tc.TaxPercent}%"/></div></apex:column>
+          <apex:column headerValue="Tax Amount" headerClass="Head"  width="168px" style="border:1px solid black;"><div align="right"><apex:outputText value="INR {!tc.TaxAmount}"></apex:outputText></div></apex:column>
+          </apex:dataTable></td></tr>
+           
+           <tr><td style="width:50%;text-align:left;border:0px solid black;">
+           <table class="Border">
+         <tr><td style="width:50%;text-align:left;border:1px solid black;" ><b><div align="right">Total(In Words): {!Invoice__c.Amount_In_Words__c}</div></b> </td> <td colspan="3" style="width:16%;text-align:left;border:1px solid black;border:1px solid black;" ><b><div align="right">INR {!TotalAmountWithTwoDecimalPlaces}</div></b></td></tr>   
+         </table></td></tr>
+         </table>
+         <br/><br/><br/>
+         <table class="Border" align="right">
+          <tr><td style="width:100%;text-align:left;border:1px solid black;border:1px solid black;" ><b>{!CompanyDetails.Name}</b>&nbsp;&nbsp;</td></tr> 
+          
+          <tr><td style="width:50%;text-align:left;border:1px solid black;border:1px solid black;" ><b>Payment Terms:</b><br/><table>
+          <tr><td>{!CompanyDetails.Invoice_Payment_Term_1__c}</td></tr>
+          <tr><td>{!CompanyDetails.Invoice_Payment_Term_2__c}</td></tr>
+          <tr><td>{!CompanyDetails.Invoice_Payment_Term_3__c}</td></tr>
+          <tr><td>{!CompanyDetails.Invoice_Payment_Term_4__c}</td></tr>
+          <tr><td>{!CompanyDetails.Invoice_Payment_Term_5__c}</td></tr>
+          </table>&nbsp;&nbsp;</td></tr> 
+          </table> 
+          <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+          <p>
+          <div align="right">
+          <summary align="right">FOR {!CompanyDetails.Name}</summary>
+          
+          </div>
+          </p>
+          <br/><br/><br/><br/>
+          <div style="padding-left:550px;">
+          <hr />
+          Signature<br></br>
+          Authorised Signatory
+          </div>
+          
+          
+         </body>
+         <div class="footer" align="center">
+          <summary class="smallfont">{!CompanyDetails.Name} {!CompanyDetails.Company_Street__c} {!CompanyDetails.Company_City__c}{!CompanyDetails.Company_State__c}-{!CompanyDetails.Company_Postal_Code__c} {!CompanyDetails.Company_Country__c}</summary>
+          </div>
+         </html>
+                
+     
+</apex:page>

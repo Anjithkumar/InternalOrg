@@ -1,0 +1,9 @@
+Hi {!Claim__c.OwnerFullName}
+
+Your claim request - {!Claim__c.Name} has been Approved.
+Please click below link for more information
+{!Claim__c.Link}
+
+
+Thanks & Regards
+Extentor Tquila

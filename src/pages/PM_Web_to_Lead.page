@@ -1,0 +1,78 @@
+<!--Create Prospects through web -->
+<apex:page standardController="Customer__c" extensions="PM_WebtoLead" tabStyle="Customer__c" showHeader="false">
+    <html>
+        
+        <head>
+            <meta charset="UTF-8" />
+            
+            <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+            
+            
+            <!-- <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"> -->
+            <meta http-equiv="X-UA-Compatible" value="IE=9"/>
+            
+            <title>Home</title>
+            <link rel="pingback" href="http://extentor.com/xmlrpc.php" />
+            <!-- <link rel="stylesheet/less" href="http://extentor.com/wp-content/themes/extentor/css/jcarousel-tango/skin.less" /> -->
+            <link rel="icon" href="http://extentor.com/favicon.ico" type="image/x-icon" />
+            <link rel="shortcut icon" href="http://extentor.com/favicon.ico" type="image/x-icon" />
+            
+            <link href='http://fonts.googleapis.com/css?family=Maven+Pro:500' rel='stylesheet' type='text/css' />
+            <link rel="stylesheet" href="http://extentor.com/wp-content/themes/extentor/style.css" type="text/css" media="screen" />
+            <!--[if IE]>
+            <link rel="stylesheet" type="text/css" href="http://extentor.com/wp-content/themes/extentor/css/ie.css" />
+            <![endif]-->
+            <!--[if IE 8]>         <html class="ie8"> <![endif]-->
+            <meta name='robots' content='noindex,nofollow' />
+            <link rel='stylesheet' id='contact-form-7-css'  href='http://extentor.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=3.2.1' type='text/css' media='all' />
+            <link rel='stylesheet' id='fb-css'  href='http://extentor.com/wp-content/plugins/facebook/style/style.css?ver=1.0' type='text/css' media='all' />
+            <link rel='stylesheet' id='ffg_style-css'  href='http://extentor.com/wp-content/plugins/facebook-feed-grabber/style.css?ver=3.4.1' type='text/css' media='all' />
+            <script type='text/javascript' src='http://extentor.com/wp-includes/js/jquery/jquery.js?ver=1.7.2'></script>
+            <script type='text/javascript' src='http://extentor.com/wp-content/themes/extentor/script/jquery-1.7.2.js?ver=1.7.3'></script>
+            <script type='text/javascript' src='http://extentor.com/wp-content/themes/extentor/script/native.history.js?ver=2.0'></script>
+            <script type='text/javascript' src='http://extentor.com/wp-content/themes/extentor/script/app.history.js?ver=2.0'></script>
+            <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://extentor.com/xmlrpc.php?rsd" />
+            <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://extentor.com/wp-includes/wlwmanifest.xml" /> 
+            <meta name="generator" content="WordPress 3.4.1" />
+            <meta property="http://ogp.me/ns#locale" content="en_US" />
+            <meta property="http://ogp.me/ns#site_name" content="Extentor" />
+            <meta property="http://ogp.me/ns#type" content="website" />
+            <meta property="http://ogp.me/ns#title" content="Extentor" />
+            <meta property="http://ogp.me/ns#description" content="Extending Capabilities and Enabling a Social Enterprise leveraging the cloud platform and applications from Salesforce.com" />
+            <meta property="http://ogp.me/ns/fb#app_id" content="107912466027247" />
+            <link rel='shortcut icon' href='http://extentor.com/favicon.ico' />
+            <style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+            <script type="text/javascript">window.fbAsyncInit=function(){FB.init({"appId":"107912466027247","channelUrl":"http:\/\/extentor.com\/?fb-channel-file=1","status":true,"cookie":true,"xfbml":true,"oauth":true});}</script> </head>
+        <body >        
+            <div id="page">
+                <div id="pg-header" >
+                    
+                    <div  >
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </body>
+    </html>
+    <apex:form >
+        <apex:pageBlock mode="edit">
+        <apex:pagemessages ></apex:pagemessages>
+            <apex:pageblockSection title="Enter Your Query" >
+                <apex:inputField value="{!Customer__c.First_Name__c}" style="width:50%"/>
+                <apex:inputField value="{!Customer__c.Last_Name__c}" required="true" style="width:50%"/>
+                <apex:inputField value="{!Customer__c.Name}" required="true" style="width:50%"/>
+                <apex:inputfield value="{!Customer__c.Industry_Vertical__c}" label="Industry" style="width:50%"/>
+                <apex:inputField value="{!Customer__c.Email__c}" required="true" style="width:50%"/>
+                <apex:inputField value="{!Customer__c.Mobile__c}" style="width:50%"/>
+                <apex:inputField value="{!Customer__c.Description__c}" label="What is your query ?" style="Width:70%;height:70%"/>
+                <apex:inputfield Value="{!Customer__c.Website__c}" style="width:50%"/>
+                <apex:inputhidden value="{!Customer__c.Source__c}"/>
+            </apex:pageblockSection>
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton action="{!save}" value="Submit"/>
+                <apex:commandButton action="{!cancel}" value="Cancel"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

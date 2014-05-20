@@ -1,0 +1,269 @@
+<apex:page sidebar="false" showHeader="false" applyBodyTag="false" applyHtmlTag="false" controller="LM_LeaveRequest_Vivek1Controller">
+
+<link href="{!URLFOR($Resource.Vivekboot2, '/dist/css/bootstrap.css')}" rel="stylesheet"/>  
+<link href="{!URLFOR($Resource.Vivekboot2, '/dist/css/bootstrap-theme.css')}" rel="stylesheet" media="screen"/> 
+<link href="{!URLFOR($Resource.Vivekboot1, '/bootstrap/css/bootstrap.css')}" rel="stylesheet" />  
+<apex:includeScript value="{!URLFOR($Resource.VivekBoot2, '/dist/js/bootstrap.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.jQuery,'/jquery-ui-1.10.1.custom/js/jquery-1.9.1.js')}"/> 
+
+<style>
+.normalDay
+{
+background-color:#BDBDBD;
+color:#FFF;
+}
+.approvedLeave 
+{
+background-color:#21610B;
+color:#FFF;
+}
+.appliedLeaves
+{
+background-color:#FFBF00;
+color:#FFF;
+}
+.rejectedLeaves
+{
+background-color:#8A0808;
+color:#FFF;
+}
+.ClickedLeaves
+{
+background-color:#8A01208;
+color:#FFF;
+}
+</style>
+<script>
+$j = jQuery.noConflict();
+$j(function(){
+$j("#el_loading").hide();
+var CurrentDate=new Date();
+$j("#year").val(CurrentDate.getFullYear());
+$j("#month").val((CurrentDate.getMonth()+1));
+$j("#formPannel").hide();
+
+    
+});
+function fetchDetails(){
+$j("#el_loading").show();
+var myCars=new Array("January","February","March","April","May","June","July","August","September","October","November","December");
+$j("#monthName").html("Leave Details Of "+myCars[$j("#month").val()-1]);
+
+Visualforce.remoting.Manager.invokeAction(
+'{!$RemoteAction.LM_LeaveRequest_Vivek1Controller.getHolidaysForCurrentMonth}',
+$j("#year").val(),$j("#month").val(),
+function(result,event){
+
+var numDay = new Date($j("#year").val(), $j("#month").val(), 0).getDate();
+
+
+var tab = $j("#tableOfMonth");
+$j("#tableOfMonth").html("");
+var tab2 = $j("#tableBody");
+$j("#tableBody").html("");
+for(var rs = 0;rs < result.length;rs++){
+  if(rs == 0){
+  
+  tab.append("<tr>");  
+  tab.append("<td><b>"+result[rs].EmpName+"</b></td>");
+  for(var i = 0;i<numDay;i++){
+     if(result[rs].dayMon[i].typeCol == "Holiday"){
+        tab.append("<td class='normalDay'>"+(i+1)+"</td>");
+     }else{
+        tab.append("<td>"+(i+1)+"</td>");
+     }
+  }
+  tab.append("</tr>");
+  
+}else{
+
+    
+    tab.append("<tr>");
+    tab.append("<td>"+result[rs].EmpName+"</td>");
+    for(var i = 0;i<numDay;i++){
+    
+     if(result[rs].dayMon[i].typeCol == "Holiday"){
+        tab.append("<td class='normalDay'>"+(i+1)+"</td>");
+     }else if(result[rs].dayMon[i].typeCol == "Applied"){
+        tab.append("<td id='"+result[rs].lqId+"' class='appliedLeaves' onclick='calledApp(this.id)'>"+(i+1)+"</td>");
+     }else if(result[rs].dayMon[i].typeCol == "Approved"){
+        tab.append("<td class='approvedLeave'>"+(i+1)+"</td>");  
+     }else if(result[rs].dayMon[i].typeCol == "Cancelled"){
+        tab.append("<td class='rejectedLeaves'>"+(i+1)+"</td>");  
+     }else{
+        tab.append("<td>"+(i+1)+"</td>");
+     }
+
+    }
+    tab.append("</tr>");
+
+
+}
+
+}
+});
+
+
+$j("#el_loading").hide();
+
+
+return false;
+}
+
+var idOftheRecord;
+
+function calledApp(test)
+{
+idOftheRecord = test;
+$j("#searchPannel").hide(500,callback);
+$j("#typeToBeDone").html("Approve Leave");
+}
+function callback(){
+$j("#formPannel").show(500);
+}
+function callback2(){
+$j("#searchPannel").show(500);
+}
+function calledApp2()
+{
+alert('Rejected');
+}
+function approveLeaves(typeOfLeaveAction){
+//alert(idOftheRecord);
+//$j("#commentsOfLeave").val();
+
+Visualforce.remoting.Manager.invokeAction(
+'{!$RemoteAction.LM_LeaveRequest_Vivek1Controller.approveOrRejectLeave}',
+idOftheRecord,
+$j("#commentsOfLeave").val(),
+typeOfLeaveAction,
+function(result,event){
+if(event.status){
+//alert('Success');
+fetchDetails();
+$j("#formPannel").hide(500,callback2);
+
+}else{
+alert("Failed");
+}
+});
+}
+function closethisDialog(){
+$j("#formPannel").hide(500,callback2);
+}
+</script>
+<body >
+
+<apex:form >
+
+<div class="col-sm-2" id="formPannel">
+<div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title" id="typeToBeDone"></h3>
+             
+</div>
+<div class="panel-body">
+<div class="input-group input-group-lg">  
+  <input type="text" class="form-control input-lg" id="commentsOfLeave" placeholder="Comments" />
+</div><br/>
+<div class="alert alert-success">
+        <center><label id="Approved" onclick="approveLeaves(this.id)"><strong>Approve</strong></label></center>
+</div>
+ <div class="alert alert-danger">
+        <center><label id="Cancelled" onclick="approveLeaves(this.id)"><strong>Reject</strong></label></center>
+ </div>
+ <div class="alert alert-warning">
+        <center><label onclick="closethisDialog()"><strong>Close</strong></label></center>
+ </div>
+</div>
+
+</div>
+</div>
+<div class="col-sm-2" id="searchPannel">
+<div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Search</h3>
+            </div>
+ <div class="panel-body">          
+<form class="form-inline" role="form">
+  
+  <div class="form-group">  
+            <label class="control-label" for="multiSelect"><b>Select Month</b></label>  
+            <div class="controls">  
+            <select name="month" id="month" class="form-control">
+              <option value="1">January</option>
+              <option value="2">February</option>
+              <option value="3">March</option>
+              <option value="4">April</option>
+              <option value="5">May</option>
+              <option value="6">June</option>
+              <option value="7">July</option>
+              <option value="8">August</option>
+              <option value="9">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select>
+                    
+       </div>  
+   </div>
+  <div class="form-group">  
+            <label class="control-label" for="multiSelect"><b>Select Year</b></label>  
+            <div class="controls">  
+         
+              
+             <select name="year" id="year" class="form-control">
+
+                  <option value="2012">2012</option>
+                  <option value="2013">2013</option>
+                  <option value="2014">2014</option>
+                  <option value="2015">2015</option>
+                  <option value="2015">2016</option>
+            </select>
+       </div>  
+   </div>
+ 
+  <div class="form-group">  
+            <label class="control-label" for="multiSelect"><b>Select Year</b></label>  
+        <div class="alert alert-info">
+        <center><label onclick="fetchDetails()"><strong>View Details</strong></label></center>
+      </div>
+   </div>
+</form>
+</div>
+</div>
+</div>
+</apex:form>
+<apex:form id="frm2">
+<div class="col-sm-10">
+<div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title" id="monthName"> </h3> 
+          
+            </div>
+            <div class="panel-body">
+            <table class="table table-bordered" >
+            <thead id="tableOfMonth">
+            
+            </thead>
+            <tbody id="tableBody">
+            </tbody> 
+            </table>
+            <table class="table table-bordered" >
+             <thead>
+              <tr><td><span class="badge">#</span>&nbsp; Holiday</td>
+              <td><span class="badge badge-success">#</span>&nbsp; Approved Leaves</td>
+              <td><span class="badge badge-warning">#</span>&nbsp; Applied Leaves</td>
+             <td><span class="badge badge-important">#</span>&nbsp; Rejected Leaves</td>
+</tr>
+</thead>
+</table>
+
+</div>       
+</div>
+</div>
+
+</apex:form>
+
+</body>
+</apex:page>

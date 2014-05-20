@@ -1,0 +1,97 @@
+<apex:page standardController="Project__c"  extensions="PM_ProjectAllocation" sidebar="false" tabStyle="Project__c">
+
+<apex:form >
+    <apex:sectionHeader title="Project Allocation "/>
+   <apex:actionstatus id="as1">
+            <apex:facet name="start">
+                <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;
+                       height: 100%;opacity:0.85;width:100%;"> 
+                    <div class="waitingHolder" style="top: 104.2px; width: 100px; right:50px;">
+                         <img class="waitingImage" src= "{!$Resource.Redcircle}" width="20" height="20"  title="Please Wait..." />
+                      <span class="waitingDescription">Loading...</span>
+                       
+                    </div>
+                </div>
+            </apex:facet>
+        </apex:actionstatus>
+   
+   <apex:pageBlock title=""  id="pgBlock" >
+     <apex:pageBlockSection title="Allocate Employees for project -{!SelectedProject.name} " >
+       <apex:pageBlockTable value="{!Allocation}" var="tv" >
+   
+            <apex:column width="100%" headerValue="Assigned User ">
+               <apex:inputField value="{!tv.Assigned_User__c}" />
+           </apex:column>
+            <apex:column headerValue="Role">
+               <apex:selectList value="{!selectedRole}" size="1" multiselect="false">
+                   <apex:selectOptions value="{!availableRoles}"></apex:selectOptions>
+               </apex:selectList>
+           </apex:column>
+            <apex:column headerValue="Start Date ">
+               <apex:inputField value="{!tv.Start_Date__c}" />
+            </apex:column>
+           <apex:column headerValue="End Date">
+               <apex:inputField value="{!tv.End_Date__c}"  />
+           </apex:column>
+           <apex:column headerValue="Percentage">
+               <apex:inputField value="{!tv.Percentage__c}"  />
+           </apex:column>
+           
+         <!--  <apex:column headerValue="Location">
+               <apex:inputField value="{!tv.Location__c}"  />
+           </apex:column>-->
+           <apex:column >
+           <apex:commandLink action="{!add}" reRender="pgBlock,pgBlock2" status="as1">
+         <apex:image value="{!$Resource.Add}" width="50" height="20" />
+         </apex:commandLink>
+           </apex:column>
+          <!-- <apex:column >
+           <apex:commandLink action="{!remove}">
+           <apex:image value="{!$Resource.CancelIcon}" width="20" height="20"/>
+           <apex:param name="removeRow" value="{!tv.Id}" />
+           </apex:commandLink>
+           </apex:column>-->
+   
+         </apex:pageBlockTable>
+ 
+     </apex:pageBlockSection>
+     <apex:pageBlockButtons location="top">
+         
+         &nbsp;&nbsp;&nbsp;
+
+         
+         <apex:commandLink action="{!Cancel}" >
+          <apex:image value="{!$Resource.Back}" width="50" height="20"/>
+         </apex:commandLink>
+         &nbsp;&nbsp;&nbsp;
+         
+        
+     </apex:pageBlockButtons>
+   </apex:pageBlock>
+   <apex:pageBlock id="pgBlock2" >
+  
+   
+    <apex:pageBlockSection title="Allocated Employees for {!SelectedProject.name} " columns="1"  id="pgBlockSection">
+     <apex:pageBlockTable value="{!FetchAllocation}" var="LRR" id="pgBlockTable">
+     
+     <apex:column headerValue="Assigned User" value="{!LRR.Assigned_User__c}" /> 
+     <apex:column headerValue="Role" value="{!LRR.Role__c}" /> 
+     <apex:column headerValue="Start Date" value="{!LRR.Start_Date__c}"/> 
+     <apex:column headerValue="End Date" value="{!LRR.End_Date__c}"/>  
+     <apex:column headerValue="Percentage" value="{!LRR.Percentage__c}"/>
+    <!-- <apex:column headerValue="Location" value="{!LRR.Location__c}"/> -->
+     <apex:column >
+          <apex:commandLink action="{!remove}" reRender="pgBlockTable" status="as1" >
+           <apex:image value="{!$Resource.Remove}" width="50" height="20"/>
+           <apex:param name="removeRow" value="{!LRR.Id}" />
+           </apex:commandLink>
+           </apex:column>
+     </apex:pageBlockTable>
+    </apex:pageBlockSection>
+  
+  </apex:pageBlock>
+   
+   
+   
+ </apex:form>
+</apex:page>

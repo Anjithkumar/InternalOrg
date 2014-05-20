@@ -1,0 +1,3 @@
+Dear,
+
+{!Deal__c.Name} has be closed on {!Deal__c.Close_Date__c}  .

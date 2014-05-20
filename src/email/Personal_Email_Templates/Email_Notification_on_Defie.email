@@ -1,0 +1,9 @@
+Dear {!Issue_Defect__c.Assigned_To__c}
+
+New defect/issue has been assigned to you.Pleas click on below link for more information 
+{!Issue_Defect__c.Link}
+
+
+
+Thanks 
+{!Organization.Name}

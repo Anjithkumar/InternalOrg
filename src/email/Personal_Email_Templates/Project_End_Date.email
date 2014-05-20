@@ -1,0 +1,7 @@
+Dear {!Project__c.OwnerFullName},
+
+     Project {!Project__c.Name} will be ending on {!Project__c.Planned_End_Date__c} . 
+
+
+
+Thank you

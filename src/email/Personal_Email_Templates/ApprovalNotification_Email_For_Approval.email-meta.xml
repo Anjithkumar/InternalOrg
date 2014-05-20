@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Approval Notification For Claim Approval</name>
+    <style>formalLetter</style>
+    <subject>Claim Request-{!Claim__c.Name} -Approved</subject>
+    <textOnly>Hi {!Claim__c.OwnerFullName}
+
+ Your  claim request - {!Claim__c.Name} has been Approved.
+Please click below link for more information 
+{!Claim__c.Link}
+
+
+Thanks &amp; Regards
+Extentor Tquila</textOnly>
+    <type>custom</type>
+</EmailTemplate>

@@ -1,0 +1,72 @@
+<apex:page controller="LM_AvailableLeaveClass" sidebar="false">
+    <apex:form >
+        
+        <apex:messages />
+        <apex:pageMessages id="errors" />
+            <apex:pageBlock title="Leave Details of Employees" mode="edit">
+            <table width="100%" border="0">
+            <tr>  
+            <td width="200" valign="top">
+           
+            <apex:pageBlock mode="edit" id="criteria">
+            
+            
+            <script type="text/javascript">
+      function doSearch() {
+        searchServer(
+          document.getElementById("Name").value);
+       //   document.getElementById("TotalLeave").value);
+             }
+            </script> 
+                <apex:actionFunction name="searchServer" action="{!runSearch}" rerender="results,debug,errors">
+                    <apex:param name="Name" value="" />
+                    <apex:param name="TotalLeave" value="" />
+                </apex:actionFunction>
+<table cellpadding="2" cellspacing="2">
+    <tr>
+        <td style="font-weight:bold;">Search By Employee Name<br/> 
+        <br/>
+        <form>
+        <input type="text" id="Name" onkeyup="doSearch();"/>
+        </form>
+        </td>
+    </tr>
+  
+  <!--      <tr>
+        <td style="font-weight:bold;">Total leave<br/>
+        <input type="text" id="TotalLeave" onkeyup="doSearch();"/>
+        </td>
+      </tr> -->       
+</table>
+    </apex:pageBlock>
+    </td>
+    <td valign="top"> 
+ <apex:pageBlock mode="edit" id="results">
+    <apex:pageBlockTable value="{!contacts}" var="contact">
+        <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Name" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="Name" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                    <apex:commandlink value="{!contact.name}" action="{!movetopage}">
+                        <apex:param value="apex/LM_ApplicationLeavePage?conid={!contact.id}" name="rec"/>
+                    </apex:commandlink>
+         </apex:column>
+         <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Total Leave" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="Total_Leave__c" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!contact.Total_Leave__c}"/>
+            </apex:column>
+    </apex:pageBlockTable>
+</apex:pageBlock>
+            </td>
+        </tr>
+    </table>
+
+        </apex:pageBlock> 
+    </apex:form>
+ </apex:page>

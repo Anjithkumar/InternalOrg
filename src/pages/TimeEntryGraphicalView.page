@@ -1,0 +1,74 @@
+<apex:page controller="TimeEntryDetail" tabStyle="Contact" sidebar="false" >
+    <c:JqueryComponent />
+    <script type="text/javascript">
+    var j$ = jQuery.noConflict();
+    j$(document).ready(function(){
+        j$("input[id$='startDate']").datepicker({dateFormat: 'dd/mm/yy'});
+        j$("input[id$='endDate']").datepicker({dateFormat: 'dd/mm/yy'});                
+    });  
+    </script>
+    
+    <!-- {!BarDataClass}-->
+    <apex:form id="frm2">
+        <apex:pageBlock >
+            <apex:actionStatus id="status">
+                <apex:facet name="start">
+                    <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;
+                    height: 100%;opacity:0.65;width:100%;"> 
+                        <div class="waitingHolder" style="top: 74.2px; width: 91px;">
+                            <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                            <span class="waitingDescription">Loading...</span>
+                        </div>
+                    </div>
+                </apex:facet>
+            </apex:actionStatus>
+            <apex:pageBlockSection columns="3" title="Search details ...">
+                <apex:pageBlockSectionItem labelTitle="Start Date" >
+                    <apex:outputLabel for="startDate">Start Date</apex:outputLabel>
+                    <apex:inputText id="startDate" value="{!StartDate}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem labelTitle="End Date" >
+                    <apex:outputLabel for="endDate">End Date</apex:outputLabel>
+                    <apex:inputText id="endDate" value="{!EndDate}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:commandButton value="Search" action="{!graphicalView}" reRender="frm2,ChartSection" status="status"/>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection title="Time Entry Graphical View" rendered="{!showHideDetailedView}" id="ChartSection">
+                <apex:chart data="{!BarDataClass}" height="350" width="450">
+                    <apex:legend position="left"/>
+                    <apex:axis type="Numeric" position="left" title="Hours" grid="true"
+                    fields="clientHoursDetail,internalHoursDetail,notFilledHoursDetail" dashSize="2">
+                        <apex:chartLabel />
+                    </apex:axis>
+                    <apex:axis type="Category" position="bottom" fields="name" title="Employees">
+                        <apex:chartLabel rotate="315"/>
+                    </apex:axis>
+                    <apex:barSeries orientation="vertical" axis="left" stacked="true"
+                    xField="name" yField="clientHoursDetail,internalHoursDetail,notFilledHoursDetail" title="ClientBillable,Internal,NotFilled" 
+                    colorSet="#0B610B,#FFFF00,#FF0000"/>
+                </apex:chart>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection title="Time Entry Individual Graphical View" >
+            <apex:pageBlockSectionItem >                
+<apex:chart height="350" width="450" data="{!PieData}">
+                    <apex:pieSeries dataField="hoursDetail" labelField="name" colorSet="#C0C0C0,#FFA500,#ADD8E6,#A52A2A,#808000"/>
+                    <apex:legend position="right" />
+                </apex:chart>
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >
+              <apex:commandButton style="color:black;background:red;height:30px;width:80px;" value="Client Billable" />               
+            </apex:pageBlockSectionItem>
+           
+            <apex:pageBlockSectionItem >
+             <button type="button" class="btn btn-info" onclick="">Search</button>                       
+            </apex:pageBlockSectionItem>
+           
+             <apex:commandButton style="color:black;background:green;height:30px;width:80px;" value="Search" />
+            </apex:pageBlockSection>            
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

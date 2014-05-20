@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Actual_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Actual Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Actual_Milestone_Revenue__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Actual Milestone Revenue</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Billing_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT( Sales_Order__r.Billing_Type__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Billing Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Milestone_Reference_Number__c</fullName>
+        <displayFormat>M-{0000000000}</displayFormat>
+        <externalId>false</externalId>
+        <label>Milestone Reference Number</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>Planned_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Planned Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Planned_Milestone_Revenue__c</fullName>
+        <externalId>false</externalId>
+        <label>Planned Milestone Revenue</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Quantity__c</fullName>
+        <externalId>false</externalId>
+        <label>Quantity</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sales_Order__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sales Order</label>
+        <referenceTo>Sales_Order__c</referenceTo>
+        <relationshipName>Milestones</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Open</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Partially Invoiced</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed - Invoiced</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed - Abandoned</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not Started</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completely Invoiced</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Unit_Rate__c</fullName>
+        <externalId>false</externalId>
+        <label>Unit Rate</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UserId__c</fullName>
+        <externalId>false</externalId>
+        <label>UserId</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Sales Order Item</label>
+    <nameField>
+        <label>Sales Order Item Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Sales Order Items</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Billing_Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Planned_Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Planned_Milestone_Revenue__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Actual_Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Actual_Milestone_Revenue__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>LAST_UPDATE</customTabListAdditionalFields>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <listViewButtons>Generate_Invoice</listViewButtons>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Status_cant_be_made_Pending_without_Plan</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND( ISBLANK(Planned_Date__c), ISPICKVAL( Status__c ,&apos;Pending&apos;))</errorConditionFormula>
+        <errorDisplayField>Planned_Date__c</errorDisplayField>
+        <errorMessage>Status cannot be made Pending without a Planned Date</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Status_completed_Actual_date_Mandatory</fullName>
+        <active>false</active>
+        <description>If Milestone Status is Complete then Actual date should be Populated.</description>
+        <errorConditionFormula>AND(ISPICKVAL(  Status__c , &apos;Completed&apos;) , ISNULL( Actual_Date__c ))</errorConditionFormula>
+        <errorDisplayField>Actual_Date__c</errorDisplayField>
+        <errorMessage>Actual Date Is Needed If Status Is Completed</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Create_Sales_Order_Item</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Create Sales Order Item</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/apex/PM_CreateSalesOrderItem?id={!Sales_Order__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Generate_Invoice</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Generate Invoice</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/25.0/apex.js&quot;)} 
+
+
+var status=[]
+
+var x=0;
+var result = sforce.connection.describeSObject(&quot;Sales_Order_item__c&quot;);
+var taxCode=&quot;{!Sales_Order__c.Tax_Code__c}&quot;;
+var taxPercent=&quot;{!Sales_Order__c.Tax_Percent__c}&quot;;
+var selectedRecordids = {!GETRECORDIDS($ObjectType.Sales_Order_Item__c)};
+var SOstatus=&quot;{!Sales_Order__c.Status__c}&quot;;
+
+if(SOstatus!=&apos;Open&apos;&amp;&amp;SOstatus!=&apos;In Progress&apos;&amp;&amp;SOstatus!=&apos;Not Started&apos;)
+{
+
+
+if (selectedRecordids [0] == null) 
+{ 
+	alert(&quot;Please select at least one record&quot;);
+        x=1;
+}
+else if( taxCode==null || taxCode==&apos;&apos;||taxPercent==&apos;&apos;||taxPercent==null)
+{ 
+alert(&apos;Missing Tax Code and Tax Percent for Salesorder&apos;);
+}
+else
+{
+for(var i=0;i&lt;selectedRecordids.length;i++){
+var result1= sforce.connection.query(&quot;select Name,Id,Status__c from Sales_Order_item__c where id = \&apos;&quot; + selectedRecordids[i] + &quot;\&apos;&quot;); 
+var record1 = result1.getArray(&quot;records&quot;);
+status.push(record1);
+}
+var r=status.length;
+if(status.length&gt;0){
+for(var i=0;i&lt;status.length;i++)
+{
+if(status[i][0].Status__c!=&apos;Completed&apos;&amp;&amp;status[i][0].Status__c!=&apos;Partially Invoiced&apos;){
+alert(&apos;Please ensure that you select only Completed &amp;Partially Invoiced records&apos;);
+
+}else {
+x+=1;
+}
+}
+}
+if(r==x){
+window.location=&apos;/apex/PM_InvoiceCreationPage_FP?Id={!Sales_Order__c.Id}&amp;rec=&apos;+selectedRecordids .join(&apos;;&apos;) ; 
+}
+}
+}
+else
+{
+alert(&apos;Cannot generate invoice if the salesorder status is in Open , Not started or  In Progress&apos;);
+
+}</url>
+    </webLinks>
+</CustomObject>

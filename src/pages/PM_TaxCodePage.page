@@ -1,0 +1,38 @@
+<!--Select the necessary tax components to particular Salesorder. -->
+<apex:page standardController="Sales_Order__c" extensions="PM_TaxCode" id="page1" showHeader="true" sidebar="false" tabStyle="Sales_Order__c">
+    <apex:sectionHeader title="Deal Details" subtitle="Add Tax Codes "/>
+    <apex:form id="pgForm">
+        <apex:pageBlock id="pgBlock">
+            <!--Display the selected sales Order Information.  -->
+            <apex:pageBlockSection title=" Sales Order Information" collapsible="false" id="pgBlockSection1">
+                <apex:outPutField value="{!Sales_Order__c.Name}" id="projName"/>
+                <apex:outPutField value="{!Sales_Order__c.Customer__c}" id="projLead" label="Company"/>
+                <apex:outputField value="{!Sales_Order__c.Status__c}" id="projCode" />
+                <apex:outputField value="{!Sales_Order__c.Deal_Type__c}" id="projType"/>
+            </apex:pageBlockSection>  
+            
+            <!-- Select the required tax component for SalesOrder -->
+            <apex:pageBlockTable value="{!ListOfTaxes}" var="p">
+                <apex:column headerValue="Select">
+                    <apex:inputCheckbox value="{!p.selectedValues}" id="checkdone"/>
+                </apex:column>
+                <apex:column headerValue="Tax Codes">
+                    <apex:outputText value="{!p.Name}" id="checkdone1"/>
+                </apex:column>
+                <apex:column headerValue="Tax Percent">
+                    <apex:inputText value="{!p.Percentage}" id="checkdone2"/>
+                </apex:column>
+            </apex:pageBlockTable>
+            
+            <apex:pageblockButtons location="bottom">
+                <apex:commandLink action="{!save}" >
+                    <apex:image value="{!$Resource.Save}" width="50" height="20" />
+                </apex:commandLink>
+                &nbsp;&nbsp;<apex:commandLink action="{!cancel}">
+                <apex:image value="{!$Resource.Cancel}" width="50" height="20" />
+                </apex:commandLink>
+            </apex:pageblockButtons>
+           
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

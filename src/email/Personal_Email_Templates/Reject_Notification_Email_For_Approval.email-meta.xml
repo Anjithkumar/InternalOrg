@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Reject Notification For Claim Approval</name>
+    <style>formalLetter</style>
+    <subject>Claim Request-{!Claim__c.Name} -Rejected</subject>
+    <textOnly>Hi {!Claim__c.Approving_Manager__c}
+
+{!Claim__c.OwnerFullName}  has requested for the Claim , below are the claim details
+
+Claim Name:     {!Claim__c.Name}
+Date of Claim:  {!Claim__c.CreatedDate}
+Total Claim Amount: {!Claim__c.Total_Amount_to_Claim__c}
+
+Please click below link to know more about the Claim
+{!Claim__c.Link}
+
+To Approve/Reject the claim, please below link
+{!ApprovalRequest.External_URL}
+
+
+Thanks &amp; Regards
+{!Organization.Name}</textOnly>
+    <type>custom</type>
+</EmailTemplate>

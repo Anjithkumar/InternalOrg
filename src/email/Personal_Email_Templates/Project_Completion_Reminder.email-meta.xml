@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Project closed</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Project Completion Reminder</name>
+    <style>none</style>
+    <subject>Project is closed and further process can be carried on</subject>
+    <type>text</type>
+</EmailTemplate>

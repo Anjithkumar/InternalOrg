@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Project__c.Status__c</field>
+    </columns>
+    <columns>
+        <field>Project__c.Project_Lead__c</field>
+    </columns>
+    <columns>
+        <field>Project__c.Planned_Effort__c</field>
+    </columns>
+    <columns>
+        <field>Project__c.ActualEffort__c</field>
+    </columns>
+    <columns>
+        <field>Project__c.Planned_End_Date__c</field>
+    </columns>
+    <columns>
+        <field>Project__c.Actual_End_Date__c</field>
+    </columns>
+    <currency>INR</currency>
+    <filter>
+        <criteriaItems>
+            <column>Project__c.Customer__c</column>
+            <operator>equals</operator>
+            <value>Extentor Australia Pty Ltd</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Project__c.Status__c</column>
+            <operator>equals</operator>
+            <value>Open,In-Progress</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>Projects - In-Progress and Open</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Project__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Project__c.Actual_End_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

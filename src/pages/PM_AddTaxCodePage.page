@@ -1,0 +1,16 @@
+<apex:page standardController="Account" id="taxpage" tabStyle="Account" sidebar="false">
+    <apex:sectionHeader title="Account" subtitle="Add Tax Code"/>
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection title="Information" collapsible="false">
+                <apex:outputText value="{!Account.Name}"/>
+                <apex:outputText value="{!Account.BillingCountry}"/>
+                <apex:outputText value="{!Account.Type}"/>
+                <apex:outputText value="{!Account.Industry}"/>                
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Add Tax Code" collapsible="true">
+                
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

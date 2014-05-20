@@ -1,0 +1,47 @@
+<apex:page controller="ViewProjectStatusReportController" >
+    <apex:form id="Form">
+        <apex:pageBlock title="Project Status" >        
+                <apex:pageBlockTable width="100%" value="{!currentPage}" var="pn">
+                    <apex:column >
+                        <apex:outputText value="{!pn.Description}" />
+                        <apex:facet name="header">Description</apex:facet>
+                        <apex:facet name="footer">
+                            <span class="grandtotal"></span>
+                        </apex:facet>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Role</apex:facet>
+                        <apex:outputText value="{!pn.userRole}" />
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Start Date</apex:facet>
+                        <apex:outputText value="{0, Date, dd-MMM-yyyy}" >
+                           <apex:param value="{!pn.startDate}" />
+                        </apex:outputText>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">End Date</apex:facet>
+                        <apex:outputText value="{0, Date, dd-MMM-yyyy}" >
+                           <apex:param value="{!pn.endDate}" />
+                        </apex:outputText>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">No. of Person</apex:facet>
+                        <apex:outputText value="{!pn.noOfPerson}" />
+                    </apex:column>
+                    <apex:column >                        
+                        <apex:facet name="header">
+                            <apex:commandLink action="{!ViewData}" value="Type{!IF(sortExpression=='Name',IF(sortDirection='ASC','▼','▲'),'')}">
+                                <apex:param value="Type" name="column" assignTo="{!sortExpression}" ></apex:param>
+                            </apex:commandLink>
+                        </apex:facet>
+                        <apex:outputText value="{!pn.Type}" />
+                    </apex:column>
+                 </apex:pageBlockTable>
+                 <center> 
+                    <apex:commandButton value="Previous" action="{!previousPage}" rendered="{!hasPrevious}" rerender="Form"/> 
+                    <apex:commandButton value="Next" action="{!nextPage}" rendered="{!hasNext}" rerender="Form"/>
+                </center>
+        </apex:pageBlock>       
+    </apex:form>
+</apex:page>

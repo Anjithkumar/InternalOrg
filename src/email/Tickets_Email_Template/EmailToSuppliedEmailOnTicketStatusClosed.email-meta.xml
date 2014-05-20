@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email To Supplied Email On Ticket Status Closed</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>EmailToSuppliedEmailOnTicketStatusClosed</name>
+    <style>freeForm</style>
+    <subject>#{!Ticket__c.Ticket_Number__c}# :Ticket Status-Closed</subject>
+    <textOnly>Hello {!Ticket__c.00N90000005JXZn}
+
+This is to keep you updated with the Status of the Ticket raised by you.Here  under are the details.
+
+Ticket Number:  {!Ticket__c.Ticket_Number__c}
+
+Customer:  {!Ticket__c.Customer__c}
+
+Contact Person:{!Ticket__c.00N90000005JXZn}
+
+Ticket Status:     {!Ticket__c.Status__c}
+
+
+Thanks and Regards,
+
+{!User.Name}
+{!Organization.Name}</textOnly>
+    <type>custom</type>
+</EmailTemplate>

@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Comment__c</fullName>
+        <externalId>false</externalId>
+        <label>Comment</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Employee_Leave_Balance__c</fullName>
+        <externalId>false</externalId>
+        <formula>Employee__r.Total_Leave__c</formula>
+        <label>Employee Leave Balance</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Employee__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Employee</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Leave_Requests1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>End_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>End Date</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>LOP__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>LOP</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Number_of_Days_LOP__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of Days(LOP)</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Optional_Holiday_Count__c</fullName>
+        <externalId>false</externalId>
+        <label>Optional Holiday Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Optional_Holiday__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Optional Holiday</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Override_Validation__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Override Validation</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Project_Lead__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Project Lead</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Leave_Requests</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Reason_for_Leave__c</fullName>
+        <externalId>false</externalId>
+        <label>Reason for Leave</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Date</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Applied</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Total_Working_days__c</fullName>
+        <externalId>false</externalId>
+        <label>No. Leaves Applied</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>User_Total_Leaves__c</fullName>
+        <externalId>false</externalId>
+        <label>User Total Leaves</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Weekday_Count__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(MOD(  Start_Date__c  - DATE(1985,6,24),7), 
+  0 , CASE( MOD( End_Date__c  -  Start_Date__c  ,7),1,2,2,3,3,4,4,5,5,5,6,5,1), 
+  1 , CASE( MOD( End_Date__c  -  Start_Date__c  ,7),1,2,2,3,3,4,4,4,5,4,6,5,1), 
+  2 , CASE( MOD( End_Date__c  -  Start_Date__c  ,7),1,2,2,3,3,3,4,3,5,4,6,5,1), 
+  3 , CASE( MOD( End_Date__c  -  Start_Date__c  ,7),1,2,2,2,3,2,4,3,5,4,6,5,1), 
+  4 , CASE( MOD( End_Date__c  -  Start_Date__c  ,7),1,1,2,1,3,2,4,3,5,4,6,5,1), 
+  5 , CASE( MOD( End_Date__c  -  Start_Date__c  ,7),1,0,2,1,3,2,4,3,5,4,6,5,0), 
+  6 , CASE( MOD( End_Date__c  -  Start_Date__c  ,7),1,1,2,2,3,3,4,4,5,5,6,5,0), 
+  999) 
+  + 
+  (FLOOR((  End_Date__c  -  Start_Date__c  )/7)*5)</formula>
+        <label>Weekday Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Leave Request</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Employee__c</columns>
+        <columns>Start_Date__c</columns>
+        <columns>End_Date__c</columns>
+        <columns>Total_Working_days__c</columns>
+        <columns>Reason_for_Leave__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Applied_Leaves</fullName>
+        <columns>Employee__c</columns>
+        <columns>NAME</columns>
+        <columns>Start_Date__c</columns>
+        <columns>End_Date__c</columns>
+        <columns>Total_Working_days__c</columns>
+        <columns>Reason_for_Leave__c</columns>
+        <columns>LOP__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Applied</value>
+        </filters>
+        <label>Applied Leaves</label>
+    </listViews>
+    <listViews>
+        <fullName>Diwali_holiday</fullName>
+        <columns>NAME</columns>
+        <columns>Employee__c</columns>
+        <columns>Reason_for_Leave__c</columns>
+        <columns>Weekday_Count__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Start_Date__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>10/26/2013</value>
+        </filters>
+        <filters>
+            <field>End_Date__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>11/10/2013</value>
+        </filters>
+        <filters>
+            <field>NAME</field>
+            <operation>greaterOrEqual</operation>
+            <value>Approved,Applied</value>
+        </filters>
+        <label>Diwali holiday</label>
+        <sharedTo>
+            <role>HR</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Next_Month_Leaves</fullName>
+        <booleanFilter>(1 OR 2) AND 3</booleanFilter>
+        <columns>Employee__c</columns>
+        <columns>Start_Date__c</columns>
+        <columns>End_Date__c</columns>
+        <columns>Total_Working_days__c</columns>
+        <columns>Status__c</columns>
+        <columns>Employee_Leave_Balance__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Start_Date__c</field>
+            <operation>equals</operation>
+            <value>NEXT_MONTH</value>
+        </filters>
+        <filters>
+            <field>End_Date__c</field>
+            <operation>equals</operation>
+            <value>NEXT_MONTH</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Approved,Applied</value>
+        </filters>
+        <label>Next Month Leaves</label>
+    </listViews>
+    <listViews>
+        <fullName>November6</fullName>
+        <booleanFilter>(1 OR 2) AND 3</booleanFilter>
+        <columns>Employee__c</columns>
+        <columns>Start_Date__c</columns>
+        <columns>End_Date__c</columns>
+        <columns>Total_Working_days__c</columns>
+        <columns>Status__c</columns>
+        <columns>Employee_Leave_Balance__c</columns>
+        <columns>Number_of_Days_LOP__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Start_Date__c</field>
+            <operation>equals</operation>
+            <value>THIS_MONTH</value>
+        </filters>
+        <filters>
+            <field>End_Date__c</field>
+            <operation>equals</operation>
+            <value>THIS_MONTH</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Approved,Applied</value>
+        </filters>
+        <label>This Month Leaves</label>
+    </listViews>
+    <listViews>
+        <fullName>Reject_Cancelled_Leaves</fullName>
+        <columns>Employee__c</columns>
+        <columns>Start_Date__c</columns>
+        <columns>End_Date__c</columns>
+        <columns>Total_Working_days__c</columns>
+        <columns>Reason_for_Leave__c</columns>
+        <columns>LOP__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Cancelled</value>
+        </filters>
+        <label>Rejected/Cancelled Leaves</label>
+    </listViews>
+    <nameField>
+        <displayFormat>LR-{00000}</displayFormat>
+        <label>Leave Request  Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Leave Requests</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Employee__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Employee_Leave_Balance__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Total_Working_days__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Start_Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>End_Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Reason_for_Leave__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Project_Lead__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Employee__c</lookupDialogsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>Applying_Leave_Should_be_in_Current_Year</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND( Override_Validation__c =false ,OR(YEAR( Start_Date__c )  &lt;&gt;  YEAR( TODAY() ) ,YEAR( End_Date__c )&lt;&gt; YEAR(TODAY())  ))</errorConditionFormula>
+        <errorMessage>Year must be in the current year.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>EndDate_should_be_greterthan_StartDate</fullName>
+        <active>false</active>
+        <errorConditionFormula>Start_Date__c  &gt; End_Date__c</errorConditionFormula>
+        <errorDisplayField>Start_Date__c</errorDisplayField>
+        <errorMessage>Start Date should not be lessthan End Date</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Leaves_Balance_Cannot_Be_Nagative</fullName>
+        <active>true</active>
+        <errorConditionFormula>Total_Working_days__c  &lt;0</errorConditionFormula>
+        <errorDisplayField>Total_Working_days__c</errorDisplayField>
+        <errorMessage>Employee don&apos;t have enough leave balance</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Optional_Holiday</fullName>
+        <active>true</active>
+        <description>Start date and end date should be equal .</description>
+        <errorConditionFormula>AND(Optional_Holiday__c=TRUE , Override_Validation__c  = FALSE,End_Date__c &lt;&gt; Start_Date__c   )</errorConditionFormula>
+        <errorDisplayField>Optional_Holiday__c</errorDisplayField>
+        <errorMessage>To apply for optional holiday the start date and End date should be same  ,</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Optional_Holiday_Count</fullName>
+        <active>false</active>
+        <description>Employee cannot take more than  two Optional Holidays in Current calendar year</description>
+        <errorConditionFormula>$User.Optional_Holiday_Count__c &gt;=  2</errorConditionFormula>
+        <errorMessage>Employee cannot take more than two  Optional Holidays in current calendar year</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Validation_on_Leave_Status</fullName>
+        <active>false</active>
+        <description>Status cannot made to approve/cancelled  ,before  applying leave</description>
+        <errorConditionFormula>AND(  ISNEW() , OR( ISPICKVAL( Status__c , &apos;Approved&apos;),ISPICKVAL( Status__c , &apos;Cancelled&apos;)), Override_Validation__c =FALSE)</errorConditionFormula>
+        <errorDisplayField>Status__c</errorDisplayField>
+        <errorMessage>Status cannot made to approve/cancelled  ,before  applying leave</errorMessage>
+    </validationRules>
+</CustomObject>

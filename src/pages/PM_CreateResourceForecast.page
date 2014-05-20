@@ -1,0 +1,100 @@
+<apex:page controller="PM_CreateResourceForecast" tabStyle="Deal__c"> 
+    <apex:form >
+        
+        <apex:sectionHeader title="Resource Forecast"/>
+        <apex:pagemessages ></apex:pagemessages>
+        <c:Date_Picker ></c:Date_Picker>
+        <apex:pageBlock title="Deal Details" >
+            <apex:pageBlockTable value="{!dealServiceInstance}" var="d">
+                <apex:column value="{!d.name}"/>
+                <apex:column value="{!d.Customer__c}"/>
+                <apex:column value="{!d.Stage__c}" />
+                <apex:column value="{!d.Close_Date__c}"/>
+                <apex:column value="{!d.Deal_Start_Date__c}"/>
+                <apex:column value="{!d.Deal_End_Date__c}"/>
+                <apex:column value="{!d.Total_Estimated_Hours__c}"/>
+            </apex:pageBlockTable>
+            
+        </apex:pageBlock>
+        <apex:pageBlock title="Select resources required" mode="edit">
+            <apex:pageblockTable value="{!ListOfServices}" var="p">
+                <apex:column headerValue="Select">
+                    <apex:inputCheckbox value="{!p.selectedValues}"/>
+                </apex:column>
+                <apex:column headerValue="Role">
+                    <apex:outputtext value="{!p.name}"/>
+                </apex:column> 
+           <!--     <apex:column headerValue="Unit Rate">
+                    <apex:inputtext value="{!p.UnitRate}"/>
+                </apex:column> -->
+               <!-- <apex:column headerValue="Currency">
+                    <apex:selectList value="{!listCurrencyCode}" multiselect="false" size="1">
+                        <apex:selectOption itemLabel="INR-Indian Rupee" itemValue="INR-Indian Rupee"></apex:selectOption>
+                        
+                    </apex:selectList>
+                </apex:column>-->
+               <!-- <apex:selectList label="Currency" size="1" value="{!resourceForecastInstance.Role__c}">
+      <apex:selectOptions value="{!listCurrencyCode}"/>-->
+      <apex:column headerValue="Currency">
+       <apex:selectList value="{!p.countrycode}"  size="1">
+                <apex:selectOptions value="{!listCurrencyCode}"/>
+            </apex:selectList>
+            </apex:column>
+                
+              <!--  <apex:column headerValue="Unit">
+                    <apex:selectList value="{!p.UnitMeasure}" multiselect="false" size="1">
+                        <apex:selectOption itemLabel="Hourly" itemValue="Hourly"></apex:selectOption>
+                        <apex:selectOption itemLabel="Daily" itemValue="Daily"></apex:selectOption>
+                    </apex:selectList>
+                </apex:column> -->
+                <apex:column headerValue="Start Date">
+                    <apex:inputtext value="{!p.StartDate}" styleClass="datepicker" id="sdate"/>
+                </apex:column>
+                <apex:column headerValue="End Date">
+                    <apex:inputtext value="{!p.EndDate}"  styleClass="datepicker" id="edate"/>
+                </apex:column>
+                <apex:column headerValue="Quantity">
+                    <apex:inputtext value="{!p.Quantity}" id="quan"/>
+                </apex:column>
+            </apex:pageblockTable>
+            <apex:pageBlockButtons location="bottom" >
+                <apex:commandLink action="{!save}" onclick="return checkAll()">
+                    <apex:image value="{!$Resource.Save}" width="50" height="20" />
+                </apex:commandLink>
+                &nbsp;&nbsp; <apex:commandLink action="{!cancel}">
+                <apex:image value="{!$Resource.Cancel}" width="50" height="20" />
+                </apex:commandLink>
+                <!--   <apex:commandButton value="Save" action="{!save}" onclick="return checkAll()"/>
+                <apex:commandButton Value="Cancel" action="{!cancel}"/> -->
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        
+    </apex:form> 
+    <script>
+        function checkAll(){
+        var inputElem = document.getElementsByTagName("input");
+        var counter = 0;
+        var counts=0;
+        for(var i=0; i<inputElem.length; i++){
+        //  if(inputElem[i].id.indexOf("checkdone")!=-1)
+        //inputElem[i].checked = cb.checked;
+        if(inputElem[i].checked == true){
+        counter = 1;
+        }
+        /*  if(counter==1){
+        alert(document.getElementById("quan").value());
+return false;
+}*/
+}
+
+
+if(counter == 0){
+alert( 'Please select at least 1 value');
+return false;
+}
+else{
+return true;
+}
+}
+</script>
+</apex:page>

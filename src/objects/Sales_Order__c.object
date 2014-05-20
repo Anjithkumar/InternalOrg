@@ -1,0 +1,1009 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Letter Of Engagement.</description>
+    <enableActivities>true</enableActivities>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Address_To__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Address To</label>
+        <referenceTo>Connection__c</referenceTo>
+        <relationshipLabel>Sales Orders (Address To)</relationshipLabel>
+        <relationshipName>Sales_Orders1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Auto_Number__c</fullName>
+        <displayFormat>{000000}</displayFormat>
+        <externalId>false</externalId>
+        <label>Auto Number</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>Billing_Cycle__c</fullName>
+        <externalId>false</externalId>
+        <label>Billing Cycle</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Weekly</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fortnightly</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Monthly</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Quarterly</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Half-Yearly</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Annually</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Billing_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Billing Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>FP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>T&amp;M</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CTM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Client_Approver__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Client Approver</label>
+        <referenceTo>Connection__c</referenceTo>
+        <relationshipLabel>Sales Orders</relationshipLabel>
+        <relationshipName>Sales_Orders</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Client_Reference_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Client Reference Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contract__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Contract</label>
+        <referenceTo>Contract</referenceTo>
+        <relationshipName>LOE_s</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Customer__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Customer</label>
+        <referenceTo>Customer__c</referenceTo>
+        <relationshipLabel>Sales Orders</relationshipLabel>
+        <relationshipName>Sales_Orders</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Deal_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>Deal__r.Deal_Type__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Deal Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Deal__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Deal</label>
+        <referenceTo>Deal__c</referenceTo>
+        <relationshipLabel>Sales Orders</relationshipLabel>
+        <relationshipName>Sales_Orders</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>End_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Proposed End Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Estimated_Effort__c</fullName>
+        <externalId>false</externalId>
+        <label>Estimated Effort</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Estimated_Revenue__c</fullName>
+        <externalId>false</externalId>
+        <label>Estimated Revenue</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Offer_Valid_Through__c</fullName>
+        <externalId>false</externalId>
+        <label>Offer Valid Through</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Payment_Method__c</fullName>
+        <externalId>false</externalId>
+        <label>Payment Method</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Cash</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cheque</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wire Transfer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ProjectCategory__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Category</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Implementation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Maintenance</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Consulting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Enhancement      </fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Project_Category__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Category</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sales_Order_Number__c</fullName>
+        <displayFormat>EXT/SO/{YYYY}/{00000}</displayFormat>
+        <externalId>false</externalId>
+        <label>Sales Order Number</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>Sales_Order_Numbers__c</fullName>
+        <externalId>false</externalId>
+        <formula>&quot;EXT/SO/&quot;+ TEXT(YEAR(DATEVALUE(CreatedDate))) + &quot;-&quot; + TRIM(RIGHT(Text(YEAR(DATEVALUE(CreatedDate))+1),2))+&quot;/&quot;+Auto_Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Sales Order Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Proposed Start Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Open</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Partially Invoiced</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed - Invoiced</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed - Abandoned</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not Started</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Tax_Code__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>Tax Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Tax_Percent__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>Tax Percent</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Sales Order</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Client_Reference_Number__c</columns>
+        <columns>Customer__c</columns>
+        <columns>Billing_Type__c</columns>
+        <columns>Start_Date__c</columns>
+        <columns>End_Date__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>Estimated_Effort__c</columns>
+        <columns>Estimated_Revenue__c</columns>
+        <columns>Project_Category__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Sales Order Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Sales Orders</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>License</fullName>
+        <active>true</active>
+        <label>License</label>
+        <picklistValues>
+            <picklist>Billing_Cycle__c</picklist>
+            <values>
+                <fullName>Annually</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fortnightly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Half-Yearly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Monthly</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Quarterly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Weekly</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Billing_Type__c</picklist>
+            <values>
+                <fullName>CTM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T%26M</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Payment_Method__c</picklist>
+            <values>
+                <fullName>Cash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cheque</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wire Transfer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ProjectCategory__c</picklist>
+            <values>
+                <fullName>Consulting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enhancement %C2%A0 %C2%A0 %C2%A0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Implementation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maintenance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed - Abandoned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed - Invoiced</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Started</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Partially Invoiced</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Service_Type</fullName>
+        <active>true</active>
+        <description>For FP projects</description>
+        <label>Service Type</label>
+        <picklistValues>
+            <picklist>Billing_Cycle__c</picklist>
+            <values>
+                <fullName>Annually</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fortnightly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Half-Yearly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Monthly</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Quarterly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Weekly</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Billing_Type__c</picklist>
+            <values>
+                <fullName>CTM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T%26M</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Payment_Method__c</picklist>
+            <values>
+                <fullName>Cash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cheque</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wire Transfer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ProjectCategory__c</picklist>
+            <values>
+                <fullName>Consulting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enhancement %C2%A0 %C2%A0 %C2%A0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Implementation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maintenance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed - Abandoned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed - Invoiced</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Started</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Partially Invoiced</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Services_T_M</fullName>
+        <active>true</active>
+        <label>Services T&amp;M</label>
+        <picklistValues>
+            <picklist>Billing_Cycle__c</picklist>
+            <values>
+                <fullName>Annually</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fortnightly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Half-Yearly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Monthly</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Quarterly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Weekly</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Billing_Type__c</picklist>
+            <values>
+                <fullName>CTM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T%26M</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Payment_Method__c</picklist>
+            <values>
+                <fullName>Cash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cheque</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wire Transfer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ProjectCategory__c</picklist>
+            <values>
+                <fullName>Consulting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enhancement %C2%A0 %C2%A0 %C2%A0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Implementation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maintenance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed - Abandoned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed - Invoiced</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Started</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Partially Invoiced</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Sales_Order_Number__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Customer__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Deal__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Tax_Percent__c</customTabListAdditionalFields>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>New</excludedStandardButtons>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Validation_on_Billing_Type</fullName>
+        <active>false</active>
+        <errorConditionFormula>ISCHANGED(Billing_Type__c)</errorConditionFormula>
+        <errorMessage>Cannot change the billing type once sales order is created</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Validation_on_Salesorder</fullName>
+        <active>true</active>
+        <description>Sales order name  should  have any special character</description>
+        <errorConditionFormula>CONTAINS( Name , &quot;&apos;&quot;)</errorConditionFormula>
+        <errorDisplayField>Name</errorDisplayField>
+        <errorMessage>Sales order name  should not contain  any special character</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Validation_rule_on_dates</fullName>
+        <active>true</active>
+        <description>&apos;Start date&apos; should be less than the &apos;End date&apos;</description>
+        <errorConditionFormula>Start_Date__c  &gt;  End_Date__c</errorConditionFormula>
+        <errorDisplayField>End_Date__c</errorDisplayField>
+        <errorMessage>&apos;Start date&apos; should be less than the &apos;End date&apos;</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Change_Tax_Component</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Change Tax Component</masterLabel>
+        <openType>noSidebar</openType>
+        <page>PM_TaxCodePage</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>Create_Sales_Order_Item_Lisence</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Create Sales Order Items</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>&apos;PM_Create SalesorderItem&apos;</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Generate_Attach_PDF</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Generate &amp; Attach PDF</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/10.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/10.0/apex.js&quot;)} 
+
+
+
+
+var result= sforce.connection.query(&quot;select Name,Customer__c,Customer__r.Name,Customer__r.Sales_Manager__r.Name,Customer__r.Sales_Manager__c,Customer__r.Billing_Street__c,Customer__r.Billing_City__c,Customer__r.Billing_State_Province__c,Customer__r.Billing_Country__c,Customer__r.Billing_Zip_Postal_Code__c,Customer__r.Shipping_Street__c,Customer__r.Shipping_City__c,Customer__r.Shipping_State_Province__c,Customer__r.Shipping_Country__c,Customer__r.Shipping_Zip_Postal_Code__c,Deal__c,Deal__r.Id,Deal__r.Name,Tax_Code__c,Tax_Percent__c,Deal__r.Deal_Start_Date__c,Deal__r.Deal_End_Date__c from Sales_Order__c where id= &apos;{!Sales_Order__c.Id}&apos; &quot;);
+var record= result.getArray(&quot;records&quot;);
+
+var x = &apos;{!Sales_Order__c.DealId__c}&apos;;
+
+var result1= sforce.connection.query(&quot;select Name,Id from Deal_Item__c  where Deal__c= \&apos;&quot; + x + &quot;\&apos;&quot;);
+var record1= result1.getArray(&quot;records&quot;);
+if(record1[0]==null)
+{
+alert(&apos;No Deal Items&apos;);
+}
+else if(record[0].Customer__r.Sales_Manager__c==null||record[0].Customer__r.Sales_Manager__c==&apos;&apos;)
+{
+alert(record[0].Customer__r.Name+&apos; &apos;+record[0].Name)
+alert(&apos;Missing Sales Manager&apos;);
+}
+else if(record[0].Customer__r.Billing_Street__c==null||record[0].Customer__r.Billing_Street__c==&apos;&apos;||record[0].Customer__r.Billing_City__c==null||record[0].Customer__r.Billing_City__c==&apos;&apos;||record[0].Customer__r.Billing_State_Province__c==null||record[0].Customer__r.Billing_State_Province__c==&apos;&apos;||record[0].Customer__r.Billing_Country__c==null||record[0].Customer__r.Billing_Country__c==&apos;&apos;||record[0].Customer__r.Billing_Zip_Postal_Code__c==null||record[0].Customer__r.Billing_Zip_Postal_Code__c==&apos;&apos;||record[0].Customer__r.Shipping_Street__c==null||record[0].Customer__r.Shipping_Street__c==&apos;&apos;||record[0].Customer__r.Shipping_City__c==null||record[0].Customer__r.Shipping_City__c==&apos;&apos;||record[0].Customer__r.Shipping_State_Province__c==null||record[0].Customer__r.Shipping_State_Province__c==&apos;&apos;||record[0].Customer__r.Shipping_Country__c==null||record[0].Customer__r.Shipping_Country__c==&apos;&apos;||record[0].Customer__r.Shipping_Zip_Postal_Code__c==null||record[0].Customer__r.Shipping_Zip_Postal_Code__c==&apos;&apos;)
+{
+alert(&apos;Missing Address Information for Customer.&apos;);
+}
+else if(record[0].Tax_Code__c==null||record[0].Tax_Code__c==&apos;&apos;||record[0].Tax_Percent__c ==null||record[0].Tax_Percent__c ==&apos;&apos;)
+{
+alert(&apos;Missing Tax Code and Tax Percent.&apos;);
+}
+else if(record[0].Deal__r.Deal_Start_Date__c==null||record[0].Deal__r.Deal_Start_Date__c==&apos;&apos;||record[0].Deal__r.Deal_End_Date__c ==null||record[0].Deal__r.Deal_End_Date__c ==&apos;&apos;)
+{
+alert(&apos;Missing deal Start Date or End Date or Both.&apos;);
+}
+else
+{
+var url = parent.location.href; //string for the URL of the current page 
+var ParentName = sforce.apex.execute(&quot;PM_Generate_and_Attach_SO_PDF1&quot;,&quot;Generate&quot;,{&apos;SalesOrderId&apos;:&apos;{!Sales_Order__c.Id}&apos;}); 
+parent.location.href = url; //refresh the page
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>New_Create_Sales_Order_Item</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Create Sales Order Item</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/apex.js&quot;)} 
+
+
+ 
+var result = sforce.connection.describeSObject(&quot;Sales_Order_Item__c&quot;); 
+var tdc = result; 
+
+
+if (&apos;{!Sales_Order__c.Billing_Type__c}&apos; == &apos;FP&apos;)
+{ 
+
+window.open(&apos;/apex/PM_CreateSalesOrderItem?id=&apos; + &apos;{!Sales_Order__c.Id}&apos;);
+
+}
+else
+{
+
+window.open(&apos;/apex/PM_ListofTimeEntries?id=&apos;+&apos;{!Sales_Order__c.Id}&apos;);
+
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>New_Sales_Order_Licenses</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>New Sales Order(Licenses)</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/apex.js&quot;)} 
+
+
+
+
+
+var result = sforce.connection.describeSObject(&quot;Sales_Order__c&quot;); 
+var tdc = result; 
+var result1=sforce.connection.query(&quot;select Id,Name from RecordType where SobjectType=&apos;Sales_Order__c&apos; AND Name=&apos;License&apos; &quot;); 
+var record= result1.getArray(&quot;records&quot;) ;
+
+var stage=&quot;{!Deal__c.Stage__c}&quot;;
+var cancelid=&quot;{!Deal__c.Id}&quot;
+if(stage==&quot;Closed Won&quot;)
+{
+
+
+window.open(&apos;/&apos;+tdc.keyPrefix+&apos;/e?CF00N90000007Nmiw=&apos;+  &apos;{!URLENCODE(Deal__c.Name)}&apos;+&apos;&amp;RecordType=&apos;+record[0].Id);
+}
+else 
+alert(&quot;Deal is not closed  won , so we cannot create sales order &quot;);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>New_Sales_Order_Services</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>New Sales Order(Services)</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/apex.js&quot;)} 
+
+
+
+
+
+var result = sforce.connection.describeSObject(&quot;Sales_Order__c&quot;); 
+var tdc = result; 
+var result1=sforce.connection.query(&quot;select Id,Name from RecordType where SobjectType=&apos;Sales_Order__c&apos; AND Name=&apos;Service Type&apos; &quot;); 
+var record= result1.getArray(&quot;records&quot;) ;
+
+var stage=&quot;{!Deal__c.Stage__c}&quot;;
+var Customer=&quot;{!Deal__c.Customer__c}&quot;
+if(stage==&quot;Closed Won&quot;)
+{
+
+
+window.open(&apos;/&apos;+tdc.keyPrefix+&apos;/e?CF00N90000007Nmiw=&apos;+ &apos;{!URLENCODE(Deal__c.Name)}&apos;+&apos;&amp;RecordType=&apos;+record[0].Id);
+}
+else 
+alert(&quot;Deal is not closed won  , so we cannot create sales order &quot;);</url>
+    </webLinks>
+</CustomObject>

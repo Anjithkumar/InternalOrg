@@ -1,0 +1,1768 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>AddInfluence</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <businessProcesses>
+        <fullName>Licenses</fullName>
+        <description>Sales Process for Salesforce.com Licenses Opportunity</description>
+        <isActive>true</isActive>
+        <values>
+            <fullName>Close Dropped</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed Lost</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed Won</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Id%2E Decision Makers</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Needs Analysis</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Negotiation%2FReview</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Perception Analysis</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Proposal%2FPrice Quote</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prospecting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Qualification</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Value Proposition</fullName>
+            <default>false</default>
+        </values>
+    </businessProcesses>
+    <businessProcesses>
+        <fullName>Product</fullName>
+        <description>For Product opportunities</description>
+        <isActive>true</isActive>
+        <values>
+            <fullName>Close Dropped</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed Lost</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed Won</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Id%2E Decision Makers</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Needs Analysis</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Negotiation%2FReview</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Perception Analysis</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Proposal%2FPrice Quote</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prospecting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Qualification</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Value Proposition</fullName>
+            <default>false</default>
+        </values>
+    </businessProcesses>
+    <businessProcesses>
+        <fullName>Services</fullName>
+        <description>This is to capture Salesforce.com Services (Implementation) opportunities.</description>
+        <isActive>true</isActive>
+        <values>
+            <fullName>Close Dropped</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed Lost</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed Won</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Needs Analysis</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Negotiation%2FReview</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Perception Analysis</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Proposal%2FPrice Quote</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Qualification</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Value Proposition</fullName>
+            <default>false</default>
+        </values>
+    </businessProcesses>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <fields>
+        <fullName>AccountId</fullName>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Billing_Frequency__c</fullName>
+        <externalId>false</externalId>
+        <label>Billing Frequency</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yearly</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Quarterly</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Half yearly</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>CampaignId</fullName>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Contract_End_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Contract End Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Contract_Flag__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <label>Contract Flag</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Contract_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>false</externalId>
+        <label>Contract Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Contract_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Contract Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Contract_Term_Month__c</fullName>
+        <externalId>false</externalId>
+        <label>Contract Term(Month)</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>Cost</label>
+        <picklist>
+            <picklistValues>
+                <fullName>License Only</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Service Only</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>CreatedById</fullName>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Days_Since_Creation__c</fullName>
+        <externalId>false</externalId>
+        <formula>NOW()  -  CreatedDate</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Days Since Creation</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Extentor_SalesRep__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Extentor SalesRep</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Opportunities</relationshipLabel>
+        <relationshipName>Opportunities</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>LastModifiedById</fullName>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>LeadSource</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SFDC PL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>North Data List</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dead Opps - Delhi</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Reema&apos;s List</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Oracle DB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Lead__c</fullName>
+        <externalId>false</externalId>
+        <label>Lead Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Partner Sourced</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SFDC Sourced</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>License_Activation_Date__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please enter the license activation date as in PO</inlineHelpText>
+        <label>License Activation Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>License_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>License Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>License_Commission__c</fullName>
+        <externalId>false</externalId>
+        <label>License Commission</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>License Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Contact Manager (CME)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Group Edition (GE)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Professional Edition (PE) - Sales Cloud</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Professional Edition (PE) - Service Cloud</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Professional Edition (PE) - Chatter Plus</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Enterprise Edition (EE) - Sales Cloud</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Enterprise Edition (EE) - Service Cloud</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Enterprise Edition (EE) - Service Cloud Knowledge Pack</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Enterprise Edition (EE) - Chatter Plus</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unlimited Edition (UE) - Sales Cloud</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unlimited Edition (UE) - Service Cloud</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unlimited Edition (UE) - Knowledge Pack</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unlimited Edition (UE) - Chatter Only</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Authenticated Sites</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Service Cloud Portal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Customer Portal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Partner Portal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Force.com 1 App Lite</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Force.com 1 App Enterprise</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other...</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Licenses_Margin__c</fullName>
+        <externalId>false</externalId>
+        <formula>Amount  -  Purchase_Price_from_Ingram__c</formula>
+        <label>Licenses Margin</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Margin_Percentage__c</fullName>
+        <externalId>false</externalId>
+        <label>Margin Percentage</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>No_of_Licenses__c</fullName>
+        <externalId>false</externalId>
+        <label>No of Licenses</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OwnerId</fullName>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Partner_Lead__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Partner Portal Lead ID</inlineHelpText>
+        <label>Partner Lead #</label>
+        <length>11</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Proposed_Project_Name__c</fullName>
+        <description>The name for the Project that would start once the Opportunity is Closed-Won</description>
+        <externalId>false</externalId>
+        <label>Proposed Project Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Purchase_Price_from_Ingram__c</fullName>
+        <description>Please enter our purchase price from Ingram</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please enter our purchase price from Ingram in total</inlineHelpText>
+        <label>Purchase Price from Ingram</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Quote_Accepted_By_Customer__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This Is checked when quote is accepted by customer</description>
+        <externalId>false</externalId>
+        <label>Quote Accepted By Customer</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Reason_for_Closed_Lost__c</fullName>
+        <externalId>false</externalId>
+        <label>Reason for Closed Lost</label>
+        <length>2000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Salesforce_com_AE_associated__c</fullName>
+        <description>Please add respective Salesforce.com AE with this opportunity.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please add respective Salesforce.com AE with this opportunity.</inlineHelpText>
+        <label>Salesforce.com AE Associated</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Service_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Service Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>StageName</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>Prospecting</fullName>
+                <closed>false</closed>
+                <default>false</default>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>10</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Qualification</fullName>
+                <closed>false</closed>
+                <default>false</default>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>10</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Needs Analysis</fullName>
+                <closed>false</closed>
+                <default>false</default>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>20</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Value Proposition</fullName>
+                <closed>false</closed>
+                <default>false</default>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>50</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Id. Decision Makers</fullName>
+                <closed>false</closed>
+                <default>false</default>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>60</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Perception Analysis</fullName>
+                <closed>false</closed>
+                <default>false</default>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>70</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Proposal/Price Quote</fullName>
+                <closed>false</closed>
+                <default>false</default>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>75</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Negotiation/Review</fullName>
+                <closed>false</closed>
+                <default>false</default>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>90</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed Won</fullName>
+                <closed>true</closed>
+                <default>false</default>
+                <forecastCategory>Closed</forecastCategory>
+                <probability>100</probability>
+                <won>true</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed Lost</fullName>
+                <closed>true</closed>
+                <default>false</default>
+                <forecastCategory>Omitted</forecastCategory>
+                <probability>0</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Close Dropped</fullName>
+                <closed>true</closed>
+                <default>false</default>
+                <forecastCategory>Omitted</forecastCategory>
+                <probability>0</probability>
+                <won>false</won>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Draft</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>SyncedQuoteId</fullName>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Total_Margin__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Margin</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>Existing Business</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New Business</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <listViews>
+        <fullName>All_Closed_Won_Opportunities</fullName>
+        <columns>OPPORTUNITY.NAME</columns>
+        <columns>OPPORTUNITY.RECORDTYPE</columns>
+        <columns>OPPORTUNITY.CLOSE_DATE</columns>
+        <columns>OPPORTUNITY.AMOUNT</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OPPORTUNITY.STAGE_NAME</field>
+            <operation>equals</operation>
+            <value>Closed Won</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.CURRENCY_ISO_CODE</field>
+            <operation>equals</operation>
+            <value>INR</value>
+        </filters>
+        <label>All Closed Won Opportunities</label>
+    </listViews>
+    <listViews>
+        <fullName>All_Open_Opportunities</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>OPPORTUNITY.NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>OPPORTUNITY.AMOUNT</columns>
+        <columns>OPPORTUNITY.CLOSE_DATE</columns>
+        <columns>OPPORTUNITY.LAST_UPDATE</columns>
+        <columns>OPPORTUNITY.LAST_ACTIVITY</columns>
+        <columns>OPPORTUNITY.NEXT_STEP</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OPPORTUNITY.STAGE_NAME</field>
+            <operation>notEqual</operation>
+            <value>Closed Won,Closed Lost,Close Dropped</value>
+        </filters>
+        <label>All Open Opportunities</label>
+    </listViews>
+    <listViews>
+        <fullName>Closed_Opportunity</fullName>
+        <columns>OPPORTUNITY.NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>OPPORTUNITY.AMOUNT</columns>
+        <columns>OPPORTUNITY.CLOSE_DATE</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OPPORTUNITY.CLOSED</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Closed Opportunity</label>
+    </listViews>
+    <listViews>
+        <fullName>ClosingNextMonth</fullName>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OPPORTUNITY.CLOSED</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.CLOSE_DATE</field>
+            <operation>equals</operation>
+            <value>NEXT_MONTH</value>
+        </filters>
+        <label>Closing Next Month</label>
+    </listViews>
+    <listViews>
+        <fullName>ClosingThisMonth</fullName>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OPPORTUNITY.CLOSED</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.CLOSE_DATE</field>
+            <operation>equals</operation>
+            <value>THIS_MONTH</value>
+        </filters>
+        <label>Closing This Month</label>
+    </listViews>
+    <listViews>
+        <fullName>MyOpportunities</fullName>
+        <filterScope>Mine</filterScope>
+        <label>My Opportunities</label>
+    </listViews>
+    <listViews>
+        <fullName>NewThisWeek</fullName>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OPPORTUNITY.CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>THIS_WEEK</value>
+        </filters>
+        <label>New This Week</label>
+    </listViews>
+    <listViews>
+        <fullName>Open_Service_Opps_Closing_next_Month</fullName>
+        <columns>OPPORTUNITY.NAME</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>OPPORTUNITY.CLOSE_DATE</columns>
+        <columns>OPPORTUNITY.AMOUNT</columns>
+        <columns>OPPORTUNITY.LAST_UPDATE</columns>
+        <columns>OPPORTUNITY.NEXT_STEP</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.SFDC_Implementation_Services</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.STAGE_NAME</field>
+            <operation>equals</operation>
+            <value>Proposal/Price Quote,Negotiation/Review,Closed Won</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.CLOSE_DATE</field>
+            <operation>equals</operation>
+            <value>THIS_QUARTER</value>
+        </filters>
+        <label>Open Service Opps Closing next Month</label>
+    </listViews>
+    <listViews>
+        <fullName>Open_Services_Opps_Closing_Stage</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>OPPORTUNITY.NAME</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>OPPORTUNITY.CLOSE_DATE</columns>
+        <columns>OPPORTUNITY.AMOUNT</columns>
+        <columns>OPPORTUNITY.CURRENCY_ISO_CODE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OPPORTUNITY.STAGE_NAME</field>
+            <operation>equals</operation>
+            <value>Proposal/Price Quote,Negotiation/Review</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.CURRENCY_ISO_CODE</field>
+            <operation>equals</operation>
+            <value>INR</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Opportunity.SFDC_Implementation_Services</value>
+        </filters>
+        <label>Open Services Opps Closing Stage</label>
+    </listViews>
+    <listViews>
+        <fullName>SFDC_sourced_Opportunities</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>OPPORTUNITY.NAME</columns>
+        <columns>OPPORTUNITY.RECORDTYPE</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>OPPORTUNITY.CLOSE_DATE</columns>
+        <columns>OPPORTUNITY.AMOUNT</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OPPORTUNITY.LEAD_SOURCE</field>
+            <operation>equals</operation>
+            <value>SFDC PL</value>
+        </filters>
+        <label>SFDC sourced Opportunities</label>
+    </listViews>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Product</fullName>
+        <active>true</active>
+        <businessProcess>Product</businessProcess>
+        <description>To Capture Extentor Custom Product Opportunity Details</description>
+        <label>Product</label>
+        <picklistValues>
+            <picklist>Billing_Frequency__c</picklist>
+            <values>
+                <fullName>Half yearly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quarterly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yearly</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Cost__c</picklist>
+            <values>
+                <fullName>License Only</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Only</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ForecastCategoryName</picklist>
+            <values>
+                <fullName>Best Case</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Commit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Omitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pipeline</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dead Opps - Delhi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North Data List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oracle DB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reema%27s List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SFDC PL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Lead__c</picklist>
+            <values>
+                <fullName>Partner Sourced</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SFDC Sourced</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>License_Type__c</picklist>
+            <values>
+                <fullName>Authenticated Sites</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contact Manager %28CME%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Portal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enterprise Edition %28EE%29 - Chatter Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enterprise Edition %28EE%29 - Sales Cloud</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enterprise Edition %28EE%29 - Service Cloud</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enterprise Edition %28EE%29 - Service Cloud Knowledge Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Force%2Ecom 1 App Enterprise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Force%2Ecom 1 App Lite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Group Edition %28GE%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other%2E%2E%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner Portal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Edition %28PE%29 - Chatter Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Edition %28PE%29 - Sales Cloud</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Edition %28PE%29 - Service Cloud</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Cloud Portal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unlimited Edition %28UE%29 - Chatter Only</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unlimited Edition %28UE%29 - Knowledge Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unlimited Edition %28UE%29 - Sales Cloud</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unlimited Edition %28UE%29 - Service Cloud</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Draft</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Existing Business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Business</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>SFDC_Implementation_Services</fullName>
+        <active>true</active>
+        <businessProcess>Services</businessProcess>
+        <description>To Capture Salesforce.com Implementation Services Opportunity Details</description>
+        <label>SFDC Implementation Services</label>
+        <picklistValues>
+            <picklist>Billing_Frequency__c</picklist>
+            <values>
+                <fullName>Half yearly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quarterly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yearly</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Cost__c</picklist>
+            <values>
+                <fullName>License Only</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Only</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ForecastCategoryName</picklist>
+            <values>
+                <fullName>Best Case</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Commit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Omitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pipeline</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dead Opps - Delhi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North Data List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oracle DB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reema%27s List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SFDC PL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Lead__c</picklist>
+            <values>
+                <fullName>Partner Sourced</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SFDC Sourced</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>License_Type__c</picklist>
+            <values>
+                <fullName>Authenticated Sites</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contact Manager %28CME%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Portal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enterprise Edition %28EE%29 - Chatter Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enterprise Edition %28EE%29 - Sales Cloud</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enterprise Edition %28EE%29 - Service Cloud</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enterprise Edition %28EE%29 - Service Cloud Knowledge Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Force%2Ecom 1 App Enterprise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Force%2Ecom 1 App Lite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Group Edition %28GE%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other%2E%2E%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner Portal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Edition %28PE%29 - Chatter Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Edition %28PE%29 - Sales Cloud</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Edition %28PE%29 - Service Cloud</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Cloud Portal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unlimited Edition %28UE%29 - Chatter Only</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unlimited Edition %28UE%29 - Knowledge Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unlimited Edition %28UE%29 - Sales Cloud</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unlimited Edition %28UE%29 - Service Cloud</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Draft</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Existing Business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Business</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>SFDC_Licenses</fullName>
+        <active>true</active>
+        <businessProcess>Licenses</businessProcess>
+        <description>To Capture Salesforce.com Licenses Opportunity Details</description>
+        <label>SFDC Licenses</label>
+        <picklistValues>
+            <picklist>Billing_Frequency__c</picklist>
+            <values>
+                <fullName>Half yearly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quarterly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yearly</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Cost__c</picklist>
+            <values>
+                <fullName>License Only</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Only</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ForecastCategoryName</picklist>
+            <values>
+                <fullName>Best Case</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Commit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Omitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pipeline</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dead Opps - Delhi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North Data List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oracle DB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reema%27s List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SFDC PL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Lead__c</picklist>
+            <values>
+                <fullName>Partner Sourced</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SFDC Sourced</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>License_Type__c</picklist>
+            <values>
+                <fullName>Authenticated Sites</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contact Manager %28CME%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Portal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enterprise Edition %28EE%29 - Chatter Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enterprise Edition %28EE%29 - Sales Cloud</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enterprise Edition %28EE%29 - Service Cloud</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enterprise Edition %28EE%29 - Service Cloud Knowledge Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Force%2Ecom 1 App Enterprise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Force%2Ecom 1 App Lite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Group Edition %28GE%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other%2E%2E%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner Portal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Edition %28PE%29 - Chatter Plus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Edition %28PE%29 - Sales Cloud</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Edition %28PE%29 - Service Cloud</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Cloud Portal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unlimited Edition %28UE%29 - Chatter Only</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unlimited Edition %28UE%29 - Knowledge Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unlimited Edition %28UE%29 - Sales Cloud</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unlimited Edition %28UE%29 - Service Cloud</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Draft</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Existing Business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Business</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>OPPORTUNITY.NAME</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ACCOUNT.NAME</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OPPORTUNITY.CLOSE_DATE</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>OPPORTUNITY.NAME</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCOUNT.NAME</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCOUNT.SITE</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>OPPORTUNITY.NAME</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACCOUNT.NAME</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACCOUNT.SITE</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>OPPORTUNITY.NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ACCOUNT.NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ACCOUNT.SITE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>OPPORTUNITY.STAGE_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>OPPORTUNITY.CLOSE_DATE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CORE.USERS.ALIAS</searchResultsAdditionalFields>
+    </searchLayouts>
+    <validationRules>
+        <fullName>Amount_Field_Can_Not_Be_Blank</fullName>
+        <active>false</active>
+        <description>Based upon the cost picklist selection corresponding Amount field should be filled.</description>
+        <errorConditionFormula>OR( AND(ISPICKVAL(Cost__c,&apos;License Only&apos;), ISBLANK( License_Amount__c ) ),
+        AND(ISPICKVAL(Cost__c,&apos;Service Only&apos;), ISBLANK(  Service_Amount__c  ) ),
+         AND(ISPICKVAL(Cost__c,&apos;Both&apos;), OR(ISBLANK(  Service_Amount__c  ), ISBLANK(  License_Amount__c ) ) )
+
+
+ )</errorConditionFormula>
+        <errorMessage>Amount Should Be Filled</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Contract_Start_Date_Can_Not_Be_Blank</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND( ISPICKVAL( StageName ,&apos;Closed Won&apos;),( ISBLANK( Contract_Start_Date__c ) ),ISPICKVAL(  Cost__c ,&apos;License Only&apos;))</errorConditionFormula>
+        <errorMessage>Contract Start Date Is Required</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Contract_Status_Can_Not_Be_Blank</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND( ISPICKVAL( StageName ,&apos;Closed Won&apos;),( ISBLANK( TEXT( Status__c )  )),ISPICKVAL(  Cost__c ,&apos;License Only&apos;))</errorConditionFormula>
+        <errorMessage>Status Is required</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Contract_Term_Months_can_not_be_blank</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND( ISPICKVAL( StageName ,&apos;Closed Won&apos;),ISPICKVAL(  Cost__c ,&apos;License Only&apos;),( ISBLANK(  Contract_Term_Month__c ) ))</errorConditionFormula>
+        <errorMessage>Contract Term(Month) Is Required</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Quote_should_be_accepted_by_customer</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND(  ISPICKVAL( StageName ,&apos;Closed Won&apos;), Quote_Accepted_By_Customer__c ==false  ,ISPICKVAL(  Cost__c ,&apos;License Only&apos;))</errorConditionFormula>
+        <errorMessage>Quote should be accepted by customer</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Reason_Should_Be_Filled_When_Closed_Lost</fullName>
+        <active>false</active>
+        <description>Reason to be filled when moving opportunity to Closed Lost</description>
+        <errorConditionFormula>AND(ISPICKVAL( StageName ,&apos;Closed Lost&apos;), ISBLANK( Reason_for_Closed_Lost__c ) )</errorConditionFormula>
+        <errorMessage>Please fill the reason for Closed/Lost</errorMessage>
+    </validationRules>
+</CustomObject>

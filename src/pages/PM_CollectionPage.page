@@ -1,0 +1,33 @@
+<apex:page standardController="Receipt__c" extensions="PM_CollectionPageController" tabStyle="Receipt__c">
+    <apex:sectionHeader title="Collection Edit" subtitle="New Collection"/>
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection >
+                <apex:inputField value="{!Receipt__c.Payment_Mode__c}">
+                <apex:actionSupport event="onchange" action="{!dispFields}" />
+                </apex:inputField>
+                <apex:inputField value="{!Receipt__c.Drawn_on_Bank__c}" rendered="{!chequeDetails}"/ >
+                <apex:inputField value="{!Receipt__c.Cheque__c}" rendered="{!chequeDetails}"/ >
+                <apex:inputField value="{!Receipt__c.Cheque_Date__c}" rendered="{!chequeDetails}"/ >
+                <apex:inputField value="{!Receipt__c.Date_Paid__c}" rendered="{!cashDetails}"/ >
+                <apex:inputField value="{!Receipt__c.Paid_By__c}" rendered="{!cashDetails}"/ >
+                <apex:inputField value="{!Receipt__c.Received_By__c}" rendered="{!cashDetails}"/ >
+                <apex:inputField value="{!Receipt__c.Date_Transferred__c}" rendered="{!bankTransferDetails}"/ >
+                <apex:inputField value="{!Receipt__c.Initiating_Bank_Name__c}" rendered="{!bankTransferDetails}"/ >
+                <apex:inputField value="{!Receipt__c.Initiating_Account_Name__c}" rendered="{!bankTransferDetails}"/ >
+                <apex:inputField value="{!Receipt__c.Initiating_Account_Number__c}" rendered="{!bankTransferDetails}"/ >
+                <apex:inputField value="{!Receipt__c.Receiving_Bank_Name__c}" rendered="{!bankTransferDetails}"/ >
+                <apex:inputField value="{!Receipt__c.SWIFT_IFSC_Code__c}" rendered="{!bankTransferDetails}"/ >
+                <apex:inputField value="{!Receipt__c.Receiving_Bank_Name__c}" rendered="{!bankTransferDetails}"/ >
+                <apex:inputField value="{!Receipt__c.Receiving_Account_Name__c}" rendered="{!bankTransferDetails}"/ >
+                <apex:inputField value="{!Receipt__c.Transaction_Reference_Number__c}" rendered="{!bankTransferDetails}"/ >
+                <apex:inputField value="{!Receipt__c.Amount__c}"/ >
+                
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!save}"/>
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>  
+</apex:page>

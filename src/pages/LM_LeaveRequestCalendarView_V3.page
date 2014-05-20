@@ -1,0 +1,313 @@
+<apex:page controller="LM_LeaveRequestCalendarClass_v3" sidebar="false"> 
+
+<apex:includeScript value="{!URLFOR($Resource.jQuery,'/jquery-ui-1.10.1.custom/js/jquery-1.9.1.js')}"/>
+  <apex:includeScript value="{!URLFOR($Resource.jQuery,'/jquery-ui-1.10.1.custom/js/jquery-ui-1.10.1.custom.js')}"/>
+  <apex:stylesheet value="{!URLFOR($Resource.jQuery,'/jquery-ui-1.10.1.custom/css/redmond/jquery-ui-1.10.1.custom.css')}"/> 
+
+<script> 
+   $j = jQuery.noConflict();
+   
+   function opendialog2()
+   {
+    $j("#dialog2").dialog("open");
+   }
+   
+   
+   function opendialog(a,b,c,d,e,f) 
+    {
+    
+    
+    
+    if(c!='')
+    {
+    
+   
+    startdate = a;
+    
+    document.getElementById("startdateId").innerHTML= startdate;
+    
+    Startdate = null;
+    
+    Enddate = b;
+    
+    document.getElementById("enddateId").innerHTML=Enddate;
+    
+    Endate = null;
+    
+   
+    reasonforleave = d;
+    
+    document.getElementById("reasonforleave").innerHTML= reasonforleave;
+     reasonforleave=null;
+     
+     status = e;
+    
+    document.getElementById("status").innerHTML= status;
+     status =null;
+     
+     comments=f;
+      document.getElementById("comments").innerHTML= comments;
+     comments =null;
+    
+    $j("#startdate").val(a);
+    $j("#enddate").val(b);
+     $j("#leaveReqId").val(c);
+      $j("#reasonforleave").val(d);
+        $j("#status").val(e);
+    $j("#comments").val(f);
+    $j("#dialog").dialog("open");
+    }
+    else
+    {
+   
+    
+    }
+   
+    
+    }; 
+     
+$j(function () {
+    $j( "#dialog" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "explode",
+        duration:1000        
+      },
+      hide: {
+        effect: "explode",
+        duration: 500
+          },
+          
+          buttons: {
+        "Approve": function() {
+        
+        //alert($j("#leaveReqId").val());
+    LM_LeaveRequestCalendarClass_v3.approveRecord($j("#leaveReqId").val(),$j("#comments").val(),function(result,event){
+    if(!event.status){
+        alert(event.message);
+        }
+    });
+ $j("#leaveReqId").val("")  ;
+    $j("#comments").val("");         
+          //location.reload();
+         $j("#dialog").dialog("close");
+        
+        refreshpage();
+        
+        },
+        "Reject":function() {
+        
+         //alert($j("#leaveReqId").val());
+    LM_LeaveRequestCalendarClass_v3.rejectRecord($j("#leaveReqId").val(),$j("#comments").val(),function(result,event){
+    if(!event.status){
+        alert(event.message);
+        }
+    });
+ $j("#leaveReqId").val("")  ;
+  //$j("#comments").val("");
+                
+         $j("#dialog").dialog("close");
+     refreshpage();
+    
+    
+    }
+      }    
+         
+    });
+    
+
+  });
+
+
+
+    
+function refreshpage ()
+{
+sayHello();
+
+}
+
+
+function redirectToLeaveRequest(leaveRequestId)
+{
+    if(leaveRequestId != '0'){
+        window.open(leaveRequestId);
+    }
+    //alert(x);
+};
+</script>
+
+<div id="dialog" title="Leave Request Details">
+ <apex:form >
+
+      <table>
+          
+          <tr><th>Start Date</th><td id="startdateId"></td></tr>
+          <tr><th>End Date</th><td id="enddateId"></td></tr>
+          <input type="hidden" id="leaveReqId"/>
+       <tr><th>Reason for Leave</th><td id="reasonforleave"></td></tr>
+        <tr><th>Status</th><td id="status"></td></tr>
+     <tr><th>Comments</th><td id="Comments"><input type="text" id="comments"/></td> </tr>
+      
+      
+      </table>      
+  </apex:form>
+  </div>
+  
+  
+  
+
+<apex:sectionHeader title="Leave Tracker" subtitle="Holiday Planner"/>
+<apex:form >
+<!--<apex:stylesheet value="{!$Resource.BackgroundStyling}"/>
+ <apex:stylesheet value="{!$Resource.LApplied}"/>
+ <apex:stylesheet value="{!$Resource.LApproved}"/>
+ <apex:stylesheet value="{!$Resource.LCancelled}"/>
+ <apex:stylesheet value="{!$Resource.LHoliday}"/>-->
+ <apex:stylesheet value="{!$Resource.leaveTrackerstyleclass}"/>
+ 
+ <apex:pageblock >
+ 
+             <apex:pageBlockSection title="Select month & year to view" columns="2" id="pgBlockSection1">
+                  <apex:selectList Label="Month" value="{!selectedMonth}" multiselect="false" size="1">
+                  <apex:selectOptions Value="{!totalMonths}"> </apex:selectoptions>
+                  </apex:selectList>
+                  <apex:selectList Label="Year"  value="{!selectedYear}" multiselect="false" size="1">
+                  <apex:selectOptions Value="{!totalYears}" > </apex:selectoptions>
+                  </apex:selectList>
+          </apex:pageBlockSection>
+         <apex:outputpanel >
+         <apex:actionstatus id="as2">
+            <apex:facet name="start">
+             
+                <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;height: 100%;opacity:0.65;width:100%;"> 
+                    <div class="waitingHolder" style="center: 104.2px; width: 100px; right:50px;"> 
+                       <img class="waitingImage" src="{!$Resource.Redcircle}"  width="30" height="30"  title="Please Wait..."/> 
+                      <span class="waitingImage">Loading...</span>
+                      
+                       </div>
+                </div> 
+            </apex:facet>
+        </apex:actionstatus>
+        </apex:outputpanel>
+         
+         <apex:commandButton value="View Details" action="{!next}" status="as2"/>
+         
+         
+         
+         
+ <apex:pageBlockSection id="pgBlockSection2" rendered="{!renderSection2}" columns="1" title="Leave details for {!monthName}" >
+ 
+ <apex:dataTable value="{!EmployeeLeaveDetails}" var="contact"  id="theTable" border="5" cellpadding="8" width="80%">
+
+<apex:column headerValue="Employee Name">
+        {!contact.employeeName} 
+      
+</apex:column>
+
+  <apex:column headervalue="{!headerValues[0].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['1'].Start_Date__c}','{!contact.leaveRequestDetails['1'].End_date__c}','{!contact.leaveRequestDetails['1'].id}','{!contact.leaveRequestDetails['1'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['1'].Status__c}','{!contact.leaveRequestDetails['1'].Comment__c}')" styleClass="{!contact.StylingMap['1']}" style="background-color:{!if(headerValues[0].colorCode!= null,headerValues[0].colorCode,if(contact.leavedatesMap['1'] != '0',contact.leavedatesMap['1'],''))}">
+
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[1].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['2'].Start_Date__c}','{!contact.leaveRequestDetails['2'].End_date__c}','{!contact.leaveRequestDetails['2'].id}','{!contact.leaveRequestDetails['2'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['2'].Status__c}','{!contact.leaveRequestDetails['2'].Comment__c}')" styleClass="{!contact.StylingMap['2']}"   style="background-color:{!if(headerValues[1].colorCode!= null,headerValues[1].colorCode,if(contact.leavedatesMap['2'] != '0',contact.leavedatesMap['2'],''))}">
+
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[2].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['3'].Start_Date__c}','{!contact.leaveRequestDetails['3'].End_date__c}','{!contact.leaveRequestDetails['3'].id}','{!contact.leaveRequestDetails['3'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['3'].Status__c}','{!contact.leaveRequestDetails['3'].Comment__c}')"  styleClass="{!contact.StylingMap['3']}" style="background-color:{!if(headerValues[2].colorCode!= null,headerValues[2].colorCode,if(contact.leavedatesMap['3'] != '0',contact.leavedatesMap['3'],''))}">
+ 
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[3].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['4'].Start_Date__c}','{!contact.leaveRequestDetails['4'].End_date__c}','{!contact.leaveRequestDetails['4'].id}','{!contact.leaveRequestDetails['4'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['4'].Status__c}','{!contact.leaveRequestDetails['4'].Comment__c}')" styleClass="{!contact.StylingMap['4']}" style="background-color:{!if(headerValues[3].colorCode!= null,headerValues[3].colorCode,if(contact.leavedatesMap['4'] != '0',contact.leavedatesMap['4'],''))}">
+ 
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[4].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['5'].Start_Date__c}','{!contact.leaveRequestDetails['5'].End_date__c}','{!contact.leaveRequestDetails['5'].id}','{!contact.leaveRequestDetails['5'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['5'].Status__c}','{!contact.leaveRequestDetails['5'].Comment__c}')" styleClass="{!contact.StylingMap['5']}" style="background-color:{!if(headerValues[4].colorCode!= null,headerValues[4].colorCode,if(contact.leavedatesMap['5'] != '0',contact.leavedatesMap['5'],''))}">
+ 
+ </apex:column>
+ <apex:column headervalue="{!headerValues[5].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['6'].Start_Date__c}','{!contact.leaveRequestDetails['6'].End_date__c}','{!contact.leaveRequestDetails['6'].id}','{!contact.leaveRequestDetails['6'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['6'].Status__c}','{!contact.leaveRequestDetails['6'].Comment__c}')" styleClass="{!contact.StylingMap['6']}" style="background-color:{!if(headerValues[5].colorCode!= null,headerValues[5].colorCode,if(contact.leavedatesMap['6'] != '0',contact.leavedatesMap['6'],''))}">
+ 
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[6].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['7'].Start_Date__c}','{!contact.leaveRequestDetails['7'].End_date__c}','{!contact.leaveRequestDetails['7'].id}','{!contact.leaveRequestDetails['7'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['7'].Status__c}','{!contact.leaveRequestDetails['7'].Comment__c}')" styleClass="{!contact.StylingMap['7']}" style="background-color:{!if(headerValues[6].colorCode!= null,headerValues[6].colorCode,if(contact.leavedatesMap['7'] != '0',contact.leavedatesMap['7'],''))}">
+ 
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[7].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['8'].Start_Date__c}','{!contact.leaveRequestDetails['8'].End_date__c}','{!contact.leaveRequestDetails['8'].id}','{!contact.leaveRequestDetails['8'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['8'].Status__c}','{!contact.leaveRequestDetails['8'].Comment__c}'))" styleClass="{!contact.StylingMap['8']}" style="background-color:{!if(headerValues[7].colorCode!= null,headerValues[7].colorCode,if(contact.leavedatesMap['8'] != '0',contact.leavedatesMap['8'],''))}">
+  
+ </apex:column> 
+<apex:column headervalue="{!headerValues[8].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['9'].Start_Date__c}','{!contact.leaveRequestDetails['9'].End_date__c}','{!contact.leaveRequestDetails['9'].id}','{!contact.leaveRequestDetails['9'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['9'].Status__c}','{!contact.leaveRequestDetails['9'].Comment__c}')" styleClass="{!contact.StylingMap['9']}" style="background-color:{!if(headerValues[8].colorCode!= null,headerValues[8].colorCode,if(contact.leavedatesMap['9'] != '0',contact.leavedatesMap['9'],''))}">
+ 
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[9].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['10'].Start_Date__c}','{!contact.leaveRequestDetails['10'].End_date__c}','{!contact.leaveRequestDetails['10'].id}','{!contact.leaveRequestDetails['10'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['10'].Status__c}','{!contact.leaveRequestDetails['10'].Comment__c}')" styleClass="{!contact.StylingMap['10']}" style="background-color:{!if(headerValues[9].colorCode!= null,headerValues[9].colorCode,if(contact.leavedatesMap['10'] != '0',contact.leavedatesMap['10'],''))}">
+ 
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[10].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['11'].Start_Date__c}','{!contact.leaveRequestDetails['11'].End_date__c}','{!contact.leaveRequestDetails['11'].id}','{!contact.leaveRequestDetails['11'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['11'].Status__c}','{!contact.leaveRequestDetails['11'].Comment__c}')" styleClass="{!contact.StylingMap['11']}" style="background-color:{!if(headerValues[10].colorCode!= null,headerValues[10].colorCode,if(contact.leavedatesMap['11'] != '0',contact.leavedatesMap['11'],''))}">
+ 
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[11].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['12'].Start_Date__c}','{!contact.leaveRequestDetails['12'].End_date__c}','{!contact.leaveRequestDetails['12'].id}','{!contact.leaveRequestDetails['12'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['12'].Status__c}','{!contact.leaveRequestDetails['12'].Comment__c}')" styleClass="{!contact.StylingMap['12']}" style="background-color:{!if(headerValues[11].colorCode!= null,headerValues[11].colorCode,if(contact.leavedatesMap['12'] != '0',contact.leavedatesMap['12'],''))}">
+  
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[12].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['13'].Start_Date__c}','{!contact.leaveRequestDetails['13'].End_date__c}','{!contact.leaveRequestDetails['13'].id}','{!contact.leaveRequestDetails['13'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['13'].Status__c}','{!contact.leaveRequestDetails['13'].Comment__c}')" styleClass="{!contact.StylingMap['13']}" style="background-color:{!if(headerValues[12].colorCode!= null,headerValues[12].colorCode,if(contact.leavedatesMap['13'] != '0',contact.leavedatesMap['13'],''))}">
+ 
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[13].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['14'].Start_Date__c}','{!contact.leaveRequestDetails['14'].End_date__c}','{!contact.leaveRequestDetails['14'].id}','{!contact.leaveRequestDetails['14'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['14'].Status__c}','{!contact.leaveRequestDetails['14'].Comment__c}')" styleClass="{!contact.StylingMap['14']}" style="background-color:{!if(headerValues[13].colorCode!= null,headerValues[13].colorCode,if(contact.leavedatesMap['14'] != '0',contact.leavedatesMap['14'],''))}">
+ 
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[14].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['15'].Start_Date__c}','{!contact.leaveRequestDetails['15'].End_date__c}','{!contact.leaveRequestDetails['15'].id}','{!contact.leaveRequestDetails['15'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['15'].Status__c}','{!contact.leaveRequestDetails['15'].Comment__c}')" styleClass="{!contact.StylingMap['15']}" style="background-color:{!if(headerValues[14].colorCode!= null,headerValues[14].colorCode,if(contact.leavedatesMap['15'] != '0',contact.leavedatesMap['15'],''))}">
+ 
+ </apex:column>
+ <apex:column headervalue="{!headerValues[15].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['16'].Start_Date__c}','{!contact.leaveRequestDetails['16'].End_date__c}','{!contact.leaveRequestDetails['16'].id}','{!contact.leaveRequestDetails['16'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['16'].Status__c}','{!contact.leaveRequestDetails['16'].Comment__c}')" styleClass="{!contact.StylingMap['16']}" style="background-color:{!if(headerValues[15].colorCode!= null,headerValues[15].colorCode,if(contact.leavedatesMap['16'] != '0',contact.leavedatesMap['16'],''))}">
+  
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[16].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['17'].Start_Date__c}','{!contact.leaveRequestDetails['17'].End_date__c}','{!contact.leaveRequestDetails['17'].id}','{!contact.leaveRequestDetails['17'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['17'].Status__c}','{!contact.leaveRequestDetails['17'].Comment__c}')" styleClass="{!contact.StylingMap['17']}" style="background-color:{!if(headerValues[16].colorCode!= null,headerValues[16].colorCode,if(contact.leavedatesMap['17'] != '0',contact.leavedatesMap['17'],''))}">
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[17].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['18'].Start_Date__c}','{!contact.leaveRequestDetails['18'].End_date__c}','{!contact.leaveRequestDetails['18'].id}','{!contact.leaveRequestDetails['18'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['18'].Status__c}','{!contact.leaveRequestDetails['18'].Comment__c}')" styleClass="{!contact.StylingMap['18']}" style="background-color:{!if(headerValues[17].colorCode!= null,headerValues[17].colorCode,if(contact.leavedatesMap['18'] != '0',contact.leavedatesMap['18'],''))}">
+
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[18].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['19'].Start_Date__c}','{!contact.leaveRequestDetails['19'].End_date__c}','{!contact.leaveRequestDetails['19'].id}','{!contact.leaveRequestDetails['19'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['19'].Status__c}','{!contact.leaveRequestDetails['19'].Comment__c}')" styleClass="{!contact.StylingMap['19']}" style="background-color:{!if(headerValues[18].colorCode!= null,headerValues[18].colorCode,if(contact.leavedatesMap['19'] != '0',contact.leavedatesMap['19'],''))}">
+
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[19].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['20'].Start_Date__c}','{!contact.leaveRequestDetails['20'].End_date__c}','{!contact.leaveRequestDetails['20'].id}','{!contact.leaveRequestDetails['20'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['20'].Status__c}','{!contact.leaveRequestDetails['20'].Comment__c}')" styleClass="{!contact.StylingMap['20']}" style="background-color:{!if(headerValues[19].colorCode!= null,headerValues[19].colorCode,if(contact.leavedatesMap['20'] != '0',contact.leavedatesMap['20'],''))}">
+
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[20].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['21'].Start_Date__c}','{!contact.leaveRequestDetails['21'].End_date__c}','{!contact.leaveRequestDetails['21'].id}','{!contact.leaveRequestDetails['21'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['21'].Status__c}','{!contact.leaveRequestDetails['21'].Comment__c}')" styleClass="{!contact.StylingMap['21']}" style="background-color:{!if(headerValues[20].colorCode!= null,headerValues[20].colorCode,if(contact.leavedatesMap['21'] != '0',contact.leavedatesMap['21'],''))}">
+
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[21].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['22'].Start_Date__c}','{!contact.leaveRequestDetails['22'].End_date__c}','{!contact.leaveRequestDetails['22'].id}','{!contact.leaveRequestDetails['22'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['22'].Status__c}','{!contact.leaveRequestDetails['22'].Comment__c}')" styleClass="{!contact.StylingMap['22']}" style="background-color:{!if(headerValues[21].colorCode!= null,headerValues[21].colorCode,if(contact.leavedatesMap['22'] != '0',contact.leavedatesMap['22'],''))}">
+
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[22].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['23'].Start_Date__c}','{!contact.leaveRequestDetails['23'].End_date__c}','{!contact.leaveRequestDetails['23'].id}','{!contact.leaveRequestDetails['23'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['23'].Status__c}','{!contact.leaveRequestDetails['23'].Comment__c}')" styleClass="{!contact.StylingMap['23']}" style="background-color:{!if(headerValues[22].colorCode!= null,headerValues[22].colorCode,if(contact.leavedatesMap['23'] != '0',contact.leavedatesMap['23'],''))}">
+
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[23].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['24'].Start_Date__c}','{!contact.leaveRequestDetails['24'].End_date__c}','{!contact.leaveRequestDetails['24'].id}','{!contact.leaveRequestDetails['24'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['24'].Status__c}','{!contact.leaveRequestDetails['24'].Comment__c}')" styleClass="{!contact.StylingMap['24']}" style="background-color:{!if(headerValues[23].colorCode!= null,headerValues[23].colorCode,if(contact.leavedatesMap['24'] != '0',contact.leavedatesMap['24'],''))}">
+
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[24].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['25'].Start_Date__c}','{!contact.leaveRequestDetails['25'].End_date__c}','{!contact.leaveRequestDetails['25'].id}','{!contact.leaveRequestDetails['25'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['25'].Status__c}','{!contact.leaveRequestDetails['25'].Comment__c}')" styleClass="{!contact.StylingMap['25']}" style="background-color:{!if(headerValues[24].colorCode!= null,headerValues[24].colorCode,if(contact.leavedatesMap['25'] != '0',contact.leavedatesMap['25'],''))}">
+
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[25].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['26'].Start_Date__c}','{!contact.leaveRequestDetails['26'].End_date__c}','{!contact.leaveRequestDetails['26'].id}','{!contact.leaveRequestDetails['26'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['26'].Status__c}','{!contact.leaveRequestDetails['26'].Comment__c}')"  styleClass="{!contact.StylingMap['26']}" style="background-color:{!if(headerValues[25].colorCode!= null,headerValues[25].colorCode,if(contact.leavedatesMap['26'] != '0',contact.leavedatesMap['26'],''))}">
+
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[26].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['27'].Start_Date__c}','{!contact.leaveRequestDetails['27'].End_date__c}','{!contact.leaveRequestDetails['27'].id}','{!contact.leaveRequestDetails['27'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['27'].Status__c}','{!contact.leaveRequestDetails['27'].Comment__c}')" styleClass="{!contact.StylingMap['27']}" style="background-color:{!if(headerValues[26].colorCode!= null,headerValues[26].colorCode,if(contact.leavedatesMap['27'] != '0',contact.leavedatesMap['27'],''))}">
+
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[27].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['28'].Start_Date__c}','{!contact.leaveRequestDetails['28'].End_date__c}','{!contact.leaveRequestDetails['28'].id}','{!contact.leaveRequestDetails['28'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['28'].Status__c}','{!contact.leaveRequestDetails['28'].Comment__c}')" styleClass="{!contact.StylingMap['28']}" style="background-color:{!if(headerValues[27].colorCode!= null,headerValues[27].colorCode,if(contact.leavedatesMap['28'] != '0',contact.leavedatesMap['28'],''))}">
+
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[28].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['29'].Start_Date__c}','{!contact.leaveRequestDetails['29'].End_date__c}','{!contact.leaveRequestDetails['29'].id}','{!contact.leaveRequestDetails['29'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['29'].Status__c}','{!contact.leaveRequestDetails['29'].Comment__c}')" styleClass="{!contact.StylingMap['29']}" style="background-color:{!if(headerValues[28].colorCode!= null,headerValues[28].colorCode,if(contact.leavedatesMap['29'] != '0',contact.leavedatesMap['29'],''))}" rendered="{!IF(ISBLANK(lastDayValue),false,lastDayValue>28)}">
+
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[29].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['30'].Start_Date__c}','{!contact.leaveRequestDetails['30'].End_date__c}','{!contact.leaveRequestDetails['30'].id}','{!contact.leaveRequestDetails['30'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['30'].Status__c}','{!contact.leaveRequestDetails['30'].Comment__c}')" styleClass="{!contact.StylingMap['30']}" style="background-color:{!if(headerValues[29].colorCode!= null,headerValues[29].colorCode,if(contact.leavedatesMap['30'] != '0',contact.leavedatesMap['30'],''))}" rendered="{!IF(ISBLANK(lastDayValue),false,lastDayValue>29)}">
+
+ </apex:column> 
+ <apex:column headervalue="{!headerValues[30].dayOfMonth}" onclick="opendialog('{!contact.leaveRequestDetails['31'].Start_Date__c}','{!contact.leaveRequestDetails['31'].End_date__c}','{!contact.leaveRequestDetails['31'].id}','{!contact.leaveRequestDetails['31'].Reason_for_Leave__c}','{!contact.leaveRequestDetails['31'].Status__c}','{!contact.leaveRequestDetails['31'].Comment__c}')" styleClass="{!contact.StylingMap['31']}" style="background-color:{!if(headerValues[30].colorCode!= null,headerValues[30].colorCode,if(contact.leavedatesMap['31'] != '0',contact.leavedatesMap['31'],''))}" rendered="{!IF(ISBLANK(lastDayValue),false,lastDayValue>30)}">
+
+ </apex:column> 
+ </apex:dataTable>
+ <table width="80%" colspan="4">
+<tr>
+<td ><div class="miniapproval"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Approved</b></div><br/></td>
+<td><div class="miniappliedLeave"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Applied</b></div></td>
+<td><div class="minicancelled"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Rejected</b></div><br/></td>
+<td><div class="miniholiday"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Holiday</b></div></td>
+</tr>
+</table>
+    </apex:pageBlockSection>
+    <apex:actionFunction name="sayHello" action="{!test}" immediate="True" reRender="pgBlockSection2" />
+    </apex:pageblock> 
+ </apex:form>
+</apex:page>

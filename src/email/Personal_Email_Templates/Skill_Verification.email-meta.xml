@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Approval_for_Milestone_Letterhead</letterhead>
+    <name>Skill Verification</name>
+    <style>freeForm</style>
+    <subject>Verification of Skill Rating</subject>
+    <type>html</type>
+</EmailTemplate>

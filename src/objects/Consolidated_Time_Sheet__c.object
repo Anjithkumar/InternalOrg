@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <fields>
+        <fullName>Actual_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Actual Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Actual_Milestone_Revenue__c</fullName>
+        <externalId>false</externalId>
+        <label>Actual Milestone Revenue</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Billing_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT( Sales_Order__r.Billing_Type__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Billing Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Milestone_Reference_Number__c</fullName>
+        <displayFormat>M-{0000000000}</displayFormat>
+        <externalId>false</externalId>
+        <label>Milestone Reference Number</label>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>Planned_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Planned Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Planned_Milestone_Revenue__c</fullName>
+        <externalId>false</externalId>
+        <label>Planned Milestone Revenue</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Quantity__c</fullName>
+        <externalId>false</externalId>
+        <label>Quantity</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sales_Order__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sales Order</label>
+        <referenceTo>Sales_Order__c</referenceTo>
+        <relationshipLabel>Consolidated Time Sheets</relationshipLabel>
+        <relationshipName>Consolidated_Time_Sheets</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Partially Invoiced</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed-Invoiced</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed-Abandoned</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not-Started</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completely Invoiced</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Unit_Rate__c</fullName>
+        <externalId>false</externalId>
+        <label>Unit Rate</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UserId__c</fullName>
+        <externalId>false</externalId>
+        <label>UserId</label>
+        <length>200</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Consolidated Time Sheet</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Consolidated Time Sheet Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Consolidated Time Sheets</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <webLinks>
+        <fullName>Create_Consolidated_Time_Sheets_Project</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Create Consolidated Time Sheets</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/apex.js&quot;)} 
+
+
+ 
+var result = sforce.connection.describeSObject(&quot;Sales_Order__c&quot;); 
+var tdc = result; 
+
+//var selectedproject =&quot;{!Project__c.Name}&quot;
+var selectedproject =&quot;{!Sales_Order__c.Project_Category__c}&quot;;
+
+var result1= sforce.connection.query(&quot;select Name,Id from Project__c  where Sales_Order__c= &apos;{!Sales_Order__c.Id}&apos; &quot;);
+var record1= result1.getArray(&quot;records&quot;);
+if(record1[0]==null)
+{
+alert(&quot;No project created yet for the SalesOrder&quot;);
+}
+
+
+else
+{
+window.open(&apos;/apex/PM_CreateConsolidatedTimeSheets?id=&apos;+&apos;{!Sales_Order__c.Id}&apos;,&apos;_self&apos;);
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Generate_Invoice</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Generate Invoice</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/apex.js&quot;)} 
+
+var status=[] 
+var x=0; 
+var result = sforce.connection.describeSObject(&quot;Consolidated_Time_Sheet__c&quot;); 
+var taxCode=&quot;{!Sales_Order__c.Tax_Code__c}&quot;;
+var taxPercent=&quot;{!Sales_Order__c.Tax_Percent__c}&quot;;
+var selectedRecordids = {!GETRECORDIDS($ObjectType.Consolidated_Time_Sheet__c)}; 
+
+if (selectedRecordids [0] == null) { 
+	alert(&quot;Please select at least one record&quot;); 
+	x=1;
+}
+else if( taxCode==null || taxCode==&apos;&apos;||taxPercent==&apos;&apos;||taxPercent==null)
+{ 
+alert(&apos;Missing Tax Code and Tax Percent for Salesorder.&apos;); 
+}else{
+
+for(var i=0;i&lt;selectedRecordids.length;i++){ 
+var result1= sforce.connection.query(&quot;select Name,Id,Status__c from Consolidated_Time_Sheet__c where id = \&apos;&quot; + selectedRecordids[i] + &quot;\&apos;&quot;); 
+var record1 = result1.getArray(&quot;records&quot;); 
+status.push(record1); 
+} 
+var r=status.length; 
+if(status.length&gt;0){ 
+for(var i=0;i&lt;status.length;i++){ 
+if(status[i][0].Status__c!=&apos;Completed&apos;&amp;&amp;status[i][0].Status__c!=&apos;Partially Invoiced&apos;){ 
+alert(&apos;Please ensure that you select only Completed &amp;Partially Invoiced records&apos;); 
+
+}else { 
+x+=1; 
+} 
+} 
+} 
+if(r==x){ 
+window.location=&apos;/apex/PM_InvoiceCreationPage?Id={!Sales_Order__c.Id}&amp;rec=&apos;+selectedRecordids .join(&apos;;&apos;) ;  
+}
+}</url>
+    </webLinks>
+</CustomObject>

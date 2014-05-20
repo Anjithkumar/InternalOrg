@@ -1,0 +1,130 @@
+<apex:page sidebar="false" showHeader="false" controller="TimeEntryController_v_1">
+     <apex:pageMessages ></apex:pageMessages>
+     <apex:form >
+        <link href="{!URLFOR($Resource.Vivekboot2, '/dist/css/bootstrap.css')}" rel="stylesheet"/>  
+        <link href="{!URLFOR($Resource.Vivekboot2, '/dist/css/bootstrap-theme.css')}" rel="stylesheet" media="screen"/> 
+        <link href="{!URLFOR($Resource.Vivekboot1, '/bootstrap/css/bootstrap.css')}" rel="stylesheet" />  
+        <apex:includeScript value="{!URLFOR($Resource.VivekBoot2, '/dist/js/bootstrap.js')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.RBoot, 'css/bootstrap.css')}"/>
+        <apex:includescript value="{!URLFOR($Resource.RBoot, 'assets/js/jquery.js')}"/>
+        <apex:includescript value="{!URLFOR($Resource.RBoot, 'js/bootstrap.js')}"/>
+        <apex:includescript value="{!URLFOR($Resource.RBoot, 'assets/js/holder.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.jQuery,'/jquery-ui-1.10.1.custom/js/jquery-1.9.1.js')}"/> 
+
+        
+        <apex:stylesheet value="{!URLFOR($Resource.BootstrapDatePicker, 'css/bootstrap-datetimepicker.min.css')}"/>
+        <apex:includescript value="{!URLFOR($Resource.BootstrapDatePicker, 'js/bootstrap-datetimepicker.min.js')}"/>
+        
+        
+          
+        <script>
+            $j = jQuery.noConflict();
+          $j(document).ready(function() {
+           
+             $j('#datetimepicker2').datetimepicker({
+             autoclose:true
+             });
+          });
+            
+            function openNewEntrySection(a,b,c,d)
+            {
+                $j('#newEntrySection').show();
+                document.getElementById("project").innerHTML=d;
+                document.getElementById("relatedtask").innerHTML=c;
+                $j("#projId").val(a);
+                $j("#taskId").val(b);
+                //alert( $j("#taskId").val());
+                //alert(b);
+                //alert(c);
+                //alert(d);
+                
+            }    
+            function saveEntries()
+            {
+                //alert($j("#projId").val());
+                if($j.isNumeric($j("#effortT").val()))
+                {
+                    saveTimeEntryRecord( $j("#projId").val(),$j("#dateT").val(),$j("#taskId").val(),$j("#effortT").val(),$j("#activityDesc").val(),document.getElementById("clientrecover").checked);
+                    $j("#projId").val("");
+                    $j("#taskId").val("");
+                    $j("#dateT").val("")  ;
+                    $j("#effortT").val("")  ;
+                    $j("#activityDesc").val("");
+                    $j("#clientrecover").val("");
+                    alert("Time Entry has been Saved")       
+                    
+                }
+                else
+                {
+                    alert('Enter a valid number for Effort Hours');
+                }
+            }
+        </script>
+        <ul class="nav nav-tabs">
+            <li class="{!TimeEntryTab}"><a href="/apex/TimeEntryPage_v_1" >Time Entries</a></li>
+            <li class="{!WeeklyViewTab}"><a href="/apex/WeeklyView" >Weekly View</a></li>
+            <li class="{!BasicWizardTab}"><a href="/apex/PM_BasicTimeEntryWizard">Basic Wizard</a></li>
+            <li class="{!Home}"><a href="/home/home.jsp">Home</a></li>
+        </ul>
+        <br/><br/>
+        <div class="col-sm-4" id="formPannel">
+            <div class="panel panel-default" style="background-color:#FFFFFF">
+               <h3 style="color:#B40404">Projects</h3><br/><br/>
+               <div class="accordion" id="accordion2">
+                   <apex:repeat value="{!UserProj}" var="project">
+                       <div class="accordion-group">
+                           <div class="accordion-heading" style="background-color:#BDBDBD;">
+                               <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#{!project.counter}" style="color:#B40404">
+                                   <h4>{!project.projectId}</h4>    
+                               </a>
+                           </div>
+                           <div id="{!project.counter}" class="accordion-body collapse " style="color:#FF8000">
+                               <div class="accordion-inner" >
+                                   <apex:repeat value="{!project.projTaskList}" var="projectTask">
+                                       <div class="list-group">
+                                          <a href="#" class="list-group-item" onclick="openNewEntrySection('{!projectTask.Project__c}','{!projectTask.Id}','{!projectTask.Name}','{!projectTask.Project__r.Name}')">{!projectTask.Name} </a>
+                                       </div>
+                                   </apex:repeat>    
+                               </div>
+                           </div>
+                       </div><br/>
+                   </apex:repeat>
+               </div>
+           </div>
+        </div>
+        <div class="col-sm-8" id="newEntrySection" style="display:none">
+            <div class="panel panel-default">
+                <div class="" style="background-color:#BDBDBD;color:#B40404;height:40px"><div align="center"><h3>New Time Entry</h3></div></div>
+                <div class="panel-body">
+                  <form id="formId">
+                  <table>
+                      <tr><th>Project : </th><td id="project"></td></tr>
+                      <tr><th>Related Task : </th><td id="relatedtask"></td></tr>
+                      <tr><th>Date :</th><td><div id="datetimepicker2" class="input-append"><input style="height:30px;" type="text" id="dateT" data-format="dd/MM/yyyy"/><span class="add-on" style="height:30px"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div></td></tr>
+                      <tr><th>Activity Description :</th><td id="ActDes"><textarea name="activitDescription" form="formId" id="activityDesc"/></td> </tr>
+                      <tr><th>Effort :</th><td id="Eff"><input style="height:30px;" type="text" id="effortT" class="required"><h1 style="color:#B40404">*</h1></input></td> </tr>
+                      <tr><th>Client Recoverable :</th><td id="ClientRecover"><input style="height:30px;" type="checkbox" id="clientrecover" checked="true"/></td> </tr>
+                      <input type="hidden" id="projId"/>
+                      <input type="hidden" id="taskId"/>
+                  </table>
+                  </form>
+                  <br/><br/>
+                  <div>
+                      <apex:commandLink onclick="saveEntries();">
+                          <apex:image value="{!$Resource.Save}" width="60px" height="30px"/>
+                      </apex:commandLink>
+                      <apex:actionFunction id="saveTimeEntryRecord" name="saveTimeEntryRecord" action="{!saveTimeEntryRecord}" immediate="true" reRender="qwerty">
+                          <apex:param value="" name="projectIdValue" assignTo="{!projectIdValue}"/>
+                          <apex:param value="" name="dateValue" assignTo="{!dateValue}"/>
+                          <apex:param value="" name="taskIdValue " assignTo="{!taskIdValue }"/> 
+                          <apex:param value="" name="effortValue" assignTo="{!effortValue}"/>
+                          <apex:param value="" name="activityDescription" assignTo="{!activityDescription}"/>
+                          <apex:param value="" name="Clientreverable" assignTo="{!clientrecoverable}"/>
+                      </apex:actionFunction> 
+                      <apex:pageBlock id="qwerty" rendered="false"></apex:pageBlock>
+                  </div>      
+              </div>
+            </div>
+        </div>
+  </apex:form>     
+</apex:page>

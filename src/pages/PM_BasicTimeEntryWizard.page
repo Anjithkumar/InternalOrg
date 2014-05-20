@@ -1,0 +1,75 @@
+<apex:page controller="PM_BasicTimeEntryController" tabStyle="Time_Entries__tab">
+<apex:sectionHeader title="New" subtitle="Time Entries"/>
+    <apex:form >
+        <apex:pageBlock title="Add Time Entries">
+            <apex:pageBlockTable value="{!NewInstance}" var="nI" id="pgBlockTable">
+                <apex:column headerValue="Project" >
+                    <apex:inputField value="{!nI.Project__c}" required="false"></apex:inputField>
+                </apex:column>
+                <apex:column headerValue="Related Task">
+                    <apex:inputField value="{!nI.Related_Task__c}" required="false" />
+                </apex:column>
+                <apex:column headerValue="Activity Type">
+                    <apex:inputField value="{!nI.Activity_Type__c}" />
+                </apex:column>
+                <apex:column headerValue="Activity Description">
+                    <apex:inputField value="{!nI.Activity_Description__c}" />
+                </apex:column>
+                <apex:column headerValue="Date">
+                    <apex:inputField value="{!nI.Date__c}" />
+                </apex:column>
+                <apex:column headerValue="Effort">
+                    <apex:inputField value="{!nI.Effort__c}" />
+                </apex:column>
+                <apex:column headerValue="Client Recoverable ">
+                    <apex:inputField value="{!nI.Client_Recoverable__c}" />
+                </apex:column>
+                <apex:column headerValue="Task Complexity">
+                    <apex:inputField value="{!nI.Task_Complexity__c}" />
+                </apex:column>
+                <apex:column >
+                    <apex:commandLink action="{!saveStandardTimeEntry}" >
+                        <apex:image value="{!$Resource.saveIcon}" width="20" height="20"/>
+                    </apex:commandLink>  
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+        <apex:pageBlock title="Recent Time Entries">
+            <apex:panelGrid columns="4" id="panelGrid">
+               <apex:commandLink action="{!first}" reRender="pgBlockTable2">First</apex:commandlink>
+               <apex:commandLink action="{!previous}" rendered="{!hasPrevious}" reRender="pgBlockTable2">Previous</apex:commandlink>
+               <apex:commandLink action="{!next}" rendered="{!hasNext}" reRender="pgBlockTable2">Next</apex:commandlink>
+               <apex:commandLink action="{!last}" reRender="pgBlockTable2">Last</apex:commandlink>
+               <div style="position:absolute;right:15px;">Page<b>#{!pageNumber}</b></div>
+           </apex:panelGrid>
+            <apex:pageBlockSection columns="1">
+                <apex:pageBlockTable value="{!RecentItems}" var="rI" rendered="true" id="pgBlockTable2">
+                    <apex:column headerValue="Project" >
+                        <apex:outputText value="{!rI.Project__r.Name}" ></apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="Related Task">
+                        <apex:outputText value="{!rI.Related_Task__r.Name}" />
+                    </apex:column>
+                    <apex:column headerValue="Activity Type">
+                        <apex:outputText value="{!rI.Activity_Type__c}" />
+                    </apex:column>
+                    <apex:column headerValue="Activity Description">
+                        <apex:outputText value="{!rI.Activity_Description__c}" />
+                    </apex:column>
+                    <apex:column headerValue="Date">
+                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!rI.Date__c}"/></apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="Effort">
+                        <apex:outputText value="{!rI.Effort__c}" />
+                    </apex:column>
+                    <apex:column headerValue="Client Recoverable ">
+                        <apex:outputText value="{!rI.Client_Recoverable__c}" />
+                    </apex:column>
+                    <apex:column headerValue="Task Complexity">
+                        <apex:outputText value="{!rI.Task_Complexity__c}" />
+                    </apex:column>
+                </apex:pageBlockTable>
+             </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

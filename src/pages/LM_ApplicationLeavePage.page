@@ -1,0 +1,53 @@
+<apex:page standardController="Leave_Request__c" extensions="LM_ApplicationLeaveClass" tabStyle="Leave_Application__tab">
+    
+    <apex:form >
+        <apex:sectionHeader title="Apply Leave"/>
+        <apex:pageBlock >
+            <apex:pageMessages ></apex:pageMessages>
+            <apex:pageBlockSection Title="Current Leave Request" > 
+                
+                <apex:outputField label="Employee Name :"  value="{!users.Name} "/> 
+                <apex:OutputField label="Leave Balance :" value="{!users.Total_Leave__c}"/> 
+                <apex:InputField label="Leave from :" value="{!leave.Start_Date__c}"/>
+                <apex:InputField label="Leave To :" value="{!leave.End_Date__c}"/>
+                <apex:InputField label="Optional Holiday :" value="{!leave.Optional_Holiday__c}"/>
+                <apex:InputField value="{!leave.Reason_for_Leave__c}"/>
+                <apex:inputfield value="{!users.Project_Lead__c}" required="True"/>
+                <apex:inputfield value="{!users.Reports_to_ManagerHR__c}"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="top">
+                
+                <!-- <apex:commandButton value="Apply" action="{!save}" status="as2"/> -->
+                <apex:commandLink action="{!save}" status="as2">
+                    <apex:image value="{!$Resource.Apply}" width="60" height="30" />
+                </apex:commandLink>
+                
+                &nbsp;&nbsp;<apex:commandLink action="{!cancel}">
+                <apex:image value="{!$Resource.Cancel}" width="60" height="30" />
+                </apex:commandLink> 
+                
+                <!-- <apex:commandButton value="cancel" action="{!cancel}"/> -->
+            </apex:pageBlockButtons>
+        </apex:pageblock>
+        
+        
+        <apex:pageBlock >
+            
+            
+            <apex:pageBlockSection title="Previous Leave Request for {!users.Name}" columns="1">
+                <apex:pageBlockTable value="{!leaveRequestFetch}" var="LRR">
+                    <apex:column headerValue="Name">
+                        <apex:outputLink value="/{!LRR.Id}"> {!LRR.Name} </apex:outputLink>
+                    </apex:column> 
+                    <apex:column headerValue="Start Date" value="{!LRR.Start_Date__c}"/> 
+                    <apex:column headerValue="End Date" value="{!LRR.End_Date__c}"/>  
+                    <apex:column headerValue="Total Leaves taken" value="{!LRR.Total_Working_days__c}" /> 
+                    <apex:column headerValue="Status" value="{!LRR.Status__c}"/ >
+                        <apex:column headerValue="LOP" value="{!LRR.LOP__c}"/>  
+                        <apex:column headerValue="Number of Days(LOP)" value="{!LRR.Number_of_Days_LOP__c}"/> 
+                        <apex:column headerValue="Reasons For Leave" value="{!LRR.Reason_for_Leave__c}"/> 
+                    </apex:pageBlockTable>
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+        </apex:form>   
+    </apex:page>

@@ -1,0 +1,9 @@
+<apex:component >
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!-- BOOTSWRAP CSS -->
+<link href="{!URLFOR($Resource.BootswrapComplete,'BoostWatchTheams/asset/css/bootswatch.min.css')}" rel="stylesheet" />
+
+<!-- JS FILES -->
+<apex:includeScript value="{!URLFOR($Resource.BootswrapComplete,'BoostWatchTheams/asset/js/bootstrap.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.BootswrapComplete,'BoostWatchTheams/asset/js/bootswatch.js')}"/>
+</apex:component>

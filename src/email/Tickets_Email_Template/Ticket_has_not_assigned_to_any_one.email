@@ -1,0 +1,4 @@
+Hi 
+
+The new ticket has created on {!Ticket__c.CreatedDate}  but still it is not assigned to anyone .Click the below link to know more about  the new ticket 
+{!Ticket__c.Link}

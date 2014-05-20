@@ -1,0 +1,144 @@
+<apex:page showHeader="false" applyBodyTag="false" applyHtmlTag="false" sidebar="false" docType="html-5.0" standardStylesheets="false"
+    controller="TimeEntryDetail" >
+<html>
+<head>
+<apex:includeScript value="{!URLFOR($Resource.jQuery,'/jquery-ui-1.10.1.custom/js/jquery-1.9.1.js')}" />
+<c:bootswrapAllTheamComponent />
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script>
+      google.load('visualization', '1.0', {'packages':['corechart']});
+    </script>
+<script type="text/javascript">
+      var $j = jQuery.noConflict();
+      
+      $j(document).ready(function(){
+
+      
+      initializeLinks();
+
+      });
+
+initializeLinks = function(){
+              
+              //$j("#InitalLoadDiv").show();
+              //$j("#barChartDiv").hide();
+              //$j("#TimeEntryDetailedView").hide();
+              //$j("#individualPieChartDiv").hide();
+              $j("#selectFilter").change(function(){
+                
+                
+                var mm;
+                var yy;
+                var sd;
+                var ed;
+                
+                 // get current date
+                var d = new Date();
+                
+                if($j(this).val() == 'week'){
+                
+                    mm = d.getMonth()+1;
+                    yy = d.getFullYear();
+                    
+                    var t = d.getDay();
+                    console.log(t);
+                    var first = d.getDate() - d.getDay(); 
+                     // last day is the first day + 6
+                     var last = first + 6; 
+                    sd = (new Date(d.setDate(first))).getDate();
+                    ed = (new Date(d.setDate(last))).getDate();
+                    
+                    console.log(sd);
+                      console.log(ed);
+                    var startDate = sd+'/'+mm+'/'+yy;
+                     if(t>monthEnd){
+                    mm = mm +1 ;
+                    }
+                    var endDate = ed+'/'+mm+'/'+yy;
+                    
+                    $j("#inputstartDate").val(startDate);
+                    $j("#inputEndDate").val(endDate);
+                
+                }else if($j(this).val() == 'month'){
+                
+                    mm = d.getMonth()+1;
+                    yy = d.getFullYear();
+                    var monthEnd = (new Date(yy,d.getMonth()+1,0).getDate());
+                    var sd = (new Date(yy, d.getMonth(), 1).getDate());
+                    var endDate = monthEnd+'/'+mm+'/'+yy;
+                    var startDate = sd+'/'+mm+'/'+yy;
+                    $j("#inputstartDate").val(startDate);
+                    $j("#inputEndDate").val(endDate);
+                
+                }else if($j(this).val() == 'previous'){
+                     mm = d.getMonth()+1;
+                     yy = d.getFullYear();
+                
+                     // First day is the day of the month - the day of the week
+                     var first = d.getDate() - d.getDay()-7; 
+                     // last day is the first day + 6
+                     var last = first + 6; 
+                     var sd = (new Date(d.setDate(first))).getDate();
+                     var ed = (new Date(d.setDate(last))).getDate();
+                     var endDate = ed+'/'+mm+'/'+yy;
+                    var startDate = sd+'/'+mm+'/'+yy;
+                    $j("#inputstartDate").val(startDate);
+                    $j("#inputEndDate").val(endDate);
+                
+                }
+                
+              
+              });
+              
+              
+              }  
+    </script>
+
+</head>
+<body>
+
+    
+        <div class="col-lg-4">
+          <div class="panel panel-default" id="TimeEntry">
+              <div class="panel-heading">
+                  <h3 class="panel-title">Menu</h3>
+              </div>
+              <div class="panel-body">
+              <div class="form-group">
+                  <label for="selectFilter">Filter</label>
+                 <select class="form-control col-lg-4"
+                                        id="selectFilter">
+                                            <option value="none">--None--</option>
+                                            <option value="week">This Week</option>
+                                            <option value="month">This Month</option>
+                                            <option value="previous">Previous Week</option>
+                                    </select>
+                </div>
+	              <div class="form-group">
+                  <label for="inputstartDate">Start Date</label>
+                  <input type="text" class="form-control" id="inputstartDate" placeholder="Start Date"/>
+                </div>
+                  <div class="form-group">
+                  <label for="inputEndDate">End Date</label>
+                  <input type="text" class="form-control" id="inputEndDate" placeholder="End Date"/>
+                </div>  
+              </div>
+                          
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="panel panel-primary" id="TimeEntry">
+              <div class="panel-heading">
+                  <h3 class="panel-title">Time Entry Details</h3>
+              </div>
+              <div class="panel-body">
+              
+              </div>
+          </div>
+        </div>
+
+ 
+</body>
+    </html>
+</apex:page>

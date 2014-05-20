@@ -1,0 +1,46 @@
+<apex:page standardController="Resource_Forecast__c" extensions="PM_Resource_Forecast_Edit">
+    <apex:sectionHeader title="Resource Forecast Edit" subtitle="{!Resource_Forecast__c.name}"/>
+    <apex:form id="frm" >
+        <apex:pageBlock mode="Edit" title="Resource Forecast Edit" id="pgblock">
+            <apex:pageBlockSection title="Information" id="pgsection">
+                <apex:inputField value="{!resourceForecastInstance.name}"/>
+               <!-- <apex:outputField value="{!resourceForecastInstance.Ownerid}"/>-->
+                <apex:inputField value="{!resourceForecastInstance.Start_Date__c}"/>
+                <apex:inputField value="{!resourceForecastInstance.CurrencyIsoCode}"/>
+                <apex:inputField value="{!resourceForecastInstance.End_Date__c}"/>
+                <apex:inputField value="{!resourceForecastInstance.Deal__c}"/>
+                <apex:inputField value="{!resourceForecastInstance.Effort_Days__c}"/>
+               <!-- <apex:inputField value="{!resourceForecastInstance.Unit__c}"/>
+                <apex:selectList label="Role" size="1" value="{!resourceForecastInstance.Role__c}">
+                    <apex:selectOptions value="{!role}"/>
+                    <apex:actionsupport event="onchange" action="{!ChangeValue}" rerender="pgsection" status="as1"/>
+                </apex:selectList>
+                <apex:inputField value="{!resourceForecastInstance.Unit_Rate__c}"/>  -->
+                
+                <apex:inputField value="{!resourceForecastInstance.Quantity__c}"/>
+                
+                <apex:inputField value="{!resourceForecastInstance.percent__c}"/>
+                
+                <apex:actionstatus id="as1">
+                    <apex:facet name="start">
+                        
+                        <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;height: 100%;opacity:0.65;width:100%;"> 
+                            <div class="waitingHolder" style="center: 100px; width: 100px; right:50px;"> 
+                                <img class="waitingImage" src="{!$Resource.Redcircle}"  width="30" height="30"  title="Please Wait..."/> 
+                                <span class="waitingImage">Changing Unit Rate...</span>
+                                
+                            </div>
+                        </div> 
+                    </apex:facet>
+                </apex:actionstatus>
+                
+                
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons title="Resource Forecast Edit">
+                <apex:commandButton value="Save" action="{!Save}" title="Save"/>
+                <!--<apex:commandButton value="Save & New" action="{!SaveandNew}" title="Save & New"/>-->
+                <apex:commandButton value="Cancel" action="{!Cancel}" title="Cancel"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

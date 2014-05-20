@@ -1,0 +1,17 @@
+<apex:component >
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    
+    <apex:stylesheet value="{!$Resource.DatePickerStylesheet}"/>
+  
+
+    <script type="text/javascript">
+    $(function() {
+       $(".datepicker").datepicker({changeMonth: true,changeYear: true ,dateFormat: 'dd/mm/yy',showOn: 'button', buttonImage: '{!$Resource.DatePickerCalendarIcon}', buttonImageOnly: true});
+    });
+     
+    </script>
+</head>
+
+</apex:component>

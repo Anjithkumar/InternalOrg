@@ -1,0 +1,9 @@
+Hi  {!Deal__c.OwnerFullName}
+
+
+This is to inform that  new deal has been created and assigned to you 
+please click below link to know more about the deal.
+{!Deal__c.Link}
+
+Thanks 
+Extentor Team

@@ -1,0 +1,28 @@
+<apex:component >
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<!-- THEAMS -->
+
+<!-- 
+<link href="{!URLFOR($Resource.BootswrapComplete,'BoostWatchTheams/amelia/bootstrap.css')}" rel="stylesheet" />
+<link href="{!URLFOR($Resource.BootswrapComplete,'BoostWatchTheams/cerulean/bootstrap.css')}" rel="stylesheet" />
+<link href="{!URLFOR($Resource.BootswrapComplete,'BoostWatchTheams/cosmo/bootstrap.css')}" rel="stylesheet" />
+<link href="{!URLFOR($Resource.BootswrapComplete,'BoostWatchTheams/custom/bootstrap.css')}" rel="stylesheet" />
+<link href="{!URLFOR($Resource.BootswrapComplete,'BoostWatchTheams/cyborg/bootstrap.css')}" rel="stylesheet" />
+<link href="{!URLFOR($Resource.BootswrapComplete,'BoostWatchTheams/flatly/bootstrap.css')}" rel="stylesheet" />
+<link href="{!URLFOR($Resource.BootswrapComplete,'BoostWatchTheams/readable/bootstrap.css')}" rel="stylesheet" />
+<link href="{!URLFOR($Resource.BootswrapComplete,'BoostWatchTheams/simplex/bootstrap.css')}" rel="stylesheet" />
+<link href="{!URLFOR($Resource.BootswrapComplete,'BoostWatchTheams/slate/bootstrap.css')}" rel="stylesheet" />
+<link href="{!URLFOR($Resource.BootswrapComplete,'BoostWatchTheams/spacelab/bootstrap.css')}" rel="stylesheet" />
+-->
+<link href="{!URLFOR($Resource.BootswrapComplete,'BoostWatchTheams/united/bootstrap.css')}" rel="stylesheet" />
+<!-- 
+<link href="{!URLFOR($Resource.BootswrapComplete,'BoostWatchTheams/yeti/bootstrap.css')}" rel="stylesheet" />
+ -->
+<!-- BOOTSWRAP CSS -->
+<link href="{!URLFOR($Resource.BootswrapComplete,'BoostWatchTheams/asset/css/bootswatch.min.css')}" rel="stylesheet" />
+
+<!-- JS FILES -->
+<apex:includeScript value="{!URLFOR($Resource.BootswrapComplete,'BoostWatchTheams/asset/js/bootstrap.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.BootswrapComplete,'BoostWatchTheams/asset/js/bootswatch.js')}"/>
+</apex:component>

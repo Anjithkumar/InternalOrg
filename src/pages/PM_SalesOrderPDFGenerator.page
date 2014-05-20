@@ -1,0 +1,139 @@
+<apex:page standardController="Sales_Order__c" renderAs="pdf" extensions="PM_SalesOrderPDFController">
+
+  <html>
+         <head>
+         <style> 
+             @page {                
+                @top-center {                   
+                    content: element(header);               
+                }
+                @bottom-left {
+                    content: element(footer);
+                }           
+            }                       
+ 
+            div.header {                
+                padding: 10px;              
+                position: running(header);           
+            }           
+            div.footer {                
+                display: block;             
+                padding: 5px;  
+                position: running(footer); 
+                
+            }           
+                
+                
+             body {font-family: Arial Unicode MS;}
+             .Head {
+                 font-weight:bold;
+                 font-size:8;
+                 color:black;
+                 background-color:#DDDDDD;
+                 }  
+             .smallfont {
+                 
+                 font-size:50%;
+                 color:black;
+                 
+                 }      
+                 .tableinside{
+                 
+                 align-right;
+                 //color:black;
+                 
+                 }      
+             .body {
+                 
+                 font-size:70%;
+                 color:black;
+                
+                 }      
+         </style>
+         </head>
+         
+             <div class="header">
+             <table style="width:700px">
+             <tr><td style="width:14%;"><apex:image id="theImage" value="{!$Resource.CompanyLogo}" style="width:150px;"/></td><td style="width:86%;"><center><h3></h3></center></td></tr>
+             </table><br/><br/>
+                    
+             
+             <body class="body"><br/><br/>
+             <table width="700px">
+             <tr><td><summary align="left">{!CompanyDetails.Name}<br/>{!CompanyDetails.Company_Street__c}<br/>{!CompanyDetails.Company_City__c}- {!CompanyDetails.Company_Postal_Code__c}<br/><br/>  </summary></td><td><div align="right">Order Form For:<br/>{!Sales_Order__c.Customer__r.Name}<br/>Offer Valid Through :<apex:outputText value="{0,date,dd'/'MM'/'yyyy}"><apex:param value="{!Sales_Order__c.Offer_Valid_Through__c}" /></apex:outputText><br/> Proposed By : {!Sales_Order__c.Customer__r.Sales_Manager__r.Name}</div></td></tr>
+             </table>
+             <summary><b>SALES ORDER NUMBER : {!Sales_Order__c.Sales_Order_Numbers__c}</b><br/>---------------------------------------------------------------------------------------------------------------------------------------</summary>
+             <table  style="border-width:0px;border-spacing:1px;width:700px;">
+             <tr><td colspan="3" rowspan="1" style="width:50%;text-align:left;" ><b>Bill To:</b> <br></br>{!Sales_Order__c.Address_To__c}<br/>{!Sales_Order__c.Customer__r.Billing_Street__c}<br/>{!Sales_Order__c.Customer__r.Billing_City__c}<br></br>{!Sales_Order__c.Customer__r.Billing_State_Province__c}<br></br>{!Sales_Order__c.Customer__r.Billing_Country__c}<br></br>{!Sales_Order__c.Customer__r.Billing_Zip_Postal_Code__c}&nbsp;&nbsp;</td><td colspan="3" rowspan="1" style="width:50%;text-align:left;" ><b>Ship To:</b><br></br>{!Sales_Order__c.Address_To__c}<br/>{!Sales_Order__c.Customer__r.Shipping_Street__c}<br/>{!Sales_Order__c.Customer__r.Shipping_City__c}<br></br>{!Sales_Order__c.Customer__r.Shipping_State_Province__c}<br></br>{!Sales_Order__c.Customer__r.Shipping_Country__c}<br></br>{!Sales_Order__c.Customer__r.Shipping_Zip_Postal_Code__c}<br></br>&nbsp;&nbsp;</td></tr>
+             </table>
+             
+             <summary><br/>---------------------------------------------------------------------------------------------------------------------------------------</summary>
+             
+             <table style="border-width:0px;border-spacing:1px;width:700px;">
+             <tr><td colspan="3" rowspan="1" style="width:50%;text-align:left;" ><b>Contract Start Date :</b><apex:outputText value="{0,date,dd'/'MM'/'yyyy}"><apex:param value="{!Sales_Order__c.Deal__r.Deal_Start_Date__c}" /></apex:outputText><br></br><b>Contract End Date :</b><apex:outputText value="{0,date,dd'/'MM'/'yyyy}"><apex:param value="{!Sales_Order__c.Deal__r.Deal_End_Date__c}" /></apex:outputText><br></br><b>Biling Frequency:</b>{!Sales_Order__c.Billing_Cycle__c}</td><td colspan="3" rowspan="1" style="width:50%;text-align:left;" ><b>Payment Method :</b>{!Sales_Order__c.Payment_Method__c}<br/> Payment Terms : Advance</td></tr>   
+             </table>
+             <br/><br/>
+             <apex:variable value="{!1}" var="rowNum"/>
+      <table  >       
+             <tr><td><apex:dataTable value="{!DealItems}" var="dealitem" frame="border" width="700px" border="1" align="right">
+                 <apex:column headerValue="SI" headerClass="Head">
+                 <apex:outputText value="{!FLOOR(rowNum)}"></apex:outputText>
+                 <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+                 </apex:column>
+                 <apex:column headerValue="Product" headerClass="Head" value="{!dealitem.Product_Edition__c}"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                 <apex:column headerValue="List Price" headerClass="Head"><div align="right"><apex:outputText value="{!dealitem.List_Price__c}"/></div></apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                 <apex:column headerValue="Sales Price" headerClass="Head"><div align="right"><apex:outputText value="{!dealitem.Sales_Price__c}"/></div></apex:column>nbsp;&nbsp;
+                 <apex:column headerValue="Quantity" headerClass="Head"><div align="right"><apex:outputText value="{!dealitem.Quantity__c}"/></div></apex:column>nbsp;&nbsp;
+                 <apex:column headerValue="Total" headerClass="Head" width="125px">&nbsp;<div align="right"><apex:outputText value="INR {!dealitem.Total_Price_Licenses__c}" /></div></apex:column>&nbsp;&nbsp;
+             </apex:dataTable> </td></tr>
+             
+             <tr><td><table border="2" style="border-width:0px;border-spacing:1px;border-style:ridge;border-color:black;width:700px;" align="right">
+              <tr><td colspan="3" style="width:50%;text-align:left;" ><b><div align="right">Sub Total</div></b></td><td colspan="3" style="width:11%;text-align:right;" >INR {!subtotalAmount}</td></tr> 
+              </table> </td></tr>
+              
+              <tr><td><apex:dataTable value="{!TaxCode}" var="tc" frame="border" width="700px" border="1" align="right">
+              <apex:column headerValue="SI" headerClass="Head" value="{!tc.Serial}"/>
+              <apex:column headerValue="Tax Code" headerClass="Head" value="{!tc.TaxCode}"/>
+              <apex:column headerValue="Tax Percent" headerClass="Head" ><div align="right"><apex:outputtext value="{!tc.TaxPercent}%"/></div></apex:column>
+               
+              <apex:column headerValue="Tax Amount" headerClass="Head" width="125px">
+              <div align="right">
+              <apex:outputText value="INR {!tc.TaxAmount}" styleClass="tableinside"/>
+              </div>
+              </apex:column>
+              </apex:dataTable></td></tr>
+              <tr><td><div align="right">
+              <table border="2" style="border-width:0px;border-spacing:1px;width:700px;" align="right">
+              <tr><td colspan="3" style="width:50%;text-align:left;" ><b><div align="right">Total In Words: {!AmountInWords}</div></b></td><td colspan="3" style="width:11%;text-align:right;" >INR {!totalAmount}</td></tr> 
+              </table>
+              </div></td></tr>
+          </table>
+          <br/><br/><br/>
+          <table >
+          <tr><td><summary>Beneficiary A/c No: {!CompanyDetails.Beneficiary_A_c_No__c}</summary></td></tr>
+          <tr><td><summary>Beneficiary A/c Name: {!CompanyDetails.Name}</summary></td></tr>
+          <tr><td><summary>IFSC Code: {!CompanyDetails.IFSC_Code__c}</summary></td></tr>
+          <tr><td><summary>Beneficiary Bank: {!CompanyDetails.Beneficiary_Bank__c}</summary></td></tr>
+          </table>
+          
+          
+             <br/><br/>     
+         <!--<summary align="center">{!TermsAndConditions}</summary>  -->    
+         <table><tr><td><label>Terms And Conditions</label></td></tr>
+         <tr><td>{!CompanyDetails.Sales_Order_Payment_Term_1__c}</td></tr>
+         <tr><td>{!CompanyDetails.Sales_Order_Payment_Term_2__c}</td></tr>
+         <tr><td>{!CompanyDetails.Sales_Order_Payment_Term_3__c}</td></tr>
+         <tr><td>{!CompanyDetails.Sales_Order_Payment_Term_4__c}</td></tr>
+         <tr><td>{!CompanyDetails.Sales_Order_Payment_Term_5__c}</td></tr>
+         </table>   
+                   
+         </body>
+         
+         <div class="footer" align="center">
+          <summary class="smallfont">Confidential Information - Do Not Distribute</summary> 
+          </div>
+         </div>
+         
+   </html>
+   
+</apex:page>

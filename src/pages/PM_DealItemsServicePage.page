@@ -1,0 +1,77 @@
+<!--To create Deal lineitems for a particular deal of type 'Service'-->
+<apex:page controller="PM_DealItemsServicePageController" tabStyle="Deal__c"> 
+    <apex:form >
+        
+        <apex:sectionHeader title="Deal Items"/>
+        <apex:pagemessages ></apex:pagemessages>
+        
+        <!--Display the deal to which we are creating lineitems -->
+        <apex:pageBlock title="Deal Details" >
+            <apex:pageBlockTable value="{!dealServiceInstance}" var="d">
+                <apex:column value="{!d.name}"/>
+                <apex:column value="{!d.Customer__c}"/>
+                <apex:column value="{!d.Stage__c}" />
+                <apex:column value="{!d.Close_Date__c}"/>
+                <apex:column value="{!d.Deal_Start_Date__c}"/>
+                <apex:column value="{!d.Deal_End_Date__c}"/>
+                <apex:column value="{!d.Total_Estimated_Hours__c}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+        
+        <!--select the lineitems necessary for the deal -->
+        <apex:pageBlock title="Select resources required" mode="edit">
+            <apex:pageblockTable value="{!ListOfServices}" var="p">
+                <apex:column headerValue="Select">
+                    <apex:inputCheckbox value="{!p.selectedValues}"/>
+                </apex:column>
+                <apex:column headerValue="Role">
+                    <apex:outputtext value="{!p.name}"/>
+                </apex:column> 
+                <apex:column headerValue="Unit Rate">
+                    <apex:inputtext value="{!p.UnitRate}"/>
+                </apex:column>
+                <apex:column headerValue="Unit">
+                    <apex:selectList value="{!p.UnitMeasure}" multiselect="false" size="1">
+                        <apex:selectOption itemLabel="Hourly" itemValue="Hourly"></apex:selectOption>
+                        <apex:selectOption itemLabel="Daily" itemValue="Daily"></apex:selectOption>
+                    </apex:selectList>
+                </apex:column>
+                <apex:column headerValue="Quantity">
+                    <apex:inputtext value="{!p.Quantity}" id="quan"/>
+                </apex:column>
+            </apex:pageblockTable>
+            <apex:pageBlockButtons location="bottom" >
+                <apex:commandLink action="{!save}" onclick="return checkAll()">
+                    <apex:image value="{!$Resource.Save}" width="50" height="20" />
+                </apex:commandLink>
+                &nbsp;&nbsp; <apex:commandLink action="{!cancel}">
+                <apex:image value="{!$Resource.Cancel}" width="50" height="20" />
+                </apex:commandLink>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>       
+    </apex:form>
+    
+    <!--Javascript validation to select atleast one value in the section  -->
+    <script>
+        function checkAll(){
+        var inputElem = document.getElementsByTagName("input");
+        var counter = 0;
+        var counts=0;
+        for(var i=0; i<inputElem.length; i++){
+        if(inputElem[i].checked == true){
+        counter = 1;
+        }
+        
+        }
+        
+        
+        if(counter == 0){
+        alert( 'Please select at least 1 value');
+        return false;
+        }
+        else{
+        return true;
+        }
+        }
+    </script> 
+    </apex:page>

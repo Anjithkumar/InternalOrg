@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <calculatedFormula>Project__c.Planned_Effort__c:SUM - Project__c.ActualEffort__c:SUM</calculatedFormula>
+        <datatype>number</datatype>
+        <developerName>FORMULA1</developerName>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Effort Difference</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <colorRanges>
+        <columnName>FORMULA1</columnName>
+        <highBreakpoint>50.0</highBreakpoint>
+        <highColor>#54C254</highColor>
+        <lowBreakpoint>0.0</lowBreakpoint>
+        <lowColor>#C25454</lowColor>
+        <midColor>#54C28B</midColor>
+    </colorRanges>
+    <columns>
+        <field>Project__c.Planned_Start_Date__c</field>
+    </columns>
+    <columns>
+        <field>Project__c.Planned_End_Date__c</field>
+    </columns>
+    <columns>
+        <field>Project__c.Planned_Effort__c</field>
+    </columns>
+    <columns>
+        <field>Project__c.ActualEffort__c</field>
+    </columns>
+    <currency>INR</currency>
+    <filter>
+        <criteriaItems>
+            <column>Project__c.Project_Lead__c</column>
+            <operator>contains</operator>
+            <value>Abhilash</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>CUST_NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Project wise effort comparison</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntityCustomEntity$Project__c$Time_Entry__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Project__c.Actual_End_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

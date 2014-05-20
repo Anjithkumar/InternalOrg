@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email to Queue on Ticket Creation</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Email to Queue on Ticket Creation</name>
+    <style>none</style>
+    <subject>Ticket Assigned to Queue</subject>
+    <type>text</type>
+</EmailTemplate>

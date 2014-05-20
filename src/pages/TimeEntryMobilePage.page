@@ -1,0 +1,204 @@
+<apex:page sidebar="false" showHeader="false" controller="TimeEntryPageMobileController" >
+    <html>
+        <head>
+            <apex:includeScript value="{!URLFOR($Resource.jQuery,'/jquery-ui-1.10.1.custom/js/jquery-1.9.1.js')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.JQueryMobile14,'/jquery.mobile-1.4.0.js')}"/>
+            <link rel="stylesheet" href="{!URLFOR($Resource.JQueryMobile14,'/jquery.mobile-1.4.0.css')}" />
+             <link rel="stylesheet" href="{!URLFOR($Resource.JQMDATEPICKER,'/jquery-mobile-datepicker-wrapper-master/jquery.mobile.datepicker.css')}" />
+              <apex:includeScript value="{!URLFOR($Resource.SIGNLEDATEPICKFILE)}"/>
+             <apex:includeScript value="{!URLFOR($Resource.JQMDATEPICKER,'/jquery-mobile-datepicker-wrapper-master/jquery.mobile.datepicker.js')}"/>
+        </head>
+        
+        <body>
+            <div data-role="page" data-theme="a" id="mainPage">
+                
+                
+                
+                
+                
+                <div data-role="content" >
+                    <ul data-role="listview" id="selectProject" data-filter="true" data-filter-placeholder="Search projects..." data-inset="true">
+
+                    </ul>       
+                </div> 
+                
+               
+                
+            </div> 
+            <div data-role="page" data-theme="a" id="taskDetailPage">
+                
+                
+                
+                
+                
+                <div data-role="content" >
+                    <ul data-role="listview" id="selectRelatedTask" data-filter="true" data-filter-placeholder="Search tasks..." data-inset="true">
+
+                    </ul>       
+                </div> 
+                
+               
+                
+            </div> 
+           <script>
+            $j = jQuery.noConflict();
+            var projectsList= new Array();
+            var ProjectTasksList = new Array();
+            var currentProject="";
+            var currentTask="";
+            
+            $j(document).ready(function(){  
+            
+            $j("#activityDate").date({ dateFormat: "dd/mm/yy" });
+
+            $j.mobile.loading( "show",{
+                text: "Fetching Project...",
+                textVisible: true,
+                textonly: false
+            }); 
+            
+                intializeLinks();
+              
+                getProjectsName();  
+
+            });
+                
+               
+            
+            
+            getProjectsName = function(){
+            
+                $j('#selectProject').html('');
+                
+                TimeEntryPageMobileController.queryProjectsName(function(records, e) { 
+                  
+                    $j.each(records,function(key,record){ 
+                                   
+                        $j("#selectProject").append("<li id='"+record.Id+"''><a>"+record.Name+"</a></li>");
+
+                    });
+                     
+
+                     $j("#selectProject").delegate("li","click",function(){
+
+                        $j.mobile.loading( "show",{
+                                text: "Fetching Task...",
+                                textVisible: true,
+                                textonly: false
+                        });
+
+                        getProjectTasks(this.id);
+
+                      });  
+
+                      $j("#selectProject").listview("refresh",true);
+                      $j.mobile.loading("hide"); 
+                }, {escape:true});
+                
+                
+            
+            }
+
+            getProjectTasks=function(projId){
+                   $j("#selectRelatedTask").html('');
+
+                   TimeEntryPageMobileController.queryProjectTasks(projId,function(records, e) { 
+                    
+                    $j.each(records,function(key,record){ 
+
+                        $j("#selectRelatedTask").append("<li id='"+record.Id+"''><a>"+record.Name+"</a></li>");
+                        
+
+                    });
+                      
+
+                      $j(':mobile-pagecontainer').pagecontainer('change', '#taskDetailPage', {
+                            transition: 'slide',
+                            changeHash: false,
+                            reverse: true,
+                            showLoadMsg: true
+                      });
+
+                      $j("#selectRelatedTask").listview("refresh",true);
+                      $j.mobile.loading("hide"); 
+                      
+
+                    }, {escape:true});
+            }
+
+            intializeLinks = function(){
+
+                $j("#saveDetails").click(function(){
+
+
+                    if($j("#selectProject").val() == 'choose-project'){
+                        alert('Please Select a Project');
+
+                    }else if($j("#selectRelatedTask").val() == 'choose-task'){
+                        alert('Please Select a Task');
+                    }else if($j("#activityDate").val() == ''){
+                        alert('Please Select a Date');
+                    }else if($j("#effortNumber").val() == ''){
+                        alert('Enter Effort');
+                    }else{
+
+                    console.log($j("#selectProject").val());
+                    console.log($j("#selectRelatedTask").val());
+                    console.log($j("#activityDate").val());
+                    console.log($j("#effortNumber").val());
+                    console.log($j("#textarea").val());
+                    console.log($j("#slider-flip-m").val());
+                    TimeEntryPageMobileController.saveTimeEntryRecord($j("#selectProject").val(),$j("#selectRelatedTask").val(),$j("#activityDate").val(),$j("#textarea").val(),$j("#effortNumber").val(),$j("#slider-flip-m").val(),function(response,event){
+                        console.log(response);
+                        console.log(event);
+                        if(event.status){
+                            if(response = 'Successfully Created'){
+                                var con = confirm('Do you want to enter time entry for same project');
+                                if(con){
+                                    $j("#activityDate").val('');
+                                    $j("#effortNumber").val('');
+                                    $j("#textarea").val('');
+                                    $j("#slider-flip-m").val(false);
+                                    $j("#slider-flip-m").selectmenu("refresh",true);
+                                }else{
+                                    location.reload();
+                                }
+                            }else{
+                                alert(JSON.stringify(response));
+                            }
+                            
+                                
+                        }else{
+                                alert(JSON.stringify(response));
+                        }
+                    },{escape:true});
+
+                    }
+                });
+
+                $j("#resetButton").click(function(){
+
+                    $j.mobile.loading( "show",{
+                        text: "Fetching Project...",
+                        textVisible: true,
+                        textonly: false
+                    });
+                    $j("#selectProject").html('');
+                    $j("#selectRelatedTask").html('');
+                    $j("#selectRelatedTask").selectmenu("refresh",true);
+                    $j("#activityDate").val('');
+                    $j("#effortNumber").val('');
+                    $j("#textarea").val('');
+                    $j("#slider-flip-m").val(false);
+                    $j("#slider-flip-m").selectmenu("refresh",true);
+
+                    getProjectsName();
+                });
+            }
+            
+
+</script>
+        
+        </body>
+    </html>
+</apex:page>

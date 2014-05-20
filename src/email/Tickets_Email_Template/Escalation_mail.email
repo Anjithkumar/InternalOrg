@@ -1,0 +1,10 @@
+Dear {!Ticket__c.OwnerFullName},
+
+
+This is to inform that , ticket has been escalated , click the below link to get more information about the ticket
+{!Ticket__c.Ticket_Number__c}
+
+
+
+Thanks 
+Extentor

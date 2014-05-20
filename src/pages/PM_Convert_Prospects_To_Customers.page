@@ -1,0 +1,66 @@
+<!--Convert the Prospects to  Customer,Connection and Deals -->
+<apex:page controller="PM_Convert_Prospects_To_Customers" sidebar="false" tabStyle="Customer__c"  id="pg">
+    <apex:form id="form" >
+        <apex:pageMessages ></apex:pageMessages>
+        <apex:sectionHeader title="Conversion Details for {!instance.name}"/>  
+        
+        <apex:pageblock id="pgBlock1">
+            <!--Code to create connection-->
+            <apex:pageblockSection title="New Contact would be created" id="pgBlockSection1">
+                <apex:outputText label="Contact Name" value="{!if(instance.First_Name__c != null,instance.First_Name__c + ' ' +instance.Last_Name__c,instance.Last_Name__c) }"/><br/>
+                <apex:outputField value="{!instance.Email__c}"/>
+            </apex:pageblockSection>
+            <!--Code to create deals -->
+            <apex:pageBlockSection id="pgBlockSection2">
+                <apex:inputCheckbox value="{!createDeals}" label="Would you like to create Deals?" onchange="return showDealsTable()" id="checkBox"/><br/>
+            </apex:pageBlockSection>
+            <!-- section of code to show loading image on page -->
+            <apex:actionstatus id="as1">
+                <apex:facet name="start">
+                    
+                    <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;height: 100%;opacity:0.65;width:100%;"> 
+                        <div class="waitingHolder" style="center: 100px; width: 100px; right:50px;"> 
+                            <img class="waitingImage" src="{!$Resource.Redcircle}"  width="30" height="30"  title="Please Wait..."/> 
+                            <span class="waitingImage">Loading...</span>
+                            
+                        </div>
+                    </div> 
+                </apex:facet>
+            </apex:actionstatus>
+            <apex:actionFunction name="showDealTableMethod" action="{!showDealTable}" id="showDealTable" reRender="pgBlock1" immediate="true" status="as1"/>
+            <apex:actionFunction name="hideDealTableMethod" action="{!hideDealTable}" id="hideDealTable" reRender="pgBlock1" immediate="true" status="as1"/>
+            
+            
+            <apex:pageblockSection title="Select Deal Type to create on Conversion" rendered="{!displayDeals}"  id="pgBlockSection3">
+                <apex:inputCheckbox value="{!CreateLicenseOpp}" label="Create License Deals"/>
+                <apex:inputText value="{!dealLicenseName}" label="Deal Name" style="width:200px;height:20px"/>
+                <apex:inputCheckbox value="{!CreateServiceOpp}" label="Create Services Deals"/>
+                <apex:inputText value="{!dealServiceName}" label="Deal Name" style="width:200px;height:20px"/> 
+            </apex:pageblockSection>
+            
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandLink action="{!save}">
+                    <apex:image value="{!$Resource.Save}" width="50" height="20" />
+                </apex:commandLink>
+                &nbsp;&nbsp;<apex:commandLink action="{!Cancel}">
+                <apex:image value="{!$Resource.Cancel}" width="50" height="20" />
+                </apex:commandLink>
+            </apex:pageBlockButtons>
+            
+        </apex:pageblock>
+        
+    </apex:form>
+    <!--javascript code which will call apex methods to render the page -->
+    <script>
+        function showDealsTable(){
+        
+        var p=document.getElementById('pg:form:pgBlock1:pgBlockSection2:checkBox');
+        if(p.checked == true){
+        showDealTableMethod();
+        }
+        else{
+        hideDealTableMethod();
+        }
+        }
+    </script>
+</apex:page>

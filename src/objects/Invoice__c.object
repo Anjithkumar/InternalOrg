@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Account_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Sales_Order__r.Customer__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AmountWithTwoDecimalPlaces__c</fullName>
+        <externalId>false</externalId>
+        <formula>Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AmountWithTwoDecimalPlaces</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Amount</label>
+        <summarizedField>Invoice_Line_Item__c.Amount__c</summarizedField>
+        <summaryForeignKey>Invoice_Line_Item__c.Invoice__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Amount_in_words__c</fullName>
+        <externalId>false</externalId>
+        <label>Amount in words</label>
+        <length>600</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>2</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Attention_To__c</fullName>
+        <externalId>false</externalId>
+        <formula>Sales_Order__r.Client_Approver__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Attention To</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Bill_To_Address__c</fullName>
+        <externalId>false</externalId>
+        <formula>Sales_Order__r.Customer__r.Billing_Street__c+ &apos;, &apos; + Sales_Order__r.Customer__r.Billing_City__c+ &apos;, &apos; +Sales_Order__r.Customer__r.Billing_State_Province__c+ &apos;, &apos; +Sales_Order__r.Customer__r.Billing_Country__c+ &apos;, &apos; +Sales_Order__r.Customer__r.Billing_Zip_Postal_Code__c+ &apos;. &apos;</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Bill To Address</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Invoice_Date__c</fullName>
+        <defaultValue>Today()</defaultValue>
+        <externalId>false</externalId>
+        <label>Invoice Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Invoice_Number__c</fullName>
+        <displayFormat>EXT/INV/BRG/2013-14/{0000}</displayFormat>
+        <externalId>false</externalId>
+        <label>Invoice Number</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>Invoice_Text__c</fullName>
+        <externalId>false</externalId>
+        <label>Invoice Text</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Payment_Terms__c</fullName>
+        <externalId>false</externalId>
+        <label>Payment Terms</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Sales_Order__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sales Order</label>
+        <referenceTo>Sales_Order__c</referenceTo>
+        <relationshipLabel>Invoices</relationshipLabel>
+        <relationshipName>Invoices</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Ship_To_Address__c</fullName>
+        <externalId>false</externalId>
+        <formula>Sales_Order__r.Customer__r.Shipping_Street__c +&apos;,&apos;+Sales_Order__r.Customer__r.Shipping_City__c+&apos;,&apos;+Sales_Order__r.Customer__r.Billing_City__c+&apos;,&apos;+Sales_Order__r.Customer__r.Shipping_State_Province__c+&apos;,&apos;+Sales_Order__r.Customer__r.Shipping_Country__c+&apos;,&apos;+ Sales_Order__r.Customer__r.Shipping_Zip_Postal_Code__c</formula>
+        <label>Ship To Address</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Tax_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Tax Code</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Tax_Percent__c</fullName>
+        <externalId>false</externalId>
+        <label>Tax Percent</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Invoice_Amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>Amount__c +  Total_Invoice_Tax_Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Invoice Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Invoice_Tax_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Invoice Tax Amount</label>
+        <summarizedField>Invoice_Line_Item__c.Invoice_LineItem_Tax_Amount__c</summarizedField>
+        <summaryForeignKey>Invoice_Line_Item__c.Invoice__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <label>Invoice</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Invoice_Number__c</columns>
+        <columns>NAME</columns>
+        <columns>Invoice_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Invoice Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Customer Invoice</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
+    <webLinks>
+        <fullName>Amount_In_Words</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Amount In Words</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/10.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/10.0/apex.js&quot;)} 
+
+
+
+var url = parent.location.href; //string for the URL of the current page 
+var ParentName = sforce.apex.execute(&quot;GenerateAmountInWords&quot;,&quot;generateText&quot;,{&apos;invoiceId&apos;:&apos;{!Invoice__c.Id}&apos;}); 
+alert(ParentName);
+parent.location.href = url; //refresh the page</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Generate_Attach_PDF</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Generate &amp; Attach PDF</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/10.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/10.0/apex.js&quot;)} 
+
+
+
+
+var result= sforce.connection.query(&quot;select Sales_Order__r.Customer__c,Sales_Order__r.Customer__r.Name,Sales_Order__r.Customer__r.Billing_Street__c,Sales_Order__r.Customer__r.Billing_City__c,Sales_Order__r.Customer__r.Billing_State_Province__c,Sales_Order__r.Customer__r.Billing_Country__c,Sales_Order__r.Customer__r.Billing_Zip_Postal_Code__c,Sales_Order__r.Customer__r.Shipping_Street__c,Sales_Order__r.Customer__r.Shipping_City__c,Sales_Order__r.Customer__r.Shipping_State_Province__c,Sales_Order__r.Customer__r.Shipping_Country__c,Sales_Order__r.Customer__r.Shipping_Zip_Postal_Code__c,Tax_Code__c,Tax_Percent__c from Invoice__c where id= &apos;{!Invoice__c.Id}&apos; &quot;);
+
+var record= result.getArray(&quot;records&quot;);
+
+
+var x = &apos;{!Invoice__c.Id}&apos;;
+
+var result1= sforce.connection.query(&quot;select Name,Id from Invoice_Line_Item__c  where Invoice__c= \&apos;&quot; + x + &quot;\&apos;&quot;);
+var record1= result1.getArray(&quot;records&quot;);
+if(record1[0]==null)
+{
+alert(&apos;No Invoice Line Items&apos;);
+}
+else if(record[0].Sales_Order__r.Customer__r.Billing_Street__c==null||record[0].Sales_Order__r.Customer__r.Billing_Street__c==&apos;&apos;||record[0].Sales_Order__r.Customer__r.Billing_City__c==null||record[0].Sales_Order__r.Customer__r.Billing_City__c==&apos;&apos;||record[0].Sales_Order__r.Customer__r.Billing_State_Province__c==null||record[0].Sales_Order__r.Customer__r.Billing_State_Province__c==&apos;&apos;||record[0].Sales_Order__r.Customer__r.Billing_Country__c==null||record[0].Sales_Order__r.Customer__r.Billing_Country__c==&apos;&apos;||record[0].Sales_Order__r.Customer__r.Billing_Zip_Postal_Code__c==null||record[0].Sales_Order__r.Customer__r.Billing_Zip_Postal_Code__c==&apos;&apos;||record[0].Sales_Order__r.Customer__r.Shipping_Street__c==null||record[0].Sales_Order__r.Customer__r.Shipping_Street__c==&apos;&apos;||record[0].Sales_Order__r.Customer__r.Shipping_City__c==null||record[0].Sales_Order__r.Customer__r.Shipping_City__c==&apos;&apos;||record[0].Sales_Order__r.Customer__r.Shipping_State_Province__c==null||record[0].Sales_Order__r.Customer__r.Shipping_State_Province__c==&apos;&apos;||record[0].Sales_Order__r.Customer__r.Shipping_Country__c==null||record[0].Sales_Order__r.Customer__r.Shipping_Country__c==&apos;&apos;||record[0].Sales_Order__r.Customer__r.Shipping_Zip_Postal_Code__c==null||record[0].Sales_Order__r.Customer__r.Shipping_Zip_Postal_Code__c==&apos;&apos;)
+{
+alert(&apos;Missing Address Information for Customer.&apos;);
+}
+else if(record[0].Tax_Code__c==null||record[0].Tax_Code__c==&apos;&apos;||record[0].Tax_Percent__c ==null||record[0].Tax_Percent__c ==&apos;&apos;)
+{
+alert(&apos;Missing Tax Code and Tax Percent.&apos;);
+}
+else
+{
+var url = parent.location.href; //string for the URL of the current page 
+var ParentName = sforce.apex.execute(&quot;PM_Generate_and_Attach_Invoice_PDF&quot;,&quot;Generate&quot;,{&apos;customerId&apos;:&apos;{!Invoice__c.Id}&apos;}); 
+parent.location.href = url; //refresh the page
+}</url>
+    </webLinks>
+</CustomObject>

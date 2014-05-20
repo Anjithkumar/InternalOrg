@@ -1,0 +1,56 @@
+<apex:page controller="BadgeAssignmentReportController">
+    <apex:form >  
+      <apex:pageBlock >
+       
+        <apex:selectList value="{!un}" size="1">
+            Select User:  <apex:selectOptions value="{!PickvaluesTest}"/>
+        </apex:selectList>
+        
+        From Date: <apex:inputText value="{!fromDate}" id="datepicker"/>
+           To Date: <apex:inputText value="{!toDate}" id="datepicker1"/>  
+           <apex:commandButton value="Go" action="{!generateBadgeReport}"/>
+        <!--
+        <p>From Date: <input type="text" id="datepicker" />
+           To Date:   <input type="text" id="datepicker1" />
+           <apex:commandButton value="Go" action="{!go}"/></p>
+       -->
+    </apex:pageBlock>
+   </apex:form>
+<head>
+      <apex:includeScript value="{!URLFOR($Resource.JQuery1, '/jquery-ui-1.10.3.custom/js/jquery-1.9.1.js')}"/>
+      <apex:includeScript value="{!URLFOR($Resource.JQuery1, '/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js')}"/>
+      <apex:stylesheet value="{!URLFOR($Resource.JQuery1, '/jquery-ui-1.10.3.custom/css/start/jquery-ui-1.10.3.custom.css')}"/>
+      <script>
+          $(function() {
+             // $( "#datepicker" ).datepicker();
+             // $( "#datepicker1" ).datepicker();
+              
+               $( "[id $='datepicker']" ).datepicker();
+              $( "[id $='datepicker1']" ).datepicker();
+              
+          });   
+      </script>
+</head>
+
+ 
+    
+
+<apex:form >
+    <apex:pageMessages ></apex:pageMessages>  
+    <apex:pageBlock >
+        <apex:pageBlockTable value="{!badges}" var="bad" rendered="{!badgeListSize}">
+          <apex:column headerValue="Badge Owner" value="{!bad.RecipientId}"/>
+          <apex:column headerValue="Given By" value="{!bad.CreatedById}"/>
+          <apex:column headerValue="Date" value="{!bad.CreatedDate}"/>
+          <apex:column headerValue="Badge" >
+              <apex:image value="{!bad.Definition.imageUrl}" height="75" width="75"/>
+          </apex:column>
+          <apex:column headerValue="Description" value="{!bad.Definition.Description}"/> 
+          
+          
+        </apex:pageBlockTable>   
+       <strong> <apex:outputText rendered="{!noBadgeMsg }">No Badge is assigned in this period</apex:outputText>  </strong>
+    </apex:pageBlock>
+    
+</apex:form>
+</apex:page>

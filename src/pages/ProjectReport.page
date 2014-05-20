@@ -1,0 +1,93 @@
+<apex:page controller="ProjectReportController">
+<apex:form >
+    <apex:pageBlock title="Resource Requirement">
+        <apex:outputLabel style="font-size:13px; font-weight:bold;" value="Project Probability" /> &nbsp;
+        <apex:selectList size="1" value="{!projectProbability}" label="Project Probability">
+            <apex:selectOptions value="{!dealProbability}" />
+        </apex:selectList> &nbsp; &nbsp; &nbsp;
+        <apex:outputLabel style="font-size:13px; font-weight:bold;" value="Project Name" /> &nbsp;
+        <apex:selectList size="1" value="{!projectId}" label="Project Name">
+            <apex:selectOptions value="{!projectNameOption}" />
+        </apex:selectList> &nbsp; &nbsp; &nbsp;
+        <apex:commandButton value="Search" action="{!displayProjectDetail}" reRender="DetailPage" />
+    </apex:pageBlock>
+    
+    <apex:outputPanel id="DetailPage">
+        <apex:variable var="TotalManager" value="{!0}" />
+        <apex:variable var="TotalLead" value="{!0}" />
+        <apex:variable var="TotalSRDeveloper" value="{!0}" />
+        <apex:variable var="TotalDeveloper" value="{!0}" />
+        <apex:variable var="TotalTester" value="{!0}" />
+    <apex:pageBlock >        
+        <apex:pageBlockTable width="100%" value="{!ListOfProjects}" var="pn">
+            <apex:column >
+                <apex:outputLink value="/apex/AvailableResources?id={!pn.projectId}" id="theLink" target="_blank">{!pn.projectName}</apex:outputLink>
+                <apex:facet name="header">Project Name</apex:facet>
+                <apex:facet name="footer">
+                    <span class="grandtotal"></span>
+                </apex:facet>
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">Project Manager</apex:facet>
+                <apex:outputText value="{0, number, ###}">
+                   <apex:param value="{!pn.projectManager}" />
+                </apex:outputText>
+            </apex:column>
+        
+            <apex:column >
+                <apex:facet name="header">Team Lead</apex:facet>
+                
+                <apex:outputText value="{0, number, ###}">
+                   <apex:param value="{!pn.allotedTeamLead}" />
+                </apex:outputText> /
+                <apex:outputText value="{0, number, ###}">
+                   <apex:param value="{!pn.teamLead}" />
+                </apex:outputText>
+            </apex:column>
+            
+            <apex:column >
+                <apex:facet name="header">Senior Developer</apex:facet>
+                <apex:outputText value="{0, number, ###}">
+                   <apex:param value="{!pn.seniorDeveloper}" />
+                </apex:outputText>
+            </apex:column>
+        
+            <apex:column >
+                <apex:facet name="header">Developer</apex:facet>
+                <apex:outputText value="{0, number, ###}">
+                   <apex:param value="{!pn.developer}" />
+                </apex:outputText>
+            </apex:column>
+            
+           
+            <apex:column >
+
+                <apex:facet name="header">Start Date</apex:facet>
+                <apex:outputText value="{0, date, dd-MMM-yyyy}">
+                   <apex:param value="{!pn.startDate}" />
+                </apex:outputText>
+            </apex:column>
+            
+            <apex:column >
+
+                <apex:outputText value="{0, date, dd-MMM-yyyy}">
+                   <apex:param value="{!pn.endDate}" />
+                </apex:outputText>
+                <apex:facet name="header">End Date</apex:facet>
+            </apex:column>
+            
+        </apex:pageBlockTable>        
+    </apex:pageBlock>
+    <script>
+        if({!projectNameList != null}){
+            document.getElementsByClassName('grandtotal')[0].innerHTML = 'TOTAL';
+            document.getElementsByClassName('totalmanager')[0].innerHTML = '{!ROUND(TotalManager,0)}';
+            document.getElementsByClassName('totallead')[0].innerHTML = '{!ROUND(TotalLead,0)}';
+            document.getElementsByClassName('totalsrdeveloper')[0].innerHTML = '{!ROUND(TotalSRDeveloper,0)}';
+            document.getElementsByClassName('totaldeveloper')[0].innerHTML = '{!ROUND(TotalDeveloper,0)}';
+            document.getElementsByClassName('totaltester')[0].innerHTML = '{!ROUND(TotalTester,0)}';
+        }
+    </script>
+    </apex:outputPanel>
+</apex:form>
+</apex:page>

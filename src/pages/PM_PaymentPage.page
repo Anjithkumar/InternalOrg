@@ -1,0 +1,44 @@
+<apex:page standardController="Payment__c" extensions="PM_PaymentPageController" tabStyle="Payment__c">
+  <apex:sectionHeader title="Payment Edit" subtitle="New Payment" />
+  <apex:form >
+      <apex:pageBlock >
+          <apex:pageBlockSection collapsible="false" title="Payment Details" rendered="true">
+              <apex:inputField value="{!Payment__c.Supplier_Account__c}"/ > 
+              <apex:inputField value="{!Payment__c.Payment_Date__c}"/>
+              <apex:inputField value="{!Payment__c.Supplier_Invoice_Number__c}"/>
+              <apex:inputField value="{!Payment__c.Payment_Due_Date__c}"/>
+              <apex:inputField value="{!Payment__c.Amount_Paid__c}"/>
+              <apex:inputField value="{!Payment__c.Payment_Mode__c}">
+              <apex:actionSupport event="onchange" action="{!dispSection}" />
+              </apex:inputField>
+          </apex:pageBlockSection>
+          <apex:pageBlockSection collapsible="false" title="Payment Mode Details" rendered="{!chequeDetails}">
+              <apex:inputField value="{!Payment__c.Drawn_on_Bank__c}"/ >
+              <apex:inputField value="{!Payment__c.Cheque__c}"/ >
+              <apex:inputField value="{!Payment__c.Cheque_Date__c}"/ >
+          </apex:pageBlockSection>
+          <apex:pageBlockSection collapsible="false" title="Payment Mode Details" rendered="{!cashDetails}">
+          <apex:inputField value="{!Payment__c.Date_Paid__c}"/ >
+          <apex:inputField value="{!Payment__c.Paid_By__c}"/ >
+          <apex:inputField value="{!Payment__c.Recieved_By__c}"/ >
+          </apex:pageBlockSection>
+          <apex:pageBlockSection collapsible="false" title="Payment Mode Details" rendered="{!bankTransferDetails}">
+          <apex:inputField value="{!Payment__c.Date_Transferred__c}"/ >
+          <apex:inputField value="{!Payment__c.Initiating_Bank_Name__c}"/ >
+          <apex:inputField value="{!Payment__c.Initiating_Account_Name__c}"/ >
+          <apex:inputField value="{!Payment__c.Initiating_Account_Number__c}"/ >
+          <apex:inputField value="{!Payment__c.Receiving_Bank_Name__c}"/ >
+          <apex:inputField value="{!Payment__c.SWIFT_IFSC_Code__c}"/ >
+          <apex:inputField value="{!Payment__c.Receiving_Bank_Name__c}"/ >
+          <apex:inputField value="{!Payment__c.Receiving_Account_Name__c}"/ >
+          <apex:inputField value="{!Payment__c.Transaction_Reference_Number__c}"/ >
+          <apex:inputField value="{!Payment__c.Amount_Transferred__c}"/ >
+          
+          </apex:pageBlockSection>
+          <apex:pageBlockButtons >
+              <apex:commandButton value="Save" action="{!save}"/>
+              <apex:commandButton value="Cancel" action="{!cancel}"/>
+          </apex:pageBlockButtons>
+      </apex:pageBlock>
+  </apex:form>
+</apex:page>

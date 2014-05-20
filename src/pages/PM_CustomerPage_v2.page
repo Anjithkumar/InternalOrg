@@ -1,0 +1,17 @@
+<apex:page standardController="Customer__c" tabStyle="Customer__c">
+    
+   <!-- <apex:pageBlock >
+    <apex:pageBlockSection columns="1" title="Terminology">
+    <apex:outputText >Company - Customer Account </apex:outputText>
+    <apex:outputText >Prospect - Lead</apex:outputText>
+    <apex:outputText >Supplier - Supplier Account </apex:outputText>
+    </apex:pageBlockSection>
+    </apex:pageBlock> -->
+    <apex:pageBlock >
+    <apex:pageBlockSection columns="1" >
+    <apex:listViews type="Customer__c">
+        
+    </apex:listViews>
+    </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:page>

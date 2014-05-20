@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Alert Proj lead when actual effort is &gt;= 70% of planned efforts</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Alert Project Lead on Actual Efforts on Project</name>
+    <style>none</style>
+    <subject>Project &quot;{!01I90000000j8ZI.Name}&quot; has reached 70% of planned efforts</subject>
+    <textOnly>Hi {!01I90000000j8ZI.00N90000004eU7A},
+
+The project &quot;{!01I90000000j8ZI.Name}&quot; has reached more than 70% of the planned efforts. Please take necessary actions.
+
+Planned efforts for the project: {!01I90000000j8ZI.00N90000004drZl}.
+Actual efforts reached: {!01I90000000j8ZI.00N90000004f3AX}/ {!01I90000000j8ZI.00N90000004draK}.</textOnly>
+    <type>custom</type>
+</EmailTemplate>

@@ -1,0 +1,425 @@
+<apex:page showHeader="false" applyBodyTag="false" applyHtmlTag="false"
+    sidebar="false" docType="html-5.0" standardStylesheets="false"
+    controller="TimeEntryDetail">
+    <html>
+<head>
+<apex:includeScript value="{!URLFOR($Resource.jQuery,'/jquery-ui-1.10.1.custom/js/jquery-1.9.1.js')}" />
+<c:bootswrapAllTheamComponent />
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script>
+      google.load('visualization', '1.0', {'packages':['corechart']});
+    </script>
+<script type="text/javascript">
+      var $j = jQuery.noConflict();
+      
+      $j(document).ready(function(){
+
+
+            
+           // $j('.datepicker').datepicker();
+             
+            $j("#grahicalViewButton").click(function(){
+                 if($j("#selectUserNames").val() == 'all'){
+                TimeEntryDetail.getGrahicalDateForBarChart($j("#inputstartDate").val(),
+                    $j("#inputEndDate").val(), ShowEachUserView ,{escape:true});
+                }else{
+                TimeEntryDetail.getIndividualPieChart($j("#selectUserNames").val(),$j("#inputstartDate").val(),
+                    $j("#inputEndDate").val(),loadPieChartIndividual,{escape:true});
+                }          
+            });
+            
+            $j("#backButton").click(function(){
+            
+               $j("#TimeEntry").show();
+               $j("#TimeEntryDetailedView").hide();
+                });
+            
+            $j("#mailButton").click(function(){
+            
+               $j("#TimeEntry").hide();
+               $j("#TimeEntryDetailedView").show();
+               TimeEntryDetail.sendMailToAllUsers(ShowEachUserView ,{escape:true});
+                });
+            
+            $j("#searchButton").click(function(){
+                
+                    TimeEntryDetail.getPiaDataForJavaScript(
+                    $j("#inputstartDate").val(),
+                    $j("#inputEndDate").val(),                     
+                    loadPieChart, 
+                    {escape: true}
+                );
+  
+            });
+            
+            initializeLinks();
+
+            fetchUserNames();
+      });
+
+      fetchUserNames =function(){
+
+        TimeEntryDetail.getUserNames(function(response,event){
+          //console.log(response);
+          $j("#selectUserNames").html('');
+          $j("#selectUserNames").append("<option value='all'>--All--</option>");
+          $j.each(response,function(key,record){
+              console.log(record); 
+              $j("#selectUserNames").append("<option value="+record.Id+">"+record.Name+"</option>");
+          });
+
+        },{escape:true});
+
+
+      }
+  
+      loadPieChart = function(response,e){
+              console.log('PieChart Details !!' + e.message);
+               $j("#InitalLoadDiv").hide();
+               $j("#pieChartDiv").show();                   
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'TimeEntry');
+                data.addColumn('number', 'Time');
+                var options = {'title':'Time Entry Details',
+                       'width':400,
+                       'height':300,
+                       'colors': ['#D050D0', '#057D31','#FF7F50']};
+
+                var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+
+               
+                        if(e.status){
+                               console.log("In True");
+                               var dataArr= new Array();
+                                $j.each(response,function(key,record){
+                                 
+                                 var tt=record.hoursDetail;
+                                 tt=tt.toFixed(2);
+                                 var ar = [record.name,parseInt(tt)];
+                                 
+                                        
+                                 dataArr.push(ar);
+                                
+                                });
+                                console.log(dataArr); 
+                                data.addRows(dataArr);
+                                chart.draw(data, options);
+                        }else{
+                        console.log(e.message);
+                        }
+               
+                
+                }
+         loadPieChartIndividual = function(response,e){
+               $j("#TimeEntry").hide();
+               $j("#barChartDiv").hide();
+               $j("#TimeEntryDetailedView").show();
+               $j("#individualPieChartDiv").show();
+              console.log('PieChart Details !!' + e.message);                  
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'TimeEntry');
+                data.addColumn('number', 'Time');
+                var options = {'title':'Time Entry Details',
+                       'width':400,
+                       'height':300,
+                       'colors': ['#D050D0', '#057D31','#FF7F50','#FA9269','#f6c7b6','#D09925']};
+
+                var chart = new google.visualization.PieChart(document.getElementById('chart_div2'));
+
+               
+                        if(e.status){
+                               console.log("In True");
+                               var dataArr= new Array();
+                                $j.each(response,function(key,record){
+                                 
+                                 var tt=record.hoursDetail;
+                                 tt=tt.toFixed(2);
+                                 var ar = [record.name,parseInt(tt)];
+                                 
+                                        
+                                 dataArr.push(ar);
+                                
+                                });
+                                console.log(dataArr); 
+                                data.addRows(dataArr);
+                                chart.draw(data, options);
+                        }else{
+                        console.log(e.message);
+                        }
+               
+                
+                }       
+                
+        ShowEachUserView = function(response,e) {
+         // Create and populate the data table.
+          $j("#TimeEntry").hide();
+          $j("#TimeEntryDetailedView").show();
+          $j("#barChartDiv").show();
+          $j("#individualPieChartDiv").hide();
+         var data = new google.visualization.DataTable();
+         
+         
+                data.addColumn('string', 'EmployeeName');
+                data.addColumn('number', 'ClientBillable');
+                data.addColumn('number', 'Internal');
+                data.addColumn('number', 'Not Filled');
+                
+                var options = {
+                width: 1000,
+                height: 400,
+                legend: { position: 'top', maxLines: 3 },
+                bar: { groupWidth: '75%' },
+                isStacked: true,
+                'colors': ['#D09925','#4245DB','#B61639', '#FA9269', '#f6c7b6']
+                }
+                
+                var chart =new google.visualization.ColumnChart(document.getElementById('Barchart_div'));
+        
+                     if(e.status){
+                               var dataArr= new Array();
+                                $j.each(response,function(key,record){
+                                 
+                                 var client=record.clientHoursDetail.toFixed(2);
+                                 var internal= record.internalHoursDetail.toFixed(2);
+                                 var notFilled=record.notFilledHoursDetail.toFixed(2);
+                                 var ar = [record.name,record.clientHoursDetail,record.internalHoursDetail,record.notFilledHoursDetail];
+                                 
+                                        
+                                 dataArr.push(ar);
+                                
+                                });
+                                console.log(dataArr); 
+                                data.addRows(dataArr);
+                                chart.draw(data, options);
+                        }
+                }
+               
+                
+              initializeLinks = function(){
+              
+              $j("#InitalLoadDiv").show();
+              $j("#barChartDiv").hide();
+              $j("#TimeEntryDetailedView").hide();
+              $j("#individualPieChartDiv").hide();
+              $j("#selectFilter").change(function(){
+                //alert($j(this).val());
+                
+                var mm;
+                var yy;
+                var sd;
+                var ed;
+                
+                 // get current date
+                var d = new Date();
+                
+                if($j(this).val() == 'week'){
+                
+                    mm = d.getMonth()+1;
+                    yy = d.getFullYear();
+                    
+                    var t = d.getDay();
+                    console.log(t);
+                    var first = d.getDate() - d.getDay(); 
+                     // last day is the first day + 6
+                     var last = first + 6; 
+                    sd = (new Date(d.setDate(first))).getDate();
+                    ed = (new Date(d.setDate(last))).getDate();
+                    
+                    console.log(sd);
+                      console.log(ed);
+                    var startDate = sd+'/'+mm+'/'+yy;
+                     if(t>monthEnd){
+                    mm = mm +1 ;
+                    }
+                    var endDate = ed+'/'+mm+'/'+yy;
+                    
+                    $j("#inputstartDate").val(startDate);
+                    $j("#inputEndDate").val(endDate);
+                
+                }else if($j(this).val() == 'month'){
+                
+                    mm = d.getMonth()+1;
+                    yy = d.getFullYear();
+                    var monthEnd = (new Date(yy,d.getMonth()+1,0).getDate());
+                    var sd = (new Date(yy, d.getMonth(), 1).getDate());
+                    var endDate = monthEnd+'/'+mm+'/'+yy;
+                    var startDate = sd+'/'+mm+'/'+yy;
+                    $j("#inputstartDate").val(startDate);
+                    $j("#inputEndDate").val(endDate);
+                
+                }else if($j(this).val() == 'previous'){
+                     mm = d.getMonth()+1;
+                     yy = d.getFullYear();
+                
+                     // First day is the day of the month - the day of the week
+                     var first = d.getDate() - d.getDay()-7; 
+                     // last day is the first day + 6
+                     var last = first + 6; 
+                     var sd = (new Date(d.setDate(first))).getDate();
+                     var ed = (new Date(d.setDate(last))).getDate();
+                     var endDate = ed+'/'+mm+'/'+yy;
+                    var startDate = sd+'/'+mm+'/'+yy;
+                    $j("#inputstartDate").val(startDate);
+                    $j("#inputEndDate").val(endDate);
+                
+                }
+                
+              
+              });
+              
+              
+              }  
+                
+    </script>
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="panel panel-primary" id="TimeEntry">
+            <div class="panel-heading">
+                <h3 class="panel-title">Time Entry Details</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6">
+
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th class="col-lg-2">Please choose the duration</th>
+                                    <td class="col-lg-2"><select class="form-control col-lg-4"
+                                        id="selectFilter">
+                                            <option value="none">--None--</option>
+                                            <option value="week">This Week</option>
+                                            <option value="month">This Month</option>
+                                            <option value="previous">Previous Week</option>
+                                    </select></td>
+                                </tr>
+                                <tr>
+                                    <th class="col-lg-2">Start Date</th>
+                                    <td class="col-lg-4"><input type="text"
+                                        class="form-control col-lg-4" id="inputstartDate"
+                                        placeholder="StartDate" /></td>
+                                </tr>
+                                <tr>
+                                    <th class="col-lg-2">End Date</th>
+                                    <td class="col-lg-4"><input type="text"
+                                        class="form-control col-lg-4" id="inputEndDate"
+                                        placeholder="EndDate" /></td>
+                                </tr>
+                                <tr>
+
+
+                                    <td colspan="2" class="col-lg-4">
+                                        <button class="btn btn-default col-lg-2 pull-left">Cancel</button>
+                                        <button id="searchButton"
+                                            class="btn btn-primary col-lg-2 pull-right">Search</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--             
+
+                                
+                                <div class="form-group">                               
+                                        <label for="select" class="col-lg-2 control-label">Filter</label> 
+                                        <div class="col-lg-4">                      
+                                              <select class="form-control" id="selectFilter">
+                                              <option value="none">--None--</option>
+                                                <option value="week"> This Week</option>
+                                                <option value="month">This Month</option>  
+                                                <option value="previous">Previous Week</option>
+                                               </select>
+                                      </div> 
+                                </div>                              
+                                <div class="form-group">
+                                    <label for="inputstartDate" class="col-lg-2 control-label">Start
+                                        Date</label>
+                                    <div class="col-lg-4">
+                                        <input type="text" class="form-control" id="inputstartDate"
+                                            placeholder="StartDate" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEndDate" class="col-lg-2 control-label">End
+                                        Date</label>
+                                    <div class="col-lg-4">
+                                        <input type="text" class="form-control" id="inputEndDate"
+                                            placeholder="EndDate"  />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    
+                                        <button class="btn btn-default">Cancel</button>
+                                        <button id="searchButton" class="btn btn-primary">Search</button>
+                                    
+                                </div>
+                          -->
+
+
+
+                    <div class="col-lg-6 ">
+                        <div id="pieChartDiv" style="display: none;">
+                            <div id="chart_div"></div>
+                        </div>
+                        <div id="InitalLoadDiv" style="display: none;">
+                            <H2>Please Select Date for the chart</H2>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="well col-lg-12">
+                        <div class="form-group">
+                            <div class="col-lg-4">
+                                <label for="select" class="col-lg-2 control-label">Employee</label>
+
+                                <select class="form-control" id="selectUserNames">
+
+                                </select>
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="grahicalViewButton" class="col-lg-2 control-label">&nbsp;</label>
+                                <button type="button" id="grahicalViewButton"
+                                    class="btn btn-success">Grahical View</button>
+
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="tabularViewButton" class="col-lg-2 control-label">&nbsp;</label>
+                                <button type="button" id="tabularViewButton"
+                                    class="btn btn-info">Tabular view</button>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary" id="TimeEntryDetailedView">
+            <div class="panel-heading" style="height:55px;">
+           
+                
+                <h3 class="panel-title pull-left" style="line-height: 28px;">Time Entry Details View</h3>
+               
+                
+                <button type="button" id="backButton" class="btn btn-success btn-mini pull-right" style="line-height: 15px;">Back</button>
+               
+            </div>
+            <div class="panel-body">
+                <div class="col-lg-12" id="barChartDiv" style="display: none;">
+                    <div id="Barchart_div"></div>
+                    <button type="button" id="mailButton" class="btn btn-warning btn-mini pull-right" style="line-height: 15px;">Send Mail</button>
+                </div>
+                <div class="col-lg-12" id="individualPieChartDiv" style="display: none;">
+                            <div id="chart_div2"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+    </html>
+</apex:page>

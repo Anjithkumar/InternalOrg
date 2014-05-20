@@ -1,0 +1,53 @@
+<apex:page sidebar="false" showHeader="false" controller="WeeklyViewController" tabStyle="Project__c">
+    <link href="{!URLFOR($Resource.Vivekboot2, '/dist/css/bootstrap.css')}" rel="stylesheet"/>  
+    <link href="{!URLFOR($Resource.Vivekboot2, '/dist/css/bootstrap-theme.css')}" rel="stylesheet" media="screen"/> 
+    <link href="{!URLFOR($Resource.Vivekboot1, '/bootstrap/css/bootstrap.css')}" rel="stylesheet" />  
+    <apex:includeScript value="{!URLFOR($Resource.VivekBoot2, '/dist/js/bootstrap.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jQuery,'/jquery-ui-1.10.1.custom/js/jquery-1.9.1.js')}"/> 
+    <apex:stylesheet value="{!URLFOR($Resource.BootstrapDatePicker, 'css/bootstrap-datetimepicker.min.css')}"/>
+    <apex:includescript value="{!URLFOR($Resource.BootstrapDatePicker, 'js/bootstrap-datetimepicker.min.js')}"/>
+    <apex:form >
+        <script>
+            $j = jQuery.noConflict();
+            $j(document).ready(function(){
+                $j('#datetimepicker1').datetimepicker({
+                autoclose:true
+                });
+            });
+            function getDate()
+            {
+                //alert($j("#entDate").val());
+                getDates($j("#entDate").val());
+                $j("#entDate").val("");
+                
+            }
+        </script>
+        <ul class="nav nav-tabs">
+            <li class="{!timeEntryTab}"><a href="/apex/TimeEntryPage_v_1">Time Entries</a></li>
+            <li class="{!WeeklyViewTab}"><a href="/apex/WeeklyView">Weekly View</a></li>
+            <li class="{!BasicWizardTab}"><a href="/apex/PM_BasicTimeEntryWizard">Basic Wizard</a></li>
+            <li class="{!Home}"><a href="/home/home.jsp">Home</a></li>
+        </ul><br/><br/><h3>Select a Date</h3><br/><br/>
+        Date : <div id="datetimepicker1" class="input-append date"><input style="height:30px;" data-format="dd/MM/yyyy" type="text" id="entDate"></input><span class="add-on" style="height:30px"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
+        &nbsp;&nbsp;&nbsp;
+        <apex:commandLink onclick="getDate();return false;" >
+            <apex:image value="{!$Resource.Go}" width="35px" height="35px" />
+        </apex:commandLink>
+        <apex:actionFunction id="getDates" name="getDates" action="{!assignDate}" immediate="true" reRender="pgBlock,pgBlockT1">
+            <apex:param value="" name="dateInStringValue" assignTo="{!dateInStringFormat}"/>
+        </apex:actionFunction><br/><br/><br/>
+        <apex:pageBlock id="pageBlock" >
+        <apex:pageBlockTable value="{!AllEntries}" var="weeklyentries" border="1" id="pgBlockT1">
+        <apex:column headerValue="Project" headerClass="bg-color:#B40404;" value="{!weeklyentries.ProjectName}"/>
+        <apex:column headerValue="Sunday {!startOfWeek}" value="{!weeklyentries.sundayEffort}"/>
+        <apex:column headerValue="Monday {!Mondate}" value="{!weeklyentries.mondayEffort}"/>
+        <apex:column headerValue="Tuesday {!TueDate}" value="{!weeklyentries.tuesdayEffort}"/>
+        <apex:column headerValue="Wednesday {!WedDate}" value="{!weeklyentries.wednesdayEffort}"/>
+        <apex:column headerValue="Thursday {!ThuDate}" value="{!weeklyentries.thursdayEffort}"/>
+        <apex:column headerValue="Friday {!FriDate}" value="{!weeklyentries.fridayEffort}"/>
+        <apex:column headerValue="Saturday {!SatDate}" value="{!weeklyentries.saturdayEffort}"/>
+        
+        </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>    
+</apex:page>

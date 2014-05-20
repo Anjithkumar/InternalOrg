@@ -1,0 +1,121 @@
+<apex:page standardController="LM_CustomSetting__c" extensions="LM_CustomSetting">
+  <apex:form >
+  
+  <apex:pageBlock title=" Leave Allocation"   rendered="{!renderSection1}">
+  
+  
+
+
+
+
+            
+                <apex:pageBlockButtons >
+                        <apex:commandButton action="{!edit}" value="Edit"/>
+                        <apex:commandButton value="ADD" action="{!add}"   />
+           <apex:commandButton value="Edit" action="{!customEdit}"/>
+                  </apex:pageBlockButtons>
+                
+      <apex:pageBlockSection title="Current Leave Allocation ">
+                  
+                 <apex:outputField label="Name" value="{!fetchCurrentRecord.name}"  />
+                 <apex:outputField value="{!fetchCurrentRecord.Active__c}"  label="Active"/>
+                <apex:outputField value="{!fetchCurrentRecord.No_Of_Annual_Leaves__c}"  label="No.of Annual leaves  "/>
+                <apex:outputField value="{!fetchCurrentRecord.Year__c}"  label="Year"/>
+                 <apex:outputField value="{!fetchCurrentRecord.Frequency_Text__c}"  label="Frequency of Credits"/>
+               <apex:outputField value="{!fetchCurrentRecord.No_of_leaves_to_be_carry_forward__c}"  label="No. of leaves to be carry forward"/>
+      </apex:pageBlockSection>
+  
+  </apex:pageBlock>
+  
+              <apex:pageBlock rendered="{!editSection}">
+              <apex:pageBlockButtons >
+                <apex:commandButton action="{!save}" value="Save" onclick=" return myFunction()"/>
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+                </apex:pageBlockButtons>
+              <apex:pageBlockSection title="Current Leave Allocation ">
+                 <apex:inputField label="Name" value="{!fetchCurrentRecord.name}"  />
+                 <apex:inputField value="{!fetchCurrentRecord.Active__c}"  label="Active"/>
+                <apex:inputField value="{!fetchCurrentRecord.No_Of_Annual_Leaves__c}"  label="No.of Annual leaves  "/>
+                <apex:inputField value="{!fetchCurrentRecord.Year__c}"  label="Year"/>
+                <apex:selectList Label="Frequency of Credits " value="{!frequecnyOfRun}" multiselect="false" size="1" required="true">
+                                  <apex:selectOptions Value="{!Frequecny}" > </apex:selectoptions>
+                                  </apex:selectList>
+                <apex:inputField value="{!fetchCurrentRecord.No_of_leaves_to_be_carry_forward__c}"  label="No.of leaves to be carry forward"/>
+      
+      </apex:pageBlockSection>
+  
+  </apex:pageBlock>
+  
+  <apex:pageBlock title=" " rendered="{!renderSection2}">
+ 
+   <apex:pageMessages >
+   </apex:pageMessages>
+  
+  <html>
+            <body>
+
+            <script>
+            function myFunction()
+            {
+            var x;
+            
+            var r=confirm("Are you sure to create new leave allocation");
+            if (r==true)
+              {
+              x="You pressed OK!";
+              }
+            else
+              {
+              x="You pressed Cancel!";
+            
+              return false;
+              }
+            
+            }
+            </script>
+            
+            </body>
+            </html>
+  
+   
+                <apex:pageBlockButtons >
+                <apex:commandButton action="{!save}" value="Save" onclick=" return myFunction()"/>
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+                </apex:pageBlockButtons>
+  
+                         
+                            <apex:pageBlockSection title="Leave Allocation" columns="2" >
+                                  <apex:selectList Label="Frequency of Run " value="{!frequecnyOfRun}" multiselect="false" size="1" required="true">
+                                  <apex:selectOptions Value="{!Frequecny}" > </apex:selectoptions>
+                                  </apex:selectList>
+   
+  
+                                <apex:inputField value="{!fetchCurrentRecord.name}" required="true"/>
+                               <apex:inputField value="{!fetchCurrentRecord.No_Of_Annual_Leaves__c}" required="true" />
+                               <apex:outputField value="{!fetchCurrentRecord.Active__c}"/>
+                               <apex:inputField value="{!fetchCurrentRecord.Year__c}"/>
+                                <apex:inputField value="{!fetchCurrentRecord.No_of_leaves_to_be_carry_forward__c}"/>
+                               
+                               </apex:pageBlockSection>
+           
+  
+  
+  </apex:pageBlock>
+
+
+
+
+</apex:form>
+     <apex:pageBlock rendered="{!renderSection3}">
+        <apex:pageBlockSection title="Previous Leave Allocation records" columns="1">
+            <apex:pageblockTable value="{!FetchPerviousRecord }" var="LRR">
+                    <apex:column headerValue="Name" value="{!LRR.Name}"/> 
+                    <apex:column headerValue="Frequency of Run " value="{!LRR.Frequncy_Of_Run__c}"/>  
+                    <apex:column headerValue="Total Number Of Leaves/Year" value="{!LRR.No_Of_Annual_Leaves__c}" /> 
+                    <apex:column headerValue="Active" value="{!LRR.Active__c}"/ >
+                    <apex:column headerValue="Year" value="{!LRR.Year__c}"/ >
+  
+          </apex:pageblockTable>
+          </apex:pageBlockSection>
+        </apex:pageBlock>
+</apex:page>

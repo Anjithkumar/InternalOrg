@@ -1,0 +1,11 @@
+Hi {!Project__c.Project_Lead__c},
+
+This is to inform that , the actual effort reached upto 80% of planned effort .
+
+Actual Effort :{!Project__c.ActualEffort__c}
+
+Planned Effort :{!Project__c.Planned_Effort__c}
+
+
+Thanks 
+Extentor Team

@@ -1,0 +1,132 @@
+<apex:page Controller="PM_CreateConsolidatedTimeSheets"   sidebar="False" tabStyle="Sales_Order__c">
+  <apex:form >
+    <apex:sectionHeader title="Create Consolidated Time Sheets  "/>
+   <apex:pageMessages ></apex:pageMessages>
+   
+   <apex:pageBlock title="" id="PgBlock1">
+       <apex:pageBlockButtons >
+  <apex:commandLink action="{!goback}">
+  <apex:image value="{!$Resource.Back}" width="50" height="20"/>
+         </apex:commandLink>
+  </apex:pageBlockButtons>
+   
+   
+   
+   <apex:tabPanel switchType="client" selectedTab="name1" id="theTabPanel">
+        
+        
+        <apex:tab label="Step 1 - Select the time entries to approve" name="name1" id="tabOne">
+            
+
+            <apex:panelGrid columns="4">
+            
+            <apex:commandLink action="{!first}" status="as1">First</apex:commandlink>
+            <apex:commandLink action="{!previous}" rendered="{!hasPrevious}">Previous</apex:commandlink>
+            <apex:commandLink action="{!next}" rendered="{!hasNext}">Next</apex:commandlink>
+            <apex:commandLink action="{!last}">Last</apex:commandlink>
+            </apex:panelGrid>
+            <apex:pageBlockSection title="Time Entries" columns="1"  id="PbSection">
+     
+                <apex:pageBlockTable value="{!TableValues}" var="LRR">
+                    <apex:column width="50px">
+                    <apex:facet name="header" > 
+                    <apex:inputCheckbox id="CheckHeader" onclick="checkAll(this)">
+                    </apex:inputCheckbox></apex:facet>
+                    <apex:inputCheckbox value="{!LRR.isChecked}" id="checkedone" >
+                    </apex:inputCheckbox>
+                    </apex:column>
+         
+                    <apex:column headerValue="Effort Put By the User" value="{!LRR.instance.Effort_Put_in_by_User__c}" /> 
+                    <apex:column headerValue="Status" value="{!LRR.instance.Status__c}"/ >
+                    <apex:column headerValue="Project" value="{!LRR.instance.Project__c}"/>  
+                    <apex:column headerValue="Effort Date" value="{!LRR.instance.Date__c}"/> 
+
+                    <apex:column headerValue="Submitted Date " value="{!LRR.instance.Submission_Date__c}"/> 
+
+                
+                
+                </apex:pageBlockTable>
+                <apex:actionstatus id="as1">
+            <apex:facet name="start">
+             
+                <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;height: 100%;opacity:0.65;width:100%;"> 
+                    <div class="waitingHolder" style="top: 104.2px; width: 100px; right:50px;"> 
+                       <img class="waitingImage" src="{!$Resource.Redcircle}" width="20" height="20"  title="Please Wait..." /> 
+                       <span class="waitingDescription">Loading...</span>
+                       </div>
+                </div> 
+            </apex:facet>
+        </apex:actionstatus>
+
+  <apex:commandLink action="{!AddItems}" reRender="PgBlock1" status="as1" >
+    <apex:image value="{!$Resource.Add}" width="50" height="20" />
+         </apex:commandLink>
+     
+            </apex:pageBlockSection>
+        </apex:tab>
+  
+
+        <apex:tab label="Step 2 - Review the items to approve" name="name2" id="tabTwo">
+
+            <apex:pageBlockSection title=" Selected Time Entries" columns="1"  id="Section2" >
+                <apex:pageBlockTable value="{!submittedRows}" var="LRR">
+                    <apex:column headerValue=" Date" value="{!LRR.instance.Date__c}"/> 
+                    <apex:column headerValue="Effort Put By the User" value="{!LRR.instance.Effort_Put_in_by_User__c}" /> 
+                    <apex:column headerValue="Status" value="{!LRR.instance.Status__c}"/ >
+                    <apex:column headerValue="Project" value="{!LRR.instance.Project__c}"/>  
+                    <apex:column headerValue="Approval Process" value="{!LRR.instance.Approval_Date__c}"/> 
+                    <apex:column headerValue="Submission Date " value="{!LRR.instance.Submission_Date__c}"/> 
+                
+                 <apex:column >
+                
+           <apex:actionstatus id="as1">
+            <apex:facet name="start">
+             
+                <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;height: 100%;opacity:0.65;width:100%;"> 
+                    <div class="waitingHolder" style="top: 104.2px; width: 100px; right:50px;"> 
+                       <img class="waitingImage" src="{!$Resource.Redcircle}" width="50" height="20"  title="Please Wait..." /> 
+                        <span class="waitingDescription">Loading...</span>
+                </div> 
+                       </div>
+                      
+            </apex:facet>
+        </apex:actionstatus>
+            
+           
+           
+           <apex:commandLink action="{!remove}" reRender="PgBlock1" status="as1" >
+           <apex:image value="{!$Resource.CancelIcon}" width="20" height="20"/>
+           <apex:param name="removeRow" value="{!LRR.instance.Id}"/>
+           </apex:commandLink>
+           </apex:column>
+                </apex:pageBlockTable>
+
+             
+            
+            <apex:commandLink action="{!create}" status="as1">
+            <apex:image value="{!$Resource.Create}" width="50" height="20" />
+         </apex:commandLink>
+            
+            <apex:commandLink action="{!reset}" status="as1">
+              <apex:image value="{!$Resource.Reset}" width="50" height="20" />
+         </apex:commandLink>
+            
+            
+            </apex:pageBlockSection>
+        </apex:tab>
+</apex:tabPanel>
+ 
+  </apex:pageBlock>
+    </apex:form>
+    
+    <script>
+    function checkAll(cb){
+    var inputElem = document.getElementsByTagName("input");
+    for(var i=0; i<inputElem.length; i++){
+        if(inputElem[i].id.indexOf("checkedone")!=-1)
+            inputElem[i].checked = cb.checked;
+    }
+}
+</script>
+    
+</apex:page>

@@ -1,0 +1,6 @@
+Hello {!Ticket__c.Supplied_Name__c} , 
+
+Thank you for your query,A ticket has been raised and will follow up with you shortly.
+
+Thanks and Regards,
+{!Organization.Name}

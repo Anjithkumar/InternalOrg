@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Ticket has not assigned to any one</name>
+    <style>none</style>
+    <subject>{!Ticket__c.Ticket_Number__c} has not assigned to anyone</subject>
+    <type>text</type>
+</EmailTemplate>

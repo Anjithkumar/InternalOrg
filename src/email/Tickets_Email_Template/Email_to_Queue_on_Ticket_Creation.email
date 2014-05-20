@@ -1,0 +1,15 @@
+Hello,
+
+Ticket has been assigned to your team,Please take the necessary action for the ownership.
+
+Details are:
+
+Customer Name:{!Ticket__c.Customer__c}
+
+ Ticket Number:{!Ticket__c.Ticket_Number__c}
+
+Priority:{!Ticket__c.Priority__c}
+
+Thanks and Regards,
+
+{!Organization.Name}

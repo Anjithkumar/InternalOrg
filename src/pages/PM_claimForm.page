@@ -1,0 +1,124 @@
+<apex:page standardController="Claim__c" extensions="PM_ClaimController" renderAs="pdf">
+   <html>
+         <head>
+         <style> 
+             @page {                
+                @top-center {                   
+                    content: element(header);               
+                }
+                @bottom-left {
+                    content: element(footer);
+                } 
+                @bottom-right {
+                    font-size:60%;                   
+                    content: "Page " counter(page);              
+                }             
+            }                       
+ 
+            div.header {                
+                padding: 10px;              
+                position: running(header);           
+            }           
+            div.footer {                
+                display: block;             
+                padding: 5px;  
+                position: running(footer); 
+                
+            }           
+                
+                
+             body {font-family: Arial Unicode MS;}
+             .Head {
+                 font-weight:bold;
+                 font-size:1;
+                 color:black;
+                 background-color:#DDDDDD;
+                 }  
+             .smallfont {
+                 
+                 font-size:50%;
+                 color:black;
+                 
+                 }      
+                 .tableinside{
+                 
+                 align-right;
+                 //color:black;
+                 
+                 }      
+             .body {
+                 
+                 font-size:70%;
+                 color:black;
+                
+                 }      
+         </style>
+         </head>
+         <body style="font-family:Arial,sans-serif;">  
+             <table>
+             <tr><td>
+             <div class="header">
+             <table style="width:700px">
+             <tr><td style="width:86%;"><left><h1>EXPENSE CLAIM FORM</h1></left></td><td style="width:14%;"><apex:image id="theImage" value="{!$Resource.CompanyLogo}" style="width:250px;"/></td></tr>
+             </table><br/><br/>
+             </div>
+             </td></tr>
+             <tr><td>
+             <div>
+                 {!Details}
+                 <table style="width:700px">
+                   <tr><td>Claim Number: <b>{!claimInstance.Claim_Number__c}</b></td><td>Date of Claim: <b><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!claimInstance.Claim_Date__c}"/></apex:outputText></b></td></tr>
+                     <tr><td>Name:<b>{!userInstance.Name}</b> </td><td>Emp #: <b>{!userInstance.EmployeeNumber}</b></td></tr>
+                     
+                 </table>
+             </div>
+             </td></tr>
+             <br/><br/>
+             <tr><td>
+             <apex:variable value="{!1}" var="rowNum"/>
+              <div align="center" style="height:150px">
+              <apex:dataTable value="{!ClaimItems}" var="clmitem" frame="box" width="700px" border="1" align="right" style="font-size:80%;color:black;">
+                 <apex:column style="width:35px;" headerValue="#" headerClass="font-size:50%;color:black;">
+                     <apex:outputText value="{!FLOOR(rowNum)}"></apex:outputText>
+                     <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+                 </apex:column>
+                 <apex:column style="width:70px;" headerValue="Date Of Expense"  value="{!clmitem.ExpenseDate__c}"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                 <apex:column style="width:70px;" headerValue="Expense Type " value="{!clmitem.Expense_Type__c}"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                 <apex:column style="width:70px;" headerValue="Project"  value="{!clmitem.Project__r.Name}"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                 <apex:column style="width:70px;" headerValue="Claim Item Name"  value="{!clmitem.Name}"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                 <apex:column style="width:70px;" headerValue="Amount in Expense Currency " ><div align="right">{!clmitem.Expense_Amount__c}</div></apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                 <apex:column style="width:70px;" headerValue="Expense Currency"  value="{!clmitem.Expense_Currency__c}"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                 <apex:column style="width:70px;" headerValue="Exchange Rate " ><div align="right">{!clmitem.Exchange_Rate1__c}</div></apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                 <apex:column style="width:70px;" headerValue="Amount Claimed(in INR)"  ><div align="right">{!clmitem.Amount_in_Claim_Currency__c}</div></apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                 <apex:column style="width:70px;" headerValue="Bill/Reciept #"  value="{!clmitem.Bill_Number__c }"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                 
+             
+             </apex:dataTable>
+             </div>
+             <br/><br/><br/><br/>
+             </td></tr>
+             <tr><td>
+             <div align="right" style="padding-right:75px;font-size:80%;color:black;">Total Claim Amount:  <b>INR {!claimInstance.Total_Amount_to_Claim__c}</b></div>
+             <br/><br/>
+             </td></tr>
+             <tr><td>
+             <div align="right" style="border:1px solid;border-radius:0.2px;width:700px;height:80px">
+                 <div align="left"><b>Description Of Claim</b><br/><br/> {!claimInstance.Submitter_Comments__c} </div>
+             </div>
+             <br/><br/>
+             </td></tr>
+             <tr><td>
+             <table style="border:1px solid;border-radius:0.2px;width:700px;height:140px">
+                 <tr><td><b>Declaration</b><br/>I hereby declare that all amounts claimed above are official and not personal in nature.<br/><br/><br/><div align="right" style="left-padding:10px;">Signature_____________________________&nbsp;&nbsp;<br/><br/>Date_____________________________&nbsp;&nbsp;</div></td></tr>
+             </table>
+             <br/><br/>
+             </td></tr>
+             <tr><td>
+             <table style="border:1px solid;border-radius:0.2px;width:700px;height:120px;">
+                 <tr><td><b>Verification Log</b><br/><br/><div align="right"></div>Checked By:___________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sign and Date___________________<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Auth By :___________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sign and Date____________________</td></tr>
+             </table>
+             </td></tr>
+             </table> 
+         </body>
+ </html>
+</apex:page>

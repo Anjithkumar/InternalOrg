@@ -1,0 +1,73 @@
+<apex:page standardController="Project__c" extensions="PM_ScopeController" sidebar="false">
+    <apex:sectionHeader title="Scope" subtitle="Define Scope for {!nameOfProject.name}"/>
+    <apex:form >
+        <apex:pageblock id="Pb">
+            <apex:pageblocksection >
+                
+                <apex:pageblockTable value="{!listOfScope}" var="w" style="width:1250px;" id="pgtable">
+                    <apex:variable value="{!0}" var="rowNum"/>
+                    <apex:column headerValue="SI" style="width:50px">
+                        <apex:outputText value="{!FLOOR(rowNum)}"></apex:outputText>
+                        
+                    </apex:column>
+                    <apex:column headerValue="Description" style="width:1000px;">
+                        <apex:inputField value="{!w.Description__c}" style="width:900px;height:125px;"/>
+                    </apex:column>
+                    <apex:column >
+                     <apex:actionstatus id="as2">
+            <apex:facet name="start">
+             
+                <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;height: 100%;opacity:0.65;width:100%;"> 
+                    <div class="waitingHolder" style="center: 104.2px; width: 100px; right:50px;"> 
+                       <img class="waitingImage" src="{!$Resource.Redcircle}"  width="30" height="30"  title="Please Wait..."/> 
+                      <span class="waitingImage">Loading...</span>
+                      
+                       </div>
+                </div> 
+            </apex:facet>
+        </apex:actionstatus>
+        <apex:commandLink action="{!remove}" status="as2" reRender="pgtable">
+        <apex:param name="deleteRow" value="{!w.Id}" />
+        <apex:param name="removeRow" value="{!rowNum}" />
+         <apex:image value="{!$Resource.Remove}" width="50" height="20" />
+         </apex:commandLink>
+                 <!--       <apex:commandLink action="{!remove}" value="Remove" style="color:Red" reRender="pgtable" status="as2">
+                            <apex:param name="removeRow" value="{!w.Id}" />
+                            <apex:param name="removeRows" value="{!rowNum}" />
+                        </apex:commandLink>  -->
+                        <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+                    </apex:column>
+                    
+                </apex:pageblockTable><br/>
+        &nbsp;&nbsp; <apex:commandLink action="{!addNewScope}" reRender="pgtable" status="as2">
+         <apex:image value="{!$Resource.Add}" width="50" height="20" />
+         </apex:commandLink>
+            <!--    &nbsp;&nbsp;<apex:commandLink value="ADD ROW" action="{!addNewScope}"  style="color:blue" reRender="pgtable" status="as2"/> -->
+                 <apex:actionstatus id="as2">
+            <apex:facet name="start">
+             
+                <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;height: 100%;opacity:0.65;width:100%;"> 
+                    <div class="waitingHolder" style="botttom: 104.2px; width: 100px; right:50px;"> 
+                       <img class="waitingImage" src="{!$Resource.Redcircle}"  width="30" height="30"  title="Please Wait..."/> 
+                      <span class="waitingImage">Loading...</span>
+                      
+                       </div>
+                </div> 
+            </apex:facet>
+        </apex:actionstatus>
+            </apex:pageblocksection>
+            <apex:pageBlockButtons location="bottom">
+            <apex:commandLink action="{!save}">
+         <apex:image value="{!$Resource.Save}" width="50" height="20" />
+         </apex:commandLink>
+       &nbsp;&nbsp;<apex:commandLink action="{!Cancel}">
+         <apex:image value="{!$Resource.Cancel}" width="50" height="20" />
+         </apex:commandLink>
+              <!--  <apex:commandButton value="Save" action="{!save}" style="color:green"> 
+                    
+                </apex:commandButton> 
+                <apex:commandButton value="Cancel" action="{!Cancel}" style="color:Red;"/> -->
+            </apex:pageBlockButtons>
+        </apex:pageblock>
+    </apex:form>
+</apex:page>

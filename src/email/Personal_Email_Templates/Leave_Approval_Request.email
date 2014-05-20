@@ -1,0 +1,14 @@
+Hi  {!Leave_Request__c.Employee__c}, 
+
+This mail is to inform that your leave has been approved by the HR/Manager for the period: 
+Start Date : {!Leave_Request__c.Start_Date__c} 
+End Date: {!Leave_Request__c.End_Date__c} 
+
+Number of days of leave: {!Leave_Request__c.Total_Working_days__c} 
+
+Please click the below link for further leave details
+{!Leave_Request__c.Link} 
+
+Thank you, 
+HR manager 
+Extentor
