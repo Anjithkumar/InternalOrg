@@ -121,19 +121,15 @@ public class DataTableClass{
         }
         return days;
     }
-    /*
-    //--Send Mail To User on the barChart View
-    @RemoteAction
-    global static void sendMailToAllUsers(){
-        List<User> userId = new List<User>();
-        for(User user : [SELECT Id,Name,Unit__c FROM User WHERE IsActive=true AND Unit__c='Service-Delivery']){
-             userId.add(user);
-             }
-          
-           
-        
-    }
-    */
+    
+    // Code Added By Vivek
+    // Code Added By Vivek
+    // Code Added By Vivek
+    // Code Added By Vivek
+    // Code Added By Vivek
+    // Code Added By Vivek
+    // Code Added By Vivek
+   
     
     //--Pie Chart of a single User
      @RemoteAction

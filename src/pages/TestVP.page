@@ -8,7 +8,7 @@
         j$("input[id$='endDate']").datepicker({dateFormat: 'dd/mm/yy'});
         
     });  
-    </script>    
+    </script>  
     <apex:form id="frm" >
         <apex:pageBlock >
             <apex:actionStatus id="status">
